@@ -1,0 +1,48 @@
+{
+  "title": "Family",
+  "description": "Learn family-related vocabulary in Bulgarian",
+  "content": [
+    {
+      "type": "section",
+      "title": "Close Family",
+      "description": "Immediate family members",
+      "content": [
+        {
+          "type": "table",
+          "headers": ["Bulgarian", "English"],
+          "rows": [
+            ["майка", "mother"],
+            ["баща", "father"],
+            ["сестра", "sister"],
+            ["брат", "brother"],
+            ["сын", "son"],
+            ["дъщеря", "daughter"]
+          ]
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "title": "Extended Family",
+      "description": "Other family relatives",
+      "content": [
+        {
+          "type": "table",
+          "headers": ["Bulgarian", "English"],
+          "rows": [
+            ["дядо", "grandfather"],
+            ["баба", "grandmother"],
+            ["чичо", "uncle"],
+            ["тетя", "aunt"],
+            ["братовчед", "cousin (male)"],
+            ["братовчедка", "cousin (female)"],
+            ["теща", "mother-in-law"],
+            ["тесть", "father-in-law"],
+            ["деверей", "brother-in-law"],
+            ["золва", "sister-in-law"]
+          ]
+        }
+      ]
+    }
+  ]
+}

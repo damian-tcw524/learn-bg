@@ -1,0 +1,59 @@
+{
+  "title": "Basic Verbs",
+  "description": "Common Bulgarian verbs for everyday use",
+  "content": [
+    {
+      "type": "section",
+      "title": "Daily Activities",
+      "description": "Verbs related to daily routines and basic actions",
+      "content": [
+        {
+          "type": "table",
+          "headers": ["Bulgarian", "English"],
+          "rows": [
+            ["ям", "to eat"],
+            ["пия", "to drink"],
+            ["спя", "to sleep"],
+            ["пиша", "to write"],
+            ["чета", "to read"]
+          ]
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "title": "Communication & Perception",
+      "description": "Verbs for speaking, listening, and observing",
+      "content": [
+        {
+          "type": "table",
+          "headers": ["Bulgarian", "English"],
+          "rows": [
+            ["говоря", "to speak"],
+            ["слушам", "to listen"],
+            ["виждам", "to see"],
+            ["чувам", "to hear"],
+            ["разбирам", "to understand"]
+          ]
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "title": "Modal & Auxiliary Verbs",
+      "description": "Verbs expressing ability, desire, and possession",
+      "content": [
+        {
+          "type": "table",
+          "headers": ["Bulgarian", "English"],
+          "rows": [
+            ["мога", "can/to be able"],
+            ["искам", "to want"],
+            ["имам", "to have"],
+            ["трябва", "must/to need"]
+          ]
+        }
+      ]
+    }
+  ]
+}

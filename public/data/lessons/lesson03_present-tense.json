@@ -1,0 +1,115 @@
+{
+  "title": "Bulgarian Present Tense",
+  "description": "Learn how to form and use the present tense in Bulgarian with common verb endings and examples.",
+  "content": [
+    {
+      "type": "section",
+      "title": "What is Present Tense?",
+      "description": "The present tense describes actions happening now or regularly.",
+      "content": [
+        {
+          "bg": "Аз чета книга.",
+          "en": "I am reading a book."
+        },
+        {
+          "bg": "Той работи всеки ден.",
+          "en": "He works every day."
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "title": "Personal Pronouns",
+      "description": "Bulgarian subject pronouns used with present tense verbs.",
+      "content": [
+        {
+          "type": "table",
+          "headers": ["Bulgarian", "English"],
+          "rows": [
+            ["аз", "I"],
+            ["ти", "you (singular)"],
+            ["той / тя / то", "he / she / it"],
+            ["ние", "we"],
+            ["вие", "you (plural/formal)"],
+            ["те", "they"]
+          ]
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "title": "Common Present Tense Endings",
+      "description": "Typical endings for many Bulgarian verbs in present tense.",
+      "content": [
+        {
+          "type": "table",
+          "headers": ["Pronoun", "Ending Example"],
+          "rows": [
+            ["аз", "-а / -я"],
+            ["ти", "-еш / -иш"],
+            ["той / тя / то", "-е / -и"],
+            ["ние", "-ем / -им"],
+            ["вие", "-ете / -ите"],
+            ["те", "-ат / -ят"]
+          ]
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "title": "Example Verb: Чета (to read)",
+      "description": "Conjugation of the verb 'чета' in present tense.",
+      "content": [
+        {
+          "type": "table",
+          "headers": ["Bulgarian", "English"],
+          "rows": [
+            ["аз чета", "I read / am reading"],
+            ["ти четеш", "you read / are reading"],
+            ["той/тя/то чете", "he/she/it reads"],
+            ["ние четем", "we read"],
+            ["вие четете", "you read"],
+            ["те четат", "they read"]
+          ]
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "title": "Example Verb: Говоря (to speak)",
+      "description": "Conjugation of the verb 'говоря' in present tense.",
+      "content": [
+        {
+          "type": "table",
+          "headers": ["Bulgarian", "English"],
+          "rows": [
+            ["аз говоря", "I speak / am speaking"],
+            ["ти говориш", "you speak"],
+            ["той/тя/то говори", "he/she/it speaks"],
+            ["ние говорим", "we speak"],
+            ["вие говорите", "you speak"],
+            ["те говорят", "they speak"]
+          ]
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "title": "Useful Present Tense Sentences",
+      "description": "Practice with common present tense expressions.",
+      "content": [
+        {
+          "type": "table",
+          "headers": ["Bulgarian", "English"],
+          "rows": [
+            ["Аз уча български.", "I study Bulgarian."],
+            ["Ти живееш в Лондон.", "You live in London."],
+            ["Той работи тук.", "He works here."],
+            ["Ние ядем сега.", "We are eating now."],
+            ["Те говорят английски.", "They speak English."]
+          ]
+        }
+      ]
+    }
+  ]
+}

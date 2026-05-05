@@ -1,0 +1,26 @@
+[
+  {
+    "id": "alphabet",
+    "title": "Cyrillic Alphabet",
+    "description": "Learn the Bulgarian alphabet",
+    "file": "lesson00_alphabet.json"
+  },
+  {
+    "id": "family",
+    "title": "Family",
+    "description": "Family-related words",
+    "file": "lesson01_family.json"
+  },
+  {
+    "id": "verbs",
+    "title": "Basic Verbs",
+    "description": "Common verbs in Bulgarian",
+    "file": "lesson02_verbs.json"
+  },
+  {
+    "id": "present-tense",
+    "title": "Present Tense",
+    "description": "Present tense in Bulgarian",
+    "file": "lesson03_present-tense.json"
+  }
+]
