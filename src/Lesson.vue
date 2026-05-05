@@ -10,7 +10,7 @@ const lessonData = ref<LessonData | null>(null)
 
 onMounted(async () => {
   const file = route.query.file as string
-  const res = await fetch(`/data/lessons/${file}`)
+  const res = await fetch(`${import.meta.env.BASE_URL}data/lessons/${file}`)
   lessonData.value = await res.json()
 })
 

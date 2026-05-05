@@ -7,7 +7,7 @@ const router = useRouter()
 const lessons = ref<RoadmapItem[]>([])
 
 onMounted(async () => {
-  const res = await fetch('/data/roadmap.json')
+  const res = await fetch(`${import.meta.env.BASE_URL}data/roadmap.json`)
   lessons.value = await res.json()
 })
 
