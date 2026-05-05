@@ -22,5 +22,11 @@
     "title": "Present Tense",
     "description": "Present tense in Bulgarian",
     "file": "lesson03_present-tense.json"
+  },
+  {
+    "id": "present-verbs",
+    "title": "Present Tense verbs",
+    "description": "Present tense verbsin Bulgarian",
+    "file": "lesson04_present-verbs.json"
   }
 ]

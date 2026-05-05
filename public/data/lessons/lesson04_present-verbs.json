@@ -1,0 +1,133 @@
+{
+  "title": "Present Verbs",
+  "description": "Common Bulgarian verbs conjugated in the present tense with patterns and example sentences.",
+  "content": [
+    {
+      "type": "section",
+      "title": "General Conjugation Patterns",
+      "description": "These endings are commonly used to conjugate Bulgarian verbs in the present tense.",
+      "content": [
+        {
+          "type": "table",
+          "headers": ["Pronoun", "Typical Endings", "Example"],
+          "rows": [
+            ["аз", "-а / -я", "аз работя (I work)"],
+            ["ти", "-еш / -иш", "ти работиш (you work)"],
+            ["той / тя / то", "-е / -и", "той работи (he works)"],
+            ["ние", "-ем / -им", "ние работим (we work)"],
+            ["вие", "-ете / -ите", "вие работите (you work)"],
+            ["те", "-ат / -ят", "те работят (they work)"]
+          ]
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "title": "Verb: Работя (to work)",
+      "content": [
+        {
+          "type": "table",
+          "headers": ["Form", "English", "Example Sentence"],
+          "rows": [
+            ["аз работя", "I work", "Аз работя всеки ден."],
+            ["ти работиш", "you work", "Ти работиш тук."],
+            ["той/тя/то работи", "he/she/it works", "Той работи в офис."],
+            ["ние работим", "we work", "Ние работим заедно."],
+            ["вие работите", "you work", "Вие работите много."],
+            ["те работят", "they work", "Те работят в компания."]
+          ]
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "title": "Verb: Живея (to live)",
+      "content": [
+        {
+          "type": "table",
+          "headers": ["Form", "English", "Example Sentence"],
+          "rows": [
+            ["аз живея", "I live", "Аз живея в България."],
+            ["ти живееш", "you live", "Ти живееш тук."],
+            ["той/тя/то живее", "he/she/it lives", "Тя живее в София."],
+            ["ние живеем", "we live", "Ние живеем заедно."],
+            ["вие живеете", "you live", "Вие живеете близо."],
+            ["те живеят", "they live", "Те живеят в града."]
+          ]
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "title": "Verb: Ям (to eat)",
+      "content": [
+        {
+          "type": "table",
+          "headers": ["Form", "English", "Example Sentence"],
+          "rows": [
+            ["аз ям", "I eat", "Аз ям ябълка."],
+            ["ти ядеш", "you eat", "Ти ядеш сега."],
+            ["той/тя/то яде", "he/she/it eats", "Той яде хляб."],
+            ["ние ядем", "we eat", "Ние ядем заедно."],
+            ["вие ядете", "you eat", "Вие ядете бързо."],
+            ["те ядат", "they eat", "Те ядат в ресторант."]
+          ]
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "title": "Verb: Пия (to drink)",
+      "content": [
+        {
+          "type": "table",
+          "headers": ["Form", "English", "Example Sentence"],
+          "rows": [
+            ["аз пия", "I drink", "Аз пия вода."],
+            ["ти пиеш", "you drink", "Ти пиеш кафе."],
+            ["той/тя/то пие", "he/she/it drinks", "Тя пие чай."],
+            ["ние пием", "we drink", "Ние пием сок."],
+            ["вие пиете", "you drink", "Вие пиете бавно."],
+            ["те пият", "they drink", "Те пият бира."]
+          ]
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "title": "Verb: Чета (to read)",
+      "content": [
+        {
+          "type": "table",
+          "headers": ["Form", "English", "Example Sentence"],
+          "rows": [
+            ["аз чета", "I read", "Аз чета книга."],
+            ["ти четеш", "you read", "Ти четеш много."],
+            ["той/тя/то чете", "he/she/it reads", "Той чете вестник."],
+            ["ние четем", "we read", "Ние четем заедно."],
+            ["вие четете", "you read", "Вие четете бързо."],
+            ["те четат", "they read", "Те четат книги."]
+          ]
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "title": "Verb: Пиша (to write)",
+      "content": [
+        {
+          "type": "table",
+          "headers": ["Form", "English", "Example Sentence"],
+          "rows": [
+            ["аз пиша", "I write", "Аз пиша писмо."],
+            ["ти пишеш", "you write", "Ти пишеш имейл."],
+            ["той/тя/то пише", "he/she/it writes", "Тя пише съобщение."],
+            ["ние пишем", "we write", "Ние пишем заедно."],
+            ["вие пишете", "you write", "Вие пишете често."],
+            ["те пишат", "they write", "Те пишат текстове."]
+          ]
+        }
+      ]
+    }
+  ]
+}
