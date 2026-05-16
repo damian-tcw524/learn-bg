@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, nextTick, onMounted, ref } from 'vue'
+import { computed, nextTick, onBeforeUnmount, onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import type { LessonData } from './types'
 
@@ -7,6 +7,9 @@ const route = useRoute()
 
 const lessonData = ref<LessonData | null>(null)
 const drawerOpen = ref(false)
+const activeSectionId = ref('')
+const observer = ref<IntersectionObserver | null>(null)
+const observedElements = ref<HTMLElement[]>([])
 
 type SectionLink = {
   id: string
@@ -64,16 +67,60 @@ const goToSection = async (targetId: string) => {
   closeDrawer()
   await nextTick()
 
+  activeSectionId.value = targetId
   document.getElementById(targetId)?.scrollIntoView({
     behavior: 'smooth',
     block: 'start'
   })
 }
 
+const setupSectionObserver = () => {
+  observer.value?.disconnect()
+  observedElements.value = []
+
+  const links = sectionLinks.value
+  if (!links.length) {
+    return
+  }
+
+  observer.value = new IntersectionObserver(
+    (entries) => {
+      const visible = entries
+        .filter((entry) => entry.isIntersecting)
+        .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)
+
+      if (visible[0]?.target?.id) {
+        activeSectionId.value = visible[0].target.id
+      }
+    },
+    {
+      root: null,
+      rootMargin: '-15% 0px -65% 0px',
+      threshold: [0.1, 0.35, 0.6]
+    }
+  )
+
+  observedElements.value = links
+    .map((link) => document.getElementById(link.id))
+    .filter((element): element is HTMLElement => !!element)
+
+  observedElements.value.forEach((element) => observer.value?.observe(element))
+
+  if (!activeSectionId.value) {
+    activeSectionId.value = links[0].id
+  }
+}
+
 onMounted(async () => {
   const file = route.query.file as string
   const res = await fetch(`${import.meta.env.BASE_URL}data/lessons/${file}`)
   lessonData.value = await res.json()
+  await nextTick()
+  setupSectionObserver()
+})
+
+onBeforeUnmount(() => {
+  observer.value?.disconnect()
 })
 </script>
 
@@ -106,6 +153,7 @@ onMounted(async () => {
         :key="link.id"
         type="button"
         class="drawer-link"
+        :class="{ active: link.id === activeSectionId }"
         @click="goToSection(link.id)"
       >
         {{ link.label }}
@@ -310,6 +358,11 @@ onMounted(async () => {
   border-color: rgba(110, 240, 210, 0.55);
   background: linear-gradient(180deg, rgba(21, 52, 66, 0.96), rgba(15, 36, 45, 1));
   outline: none;
+}
+
+.drawer-link.active {
+  border-color: rgba(255, 200, 111, 0.62);
+  box-shadow: inset 0 0 0 1px rgba(255, 200, 111, 0.2);
 }
 
 .lesson-layout {

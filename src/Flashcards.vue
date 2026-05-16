@@ -1,11 +1,340 @@
+<script setup lang="ts">
+import { computed, onMounted, ref } from 'vue'
+import { useRouter } from 'vue-router'
+import { appendFlashcardAttempt, appendFlashcardSession } from './flashcardStats'
+import type { FlashcardData, FlashcardItem, FlashcardTopic } from './types'
+
+type FrontLanguage = 'bg' | 'en' | 'mixed'
+
+type DeckCard = {
+  card: FlashcardItem
+  front: 'bg' | 'en'
+}
+
+const router = useRouter()
+
+const data = ref<FlashcardData | null>(null)
+const loading = ref(true)
+const loadError = ref('')
+
+const selectedTopicIds = ref<string[]>([])
+const frontMode = ref<FrontLanguage>('mixed')
+
+const deck = ref<DeckCard[]>([])
+const currentIndex = ref(0)
+const showBack = ref(false)
+const dragX = ref(0)
+const startX = ref<number | null>(null)
+const dragged = ref(false)
+
+const roundCorrect = ref(0)
+const roundWrong = ref(0)
+const roundSaved = ref(false)
+
+const swipeThreshold = 90
+
+const topics = computed<FlashcardTopic[]>(() => data.value?.topics ?? [])
+
+const filteredCards = computed<FlashcardItem[]>(() => {
+  const cards = data.value?.cards ?? []
+  if (!selectedTopicIds.value.length) {
+    return cards
+  }
+
+  return cards.filter((card) => card.topics.some((topicId) => selectedTopicIds.value.includes(topicId)))
+})
+
+const currentCard = computed<DeckCard | null>(() => deck.value[currentIndex.value] ?? null)
+
+const roundCompleted = computed(() => deck.value.length > 0 && currentIndex.value >= deck.value.length)
+
+const frontLanguageLabel = computed(() => {
+  const card = currentCard.value
+  if (!card) {
+    return ''
+  }
+  return card.front === 'bg' ? 'Bulgarian' : 'English'
+})
+
+const backLanguageLabel = computed(() => {
+  const card = currentCard.value
+  if (!card) {
+    return ''
+  }
+  return card.front === 'bg' ? 'English' : 'Bulgarian'
+})
+
+const frontText = computed(() => {
+  const card = currentCard.value
+  if (!card) {
+    return ''
+  }
+
+  return card.front === 'bg' ? card.card.bg : card.card.en
+})
+
+const backText = computed(() => {
+  const card = currentCard.value
+  if (!card) {
+    return ''
+  }
+
+  return card.front === 'bg' ? card.card.en : card.card.bg
+})
+
+function shuffle<T>(input: T[]): T[] {
+  const arr = [...input]
+  for (let i = arr.length - 1; i > 0; i -= 1) {
+    const j = Math.floor(Math.random() * (i + 1))
+    ;[arr[i], arr[j]] = [arr[j], arr[i]]
+  }
+  return arr
+}
+
+function pickFrontLanguage(): 'bg' | 'en' {
+  if (frontMode.value === 'bg') {
+    return 'bg'
+  }
+  if (frontMode.value === 'en') {
+    return 'en'
+  }
+  return Math.random() > 0.5 ? 'bg' : 'en'
+}
+
+function rebuildDeck(): void {
+  const nextDeck = shuffle(filteredCards.value).map((card) => ({
+    card,
+    front: pickFrontLanguage()
+  }))
+
+  deck.value = nextDeck
+  currentIndex.value = 0
+  showBack.value = false
+  dragX.value = 0
+  roundCorrect.value = 0
+  roundWrong.value = 0
+  roundSaved.value = false
+}
+
+function toggleTopic(topicId: string): void {
+  const exists = selectedTopicIds.value.includes(topicId)
+  if (exists) {
+    selectedTopicIds.value = selectedTopicIds.value.filter((id) => id !== topicId)
+  } else {
+    selectedTopicIds.value = [...selectedTopicIds.value, topicId]
+  }
+
+  rebuildDeck()
+}
+
+function setFrontMode(mode: FrontLanguage): void {
+  frontMode.value = mode
+  rebuildDeck()
+}
+
+function flipCard(): void {
+  if (!currentCard.value || dragged.value) {
+    return
+  }
+
+  showBack.value = !showBack.value
+}
+
+function saveRoundIfNeeded(): void {
+  if (roundSaved.value) {
+    return
+  }
+
+  const total = roundCorrect.value + roundWrong.value
+  if (!total) {
+    return
+  }
+
+  appendFlashcardSession({
+    timestamp: new Date().toISOString(),
+    topicIds: selectedTopicIds.value.length ? selectedTopicIds.value : topics.value.map((topic) => topic.id),
+    total,
+    correct: roundCorrect.value,
+    wrong: roundWrong.value
+  })
+
+  roundSaved.value = true
+}
+
+function registerAnswer(correct: boolean): void {
+  const active = currentCard.value
+  if (!active || !showBack.value) {
+    return
+  }
+
+  appendFlashcardAttempt({
+    timestamp: new Date().toISOString(),
+    cardId: active.card.id,
+    topics: active.card.topics,
+    correct
+  })
+
+  if (correct) {
+    roundCorrect.value += 1
+  } else {
+    roundWrong.value += 1
+  }
+
+  showBack.value = false
+  dragX.value = 0
+  currentIndex.value += 1
+
+  if (currentIndex.value >= deck.value.length) {
+    saveRoundIfNeeded()
+  }
+}
+
+function onPointerDown(event: PointerEvent): void {
+  if (!currentCard.value || !showBack.value) {
+    return
+  }
+
+  startX.value = event.clientX
+  dragged.value = false
+}
+
+function onPointerMove(event: PointerEvent): void {
+  if (startX.value === null) {
+    return
+  }
+
+  dragX.value = event.clientX - startX.value
+  if (Math.abs(dragX.value) > 3) {
+    dragged.value = true
+  }
+}
+
+function onPointerUp(): void {
+  if (startX.value === null) {
+    return
+  }
+
+  if (dragX.value >= swipeThreshold) {
+    registerAnswer(true)
+  } else if (dragX.value <= -swipeThreshold) {
+    registerAnswer(false)
+  }
+
+  startX.value = null
+  dragX.value = 0
+  setTimeout(() => {
+    dragged.value = false
+  }, 0)
+}
+
+function openStats(): void {
+  router.push('/flashcards/stats')
+}
+
+onMounted(async () => {
+  try {
+    const res = await fetch(`${import.meta.env.BASE_URL}data/flashcards.json`)
+    if (!res.ok) {
+      throw new Error('Could not load flashcard data.')
+    }
+
+    const json = (await res.json()) as FlashcardData
+    data.value = json
+    selectedTopicIds.value = json.topics.map((topic) => topic.id)
+    rebuildDeck()
+  } catch (error) {
+    loadError.value = error instanceof Error ? error.message : 'Unexpected error while loading flashcards.'
+  } finally {
+    loading.value = false
+  }
+})
+</script>
+
 <template>
   <main class="flashcards-page">
-    <section class="placeholder">
-      <p class="eyebrow">Flashcards</p>
-      <h1>Coming Soon</h1>
-      <p>
-        This page is reserved for the future flashcard app.
-      </p>
+    <section class="hero">
+      <div>
+        <p class="eyebrow">Flashcards</p>
+        <h1>Word Trainer</h1>
+        <p class="subtitle">Flip a card, guess the meaning, then swipe right if correct or left if wrong.</p>
+      </div>
+
+      <button class="stats-btn" type="button" @click="openStats">View Statistics</button>
+    </section>
+
+    <section class="controls" v-if="!loading && !loadError && data">
+      <div>
+        <p class="controls-label">Topics</p>
+        <div class="topic-list">
+          <button
+            v-for="topic in topics"
+            :key="topic.id"
+            type="button"
+            class="topic-chip"
+            :class="{ active: selectedTopicIds.includes(topic.id) }"
+            @click="toggleTopic(topic.id)"
+          >
+            {{ topic.label }}
+          </button>
+        </div>
+      </div>
+
+      <div>
+        <p class="controls-label">Front Language</p>
+        <div class="mode-list">
+          <button type="button" class="mode-chip" :class="{ active: frontMode === 'mixed' }" @click="setFrontMode('mixed')">Mixed</button>
+          <button type="button" class="mode-chip" :class="{ active: frontMode === 'bg' }" @click="setFrontMode('bg')">Bulgarian</button>
+          <button type="button" class="mode-chip" :class="{ active: frontMode === 'en' }" @click="setFrontMode('en')">English</button>
+        </div>
+      </div>
+    </section>
+
+    <p v-if="loading" class="status">Loading flashcards...</p>
+    <p v-else-if="loadError" class="status error">{{ loadError }}</p>
+
+    <section v-else-if="!deck.length" class="empty-state">
+      <h2>No cards in this topic set</h2>
+      <p>Select at least one topic to start practicing.</p>
+    </section>
+
+    <section v-else-if="roundCompleted" class="round-summary">
+      <h2>Round Complete</h2>
+      <p>You answered {{ roundCorrect }} correct and {{ roundWrong }} wrong.</p>
+      <button class="stats-btn" type="button" @click="rebuildDeck">Shuffle New Round</button>
+    </section>
+
+    <section v-else class="card-stage">
+      <p class="counter">Card {{ currentIndex + 1 }} / {{ deck.length }}</p>
+
+      <div
+        class="card-shell"
+        :style="{ transform: `translateX(${dragX}px) rotate(${dragX / 25}deg)` }"
+        @click="flipCard"
+        @pointerdown="onPointerDown"
+        @pointermove="onPointerMove"
+        @pointerup="onPointerUp"
+        @pointercancel="onPointerUp"
+        @pointerleave="onPointerUp"
+      >
+        <div class="card" :class="{ flipped: showBack }">
+          <article class="card-face card-front">
+            <p class="card-label">{{ frontLanguageLabel }}</p>
+            <h2>{{ frontText }}</h2>
+            <small>Tap to flip</small>
+          </article>
+
+          <article class="card-face card-back">
+            <p class="card-label">{{ backLanguageLabel }}</p>
+            <h2>{{ backText }}</h2>
+            <small>Swipe left if wrong, swipe right if correct</small>
+          </article>
+        </div>
+      </div>
+
+      <div class="answer-controls">
+        <button type="button" class="wrong-btn" @click="registerAnswer(false)">Wrong</button>
+        <button type="button" class="right-btn" @click="registerAnswer(true)">Correct</button>
+      </div>
     </section>
   </main>
 </template>
@@ -13,22 +342,34 @@
 <style scoped>
 .flashcards-page {
   min-height: 100vh;
-  display: grid;
-  place-items: center;
-  padding: 1rem;
-  color: #edf8f8;
+  padding: clamp(1rem, 2vw, 2rem);
+  color: #ecf6f6;
   background:
-    radial-gradient(circle at 18% 22%, rgba(255, 195, 98, 0.2), transparent 30%),
-    linear-gradient(160deg, #0d2237, #152a2a 55%, #141f34);
+    radial-gradient(circle at 20% 10%, rgba(255, 186, 73, 0.2), transparent 30%),
+    radial-gradient(circle at 80% 0%, rgba(35, 214, 180, 0.22), transparent 32%),
+    linear-gradient(160deg, #0c1630 0%, #0d2d35 48%, #0f1526 100%);
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  display: grid;
+  gap: 1rem;
 }
 
-.placeholder {
-  width: min(680px, 100%);
+.hero,
+.controls,
+.card-stage,
+.empty-state,
+.round-summary {
   border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 14px;
-  background: rgba(8, 18, 30, 0.56);
-  padding: 1.25rem;
+  border-radius: 16px;
+  background: rgba(5, 11, 25, 0.56);
+  padding: 1rem;
+}
+
+.hero {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  align-items: center;
 }
 
 .eyebrow {
@@ -40,11 +381,179 @@
 }
 
 h1 {
-  margin: 0.35rem 0;
+  margin: 0.25rem 0;
 }
 
-p {
+.subtitle {
   margin: 0;
-  color: #c6d4d7;
+  color: #c7d5d8;
+}
+
+.stats-btn {
+  border: 0;
+  border-radius: 10px;
+  padding: 0.6rem 0.92rem;
+  cursor: pointer;
+  color: #1b2329;
+  font-weight: 700;
+  background: linear-gradient(135deg, #ffd16f, #6bf5cb);
+}
+
+.controls {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.controls-label {
+  margin: 0 0 0.35rem;
+  color: #aec0c5;
+}
+
+.topic-list,
+.mode-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.topic-chip,
+.mode-chip {
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  background: rgba(17, 35, 44, 0.9);
+  color: #d7e8ea;
+  border-radius: 999px;
+  padding: 0.4rem 0.8rem;
+  cursor: pointer;
+}
+
+.topic-chip.active,
+.mode-chip.active {
+  border-color: rgba(110, 240, 210, 0.55);
+  background: rgba(29, 66, 82, 0.95);
+}
+
+.status {
+  margin: 0;
+  padding: 0.9rem 1rem;
+  border-radius: 12px;
+  background: rgba(5, 11, 25, 0.56);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.status.error {
+  color: #ffb6b6;
+}
+
+.counter {
+  margin: 0 0 0.7rem;
+  color: #9db4ba;
+}
+
+.card-shell {
+  max-width: 560px;
+  width: 100%;
+  margin: 0 auto;
+  perspective: 1100px;
+  touch-action: pan-y;
+  cursor: pointer;
+}
+
+.card {
+  position: relative;
+  width: 100%;
+  min-height: 300px;
+  transform-style: preserve-3d;
+  transition: transform 0.28s ease;
+}
+
+.card.flipped {
+  transform: rotateY(180deg);
+}
+
+.card-face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: linear-gradient(180deg, rgba(18, 42, 54, 0.94), rgba(13, 30, 38, 0.98));
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 1rem;
+}
+
+.card-back {
+  transform: rotateY(180deg);
+}
+
+.card-label {
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.72rem;
+  color: #ffc86f;
+}
+
+h2 {
+  margin: 0.5rem 0;
+  font-size: clamp(1.45rem, 4vw, 2.2rem);
+}
+
+small {
+  color: #b7c8cc;
+}
+
+.answer-controls {
+  display: flex;
+  justify-content: center;
+  gap: 0.7rem;
+  margin-top: 0.9rem;
+}
+
+.answer-controls button {
+  border: 0;
+  border-radius: 10px;
+  padding: 0.64rem 1rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.wrong-btn {
+  color: #fbe9e9;
+  background: linear-gradient(135deg, #8f3048, #ba4a5d);
+}
+
+.right-btn {
+  color: #112229;
+  background: linear-gradient(135deg, #7cf2d5, #b9f17b);
+}
+
+.empty-state h2,
+.round-summary h2 {
+  margin: 0;
+}
+
+.empty-state p,
+.round-summary p {
+  color: #c4d2d5;
+}
+
+@media (max-width: 700px) {
+  .flashcards-page {
+    padding: 0.75rem;
+  }
+
+  .hero,
+  .controls,
+  .card-stage,
+  .empty-state,
+  .round-summary {
+    border-radius: 12px;
+  }
+
+  .card {
+    min-height: 260px;
+  }
 }
 </style>

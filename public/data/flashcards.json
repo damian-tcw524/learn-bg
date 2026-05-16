@@ -1,0 +1,85 @@
+{
+  "version": 1,
+  "topics": [
+    {
+      "id": "family",
+      "label": "Family",
+      "description": "Family members and relationships"
+    },
+    {
+      "id": "greetings",
+      "label": "Greetings",
+      "description": "Useful daily greetings"
+    },
+    {
+      "id": "food",
+      "label": "Food",
+      "description": "Common food and ordering phrases"
+    }
+  ],
+  "cards": [
+    {
+      "id": "family_mother",
+      "topics": ["family"],
+      "bg": "майка",
+      "en": "mother",
+      "kind": "word"
+    },
+    {
+      "id": "family_father",
+      "topics": ["family"],
+      "bg": "баща",
+      "en": "father",
+      "kind": "word"
+    },
+    {
+      "id": "family_sister",
+      "topics": ["family"],
+      "bg": "сестра",
+      "en": "sister",
+      "kind": "word"
+    },
+    {
+      "id": "greet_hello",
+      "topics": ["greetings"],
+      "bg": "Здравей",
+      "en": "Hello",
+      "kind": "phrase"
+    },
+    {
+      "id": "greet_good_morning",
+      "topics": ["greetings"],
+      "bg": "Добро утро",
+      "en": "Good morning",
+      "kind": "phrase"
+    },
+    {
+      "id": "greet_how_are_you",
+      "topics": ["greetings", "family"],
+      "bg": "Как си?",
+      "en": "How are you?",
+      "kind": "phrase"
+    },
+    {
+      "id": "food_bread",
+      "topics": ["food"],
+      "bg": "хляб",
+      "en": "bread",
+      "kind": "word"
+    },
+    {
+      "id": "food_water",
+      "topics": ["food"],
+      "bg": "вода",
+      "en": "water",
+      "kind": "word"
+    },
+    {
+      "id": "food_check_please",
+      "topics": ["food"],
+      "bg": "Сметката, моля",
+      "en": "The bill, please",
+      "kind": "phrase"
+    }
+  ]
+}

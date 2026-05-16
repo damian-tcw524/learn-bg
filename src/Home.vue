@@ -8,6 +8,14 @@ const lessons = ref<RoadmapItem[]>([])
 const loading = ref(true)
 const loadError = ref('')
 
+const featureButtons = [
+  { label: 'Flashcards', path: '/flashcards' },
+  { label: 'Quick Quiz', path: '/quiz' },
+  { label: 'Grammar Lab', path: '/grammar-lab' },
+  { label: 'Listening Drills', path: '/listening' },
+  { label: 'Progress Tracker', path: '/progress' }
+]
+
 onMounted(async () => {
   try {
     const res = await fetch(`${import.meta.env.BASE_URL}data/roadmap.json`)
@@ -31,8 +39,8 @@ function goToLesson(lesson: RoadmapItem) {
   })
 }
 
-function goToFlashcards() {
-  router.push('/flashcards')
+function goToFeature(path: string) {
+  router.push(path)
 }
 </script>
 
@@ -46,10 +54,24 @@ function goToFlashcards() {
           Lessons are organized as a compact list so you can scale easily as more topics are added.
         </p>
       </div>
+    </section>
 
-      <button class="flashcards-btn" @click="goToFlashcards">
-        Open Flashcards
-      </button>
+    <section class="features-panel">
+      <div class="panel-header">
+        <h2>Learning Apps</h2>
+      </div>
+
+      <div class="feature-list" role="list">
+        <button
+          v-for="feature in featureButtons"
+          :key="feature.path"
+          class="feature-btn"
+          type="button"
+          @click="goToFeature(feature.path)"
+        >
+          {{ feature.label }}
+        </button>
+      </div>
     </section>
 
     <section class="lessons-panel">
@@ -126,21 +148,29 @@ function goToFlashcards() {
   color: #c9d7da;
 }
 
-.flashcards-btn {
+.feature-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.feature-btn {
   border: 0;
   border-radius: 10px;
-  padding: 0.7rem 1rem;
+  padding: 0.58rem 0.9rem;
   cursor: pointer;
   color: #1b2329;
   font-weight: 700;
+  font-size: 0.92rem;
   background: linear-gradient(135deg, #ffd16f, #6bf5cb);
   white-space: nowrap;
 }
 
-.flashcards-btn:hover {
+.feature-btn:hover {
   filter: brightness(1.06);
 }
 
+.features-panel,
 .lessons-panel {
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 16px;
