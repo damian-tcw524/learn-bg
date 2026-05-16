@@ -1,26 +1,36 @@
 {
   "title": "Bulgarian Present Tense",
-  "description": "Learn how to form and use the present tense in Bulgarian with common verb endings and examples.",
+  "description": "Learn how to form and use the present tense in Bulgarian with patterns, examples, and a few quick checks.",
   "content": [
     {
       "type": "section",
-      "title": "What is Present Tense?",
-      "description": "The present tense describes actions happening now or regularly.",
+      "title": "What Present Tense Does",
+      "description": "Use the present tense for actions happening now, repeated actions, and general facts.",
       "content": [
         {
-          "bg": "Аз чета книга.",
-          "en": "I am reading a book."
+          "type": "note",
+          "title": "Important idea",
+          "text": "Bulgarian present tense can often cover both 'I read' and 'I am reading' depending on context.",
+          "tone": "info"
         },
         {
+          "type": "example",
+          "bg": "Аз чета книга.",
+          "en": "I am reading a book.",
+          "note": "The same form can also mean 'I read' in a general sense."
+        },
+        {
+          "type": "example",
           "bg": "Той работи всеки ден.",
-          "en": "He works every day."
+          "en": "He works every day.",
+          "note": "This is a repeated action, so the present tense is perfect here."
         }
       ]
     },
     {
       "type": "section",
-      "title": "Personal Pronouns",
-      "description": "Bulgarian subject pronouns used with present tense verbs.",
+      "title": "Pronouns",
+      "description": "Subject pronouns are simple, but they matter when you practice endings.",
       "content": [
         {
           "type": "table",
@@ -30,7 +40,7 @@
             ["ти", "you (singular)"],
             ["той / тя / то", "he / she / it"],
             ["ние", "we"],
-            ["вие", "you (plural/formal)"],
+            ["вие", "you (plural / formal)"],
             ["те", "they"]
           ]
         }
@@ -38,27 +48,37 @@
     },
     {
       "type": "section",
-      "title": "Common Present Tense Endings",
-      "description": "Typical endings for many Bulgarian verbs in present tense.",
+      "title": "Common Endings",
+      "description": "These are broad patterns that show up in many verbs.",
       "content": [
         {
-          "type": "table",
-          "headers": ["Pronoun", "Ending Example"],
-          "rows": [
-            ["аз", "-а / -я"],
-            ["ти", "-еш / -иш"],
-            ["той / тя / то", "-е / -и"],
-            ["ние", "-ем / -им"],
-            ["вие", "-ете / -ите"],
-            ["те", "-ат / -ят"]
+          "type": "rule",
+          "title": "Endings to remember",
+          "bullets": [
+            "аз: -а / -я",
+            "ти: -еш / -иш",
+            "той / тя / то: -е / -и",
+            "ние: -ем / -им",
+            "вие: -ете / -ите",
+            "те: -ат / -ят"
+          ],
+          "note": "The exact stem depends on the verb, so always learn the full form with examples."
+        },
+        {
+          "type": "cards",
+          "title": "Pronoun to ending",
+          "cards": [
+            { "front": "аз", "back": "-а / -я" },
+            { "front": "ние", "back": "-ем / -им" },
+            { "front": "те", "back": "-ат / -ят" }
           ]
         }
       ]
     },
     {
       "type": "section",
-      "title": "Example Verb: Чета (to read)",
-      "description": "Conjugation of the verb 'чета' in present tense.",
+      "title": "Example Verbs",
+      "description": "Two common verbs help show how the endings change in real sentences.",
       "content": [
         {
           "type": "table",
@@ -66,26 +86,19 @@
           "rows": [
             ["аз чета", "I read / am reading"],
             ["ти четеш", "you read / are reading"],
-            ["той/тя/то чете", "he/she/it reads"],
+            ["той / тя / то чете", "he / she / it reads"],
             ["ние четем", "we read"],
             ["вие четете", "you read"],
             ["те четат", "they read"]
           ]
-        }
-      ]
-    },
-    {
-      "type": "section",
-      "title": "Example Verb: Говоря (to speak)",
-      "description": "Conjugation of the verb 'говоря' in present tense.",
-      "content": [
+        },
         {
           "type": "table",
           "headers": ["Bulgarian", "English"],
           "rows": [
             ["аз говоря", "I speak / am speaking"],
             ["ти говориш", "you speak"],
-            ["той/тя/то говори", "he/she/it speaks"],
+            ["той / тя / то говори", "he / she / it speaks"],
             ["ние говорим", "we speak"],
             ["вие говорите", "you speak"],
             ["те говорят", "they speak"]
@@ -95,19 +108,26 @@
     },
     {
       "type": "section",
-      "title": "Useful Present Tense Sentences",
-      "description": "Practice with common present tense expressions.",
+      "title": "Practice Sentences",
+      "description": "Short sentences are the fastest way to make the pattern stick.",
       "content": [
         {
           "type": "table",
-          "headers": ["Bulgarian", "English"],
+          "headers": ["Bulgarian", "English", "Use"],
           "rows": [
-            ["Аз уча български.", "I study Bulgarian."],
-            ["Ти живееш в Лондон.", "You live in London."],
-            ["Той работи тук.", "He works here."],
-            ["Ние ядем сега.", "We are eating now."],
-            ["Те говорят английски.", "They speak English."]
+            ["Аз уча български.", "I study Bulgarian.", "Learner sentence"],
+            ["Ти живееш в Лондон.", "You live in London.", "Location"],
+            ["Той работи тук.", "He works here.", "Routine"],
+            ["Ние ядем сега.", "We are eating now.", "Action in progress"],
+            ["Те говорят английски.", "They speak English.", "General fact"]
           ]
+        },
+        {
+          "type": "quiz",
+          "question": "Which pronoun usually matches the ending '-ем / -им'?",
+          "answer": "ние",
+          "choices": ["аз", "ние", "те"],
+          "note": "Once you know the pronoun, the ending is much easier to predict."
         }
       ]
     }

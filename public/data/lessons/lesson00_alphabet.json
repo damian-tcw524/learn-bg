@@ -1,40 +1,135 @@
 {
   "title": "Cyrillic Alphabet",
+  "description": "Learn Bulgarian letters, the sounds they make, and the tricky ones to watch for.",
   "content": [
     {
-      "type": "table",
-      "headers": ["Bulgarian Letter", "Pronunciation"],
-      "rows": [
-        ["А", "A"],
-        ["Б", "B"],
-        ["В", "V"],
-        ["Г", "G"],
-        ["Д", "D"],
-        ["Е", "E"],
-        ["Ж", "Zh"],
-        ["З", "Z"],
-        ["И", "I"],
-        ["Й", "Y"],
-        ["К", "K"],
-        ["Л", "L"],
-        ["М", "M"],
-        ["Н", "N"],
-        ["О", "O"],
-        ["П", "P"],
-        ["Р", "R"],
-        ["С", "S"],
-        ["Т", "T"],
-        ["У", "U"],
-        ["Ф", "F"],
-        ["Х", "H"],
-        ["Ц", "Ts"],
-        ["Ч", "Ch"],
-        ["Ш", "Sh"],
-        ["Щ", "Sht"],
-        ["Ъ", "A (short)"],
-        ["Ь", "Y (soft)"],
-        ["Ю", "Yu"],
-        ["Я", "Ya"]
+      "type": "section",
+      "title": "How the Alphabet Works",
+      "description": "Bulgarian uses Cyrillic. Most letters map consistently to sounds, but a few need extra attention.",
+      "content": [
+        {
+          "type": "note",
+          "title": "Study tip",
+          "text": "Read letters out loud in groups of vowels, consonants, and special sounds. That makes the alphabet easier to memorize.",
+          "tone": "tip"
+        },
+        {
+          "type": "list",
+          "title": "What to notice first",
+          "items": [
+            "Bulgarian has 30 letters in modern standard use.",
+            "Several letters look familiar but sound different from English.",
+            "The letter Ъ is a uniquely Bulgarian vowel sound."
+          ]
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "title": "Letters and Sounds",
+      "description": "A full reference table for the Bulgarian alphabet.",
+      "content": [
+        {
+          "type": "table",
+          "headers": ["Bulgarian Letter", "Pronunciation"],
+          "rows": [
+            ["А", "a"],
+            ["Б", "b"],
+            ["В", "v"],
+            ["Г", "g"],
+            ["Д", "d"],
+            ["Е", "e"],
+            ["Ж", "zh"],
+            ["З", "z"],
+            ["И", "i"],
+            ["Й", "y / short i"],
+            ["К", "k"],
+            ["Л", "l"],
+            ["М", "m"],
+            ["Н", "n"],
+            ["О", "o"],
+            ["П", "p"],
+            ["Р", "r"],
+            ["С", "s"],
+            ["Т", "t"],
+            ["У", "u"],
+            ["Ф", "f"],
+            ["Х", "h / kh"],
+            ["Ц", "ts"],
+            ["Ч", "ch"],
+            ["Ш", "sh"],
+            ["Щ", "sht"],
+            ["Ъ", "uh / central vowel"],
+            ["Ь", "soft sign"],
+            ["Ю", "yu"],
+            ["Я", "ya"]
+          ]
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "title": "Tricky Letters",
+      "description": "These letters are easy to confuse at first, so they are worth practicing separately.",
+      "content": [
+        {
+          "type": "cards",
+          "title": "Quick memory cards",
+          "cards": [
+            {
+              "front": "Ж",
+              "back": "zh",
+              "hint": "Like the sound in 'measure'."
+            },
+            {
+              "front": "Ч",
+              "back": "ch",
+              "hint": "As in 'chair'."
+            },
+            {
+              "front": "Ш",
+              "back": "sh",
+              "hint": "As in 'shoe'."
+            },
+            {
+              "front": "Щ",
+              "back": "sht",
+              "hint": "The long consonant cluster in Bulgarian words like 'щастие'."
+            }
+          ]
+        },
+        {
+          "type": "example",
+          "bg": "Ще уча български.",
+          "en": "I will study Bulgarian.",
+          "note": "The word 'ще' is one of the most common future-tense markers."
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "title": "Practice Words",
+      "description": "Short words are the fastest way to connect letters with sound and meaning.",
+      "content": [
+        {
+          "type": "table",
+          "headers": ["Bulgarian", "English", "Note"],
+          "rows": [
+            ["мама", "mother", "Simple repetition of familiar sounds"],
+            ["татко", "father", "Ends with a strong k sound"],
+            ["книга", "book", "Common consonant + vowel pattern"],
+            ["уча", "study / learn", "Useful first-person verb form"],
+            ["здравей", "hello", "A common greeting"],
+            ["приятел", "friend", "Good for practicing soft consonants"]
+          ]
+        },
+        {
+          "type": "quiz",
+          "question": "Which letter is the uniquely Bulgarian vowel?",
+          "answer": "Ъ",
+          "choices": ["Е", "Ъ", "Ю"],
+          "note": "It often surprises English speakers because it does not have a direct equivalent."
+        }
       ]
     }
   ]

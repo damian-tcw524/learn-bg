@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { computed, nextTick, onBeforeUnmount, onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
-import type { LessonData } from './types'
+import LessonBlock from './components/LessonBlock.vue'
+import type { LessonContentBlock, LessonData } from './types'
 
 const route = useRoute()
 
@@ -16,44 +17,60 @@ type SectionLink = {
   label: string
 }
 
+const getBlockLabel = (item: LessonContentBlock, index: number) => {
+  if (item.type === 'section') {
+    return item.title || `Section ${index + 1}`
+  }
+
+  if (item.type === 'table') {
+    return item.headers[0] ? `${item.headers[0]} table` : `Table ${index + 1}`
+  }
+
+  if (item.type === 'note') {
+    return item.title || `Note ${index + 1}`
+  }
+
+  if (item.type === 'list') {
+    return item.title || `List ${index + 1}`
+  }
+
+  if (item.type === 'example') {
+    return `Example ${index + 1}`
+  }
+
+  if (item.type === 'cards') {
+    return item.title || `Cards ${index + 1}`
+  }
+
+  if (item.type === 'quiz') {
+    return `Quiz ${index + 1}`
+  }
+
+  if (item.type === 'rule') {
+    return item.title || `Rule ${index + 1}`
+  }
+
+  if (item.letter) {
+    return `Letter ${item.letter}`
+  }
+
+  if (item.bg && item.en) {
+    return `${item.bg} - ${item.en}`
+  }
+
+  return `Item ${index + 1}`
+}
+
 const sectionLinks = computed<SectionLink[]>(() => {
   const content = lessonData.value?.content ?? []
 
-  return content.map((item, index) => {
-    if (item.type === 'section') {
-      return {
-        id: `lesson-block-${index}`,
-        label: item.title || `Section ${index + 1}`
-      }
-    }
-
-    if (item.type === 'table') {
-      return {
-        id: `lesson-block-${index}`,
-        label: `Table ${index + 1}`
-      }
-    }
-
-    if (item.letter) {
-      return {
-        id: `lesson-block-${index}`,
-        label: `Letter ${item.letter}`
-      }
-    }
-
-    if (item.bg && item.en) {
-      return {
-        id: `lesson-block-${index}`,
-        label: `${item.bg} - ${item.en}`
-      }
-    }
-
-    return {
-      id: `lesson-block-${index}`,
-      label: `Item ${index + 1}`
-    }
-  })
+  return content.map((item, index) => ({
+    id: `lesson-block-${index}`,
+    label: getBlockLabel(item, index)
+  }))
 })
+
+const sectionCount = computed(() => sectionLinks.value.length)
 
 const closeDrawer = () => {
   drawerOpen.value = false
@@ -112,7 +129,11 @@ const setupSectionObserver = () => {
 }
 
 onMounted(async () => {
-  const file = route.query.file as string
+  const file = Array.isArray(route.query.file) ? route.query.file[0] : route.query.file
+  if (typeof file !== 'string' || !file) {
+    return
+  }
+
   const res = await fetch(`${import.meta.env.BASE_URL}data/lessons/${file}`)
   lessonData.value = await res.json()
   await nextTick()
@@ -168,85 +189,27 @@ onBeforeUnmount(() => {
           <p v-if="lessonData.description" class="description">{{ lessonData.description }}</p>
         </div>
 
-        <span class="section-count">{{ sectionLinks.length }} sections</span>
+        <span class="section-count">{{ sectionCount }} blocks</span>
       </header>
 
       <div class="content">
-        <div
+        <LessonBlock
           v-for="(item, index) in lessonData.content"
           :key="index"
-          :id="`lesson-block-${index}`"
-          class="content-block"
-        >
-          <div v-if="item.type === 'section'" class="section">
-            <h2 class="section-title">{{ item.title }}</h2>
-            <p v-if="item.description" class="section-description">{{ item.description }}</p>
-
-            <div class="section-content">
-              <div v-for="(contentItem, contentIndex) in item.content" :key="contentIndex">
-                <div v-if="contentItem.type === 'table'" class="table-wrapper">
-                  <table class="lesson-table">
-                    <thead>
-                      <tr>
-                        <th v-for="(header, i) in contentItem.headers" :key="i">
-                          {{ header }}
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr v-for="(row, rowIndex) in contentItem.rows" :key="rowIndex">
-                        <td v-for="(cell, cellIndex) in row" :key="cellIndex">
-                          {{ cell }}
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-
-                <div v-else class="item">
-                  <div v-if="contentItem.letter">
-                    <span class="big">{{ contentItem.letter }}</span>
-                    <span>{{ contentItem.sound }}</span>
-                  </div>
-                  <div v-else>
-                    <span>{{ contentItem.bg }} - {{ contentItem.en }}</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div v-else-if="item.type === 'table'" class="table-wrapper">
-            <table class="lesson-table">
-              <thead>
-                <tr>
-                  <th v-for="(header, i) in item.headers" :key="i">
-                    {{ header }}
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr v-for="(row, rowIndex) in item.rows" :key="rowIndex">
-                  <td v-for="(cell, cellIndex) in row" :key="cellIndex">
-                    {{ cell }}
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
-          <div v-else class="item">
-            <div v-if="item.letter">
-              <span class="big">{{ item.letter }}</span>
-              <span>{{ item.sound }}</span>
-            </div>
-            <div v-else>
-              <span class="big">{{ item.bg }}</span>
-              <span>{{ item.en }}</span>
-            </div>
-          </div>
-        </div>
+          :item="item"
+          :block-id="`lesson-block-${index}`"
+        />
       </div>
+    </div>
+
+    <div v-else class="lesson-layout loading-state">
+      <header class="lesson-header">
+        <div>
+          <p class="eyebrow">Lesson</p>
+          <h1>Loading lesson</h1>
+          <p class="description">The lesson file is being fetched.</p>
+        </div>
+      </header>
     </div>
   </div>
 </template>
@@ -415,85 +378,13 @@ h1 {
   margin-top: 0.85rem;
 }
 
-.content-block {
-  scroll-margin-top: 1.25rem;
-  margin-bottom: 0.75rem;
-}
-
-.section {
-  border: 1px solid rgba(255, 255, 255, 0.11);
-  border-radius: 14px;
-  background: rgba(5, 11, 25, 0.54);
-  padding: 0.85rem;
-}
-
-.section-title {
-  margin: 0;
-  font-size: 1.07rem;
-}
-
-.section-description {
-  margin: 0.32rem 0 0.7rem;
-  color: #c2d2d6;
-}
-
-.section-content {
+.content {
   display: grid;
-  gap: 0.55rem;
+  gap: 0.75rem;
 }
 
-.item {
-  background: linear-gradient(180deg, rgba(18, 42, 54, 0.92), rgba(13, 30, 38, 0.95));
-  border: 1px solid rgba(255, 255, 255, 0.11);
-  padding: 0.7rem 0.85rem;
-  margin-bottom: 0.5rem;
-  border-radius: 10px;
-  display: flex;
-  justify-content: space-between;
-  gap: 0.7rem;
-  align-items: center;
-}
-
-.big {
-  font-size: 1.5rem;
-  font-weight: bold;
-}
-
-.table-wrapper {
-  margin-bottom: 0.7rem;
-  border: 1px solid rgba(255, 255, 255, 0.11);
-  border-radius: 10px;
-  overflow: hidden;
-  background: rgba(5, 11, 25, 0.58);
-}
-
-.lesson-table {
-  width: 100%;
-  border-collapse: collapse;
-  background: transparent;
-}
-
-.lesson-table thead {
-  background: rgba(12, 35, 44, 0.92);
-  font-weight: bold;
-}
-
-.lesson-table th {
-  padding: 0.8rem;
-  text-align: left;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-  color: #ffc86f;
-}
-
-.lesson-table td {
-  padding: 0.72rem 0.8rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-  color: #e7f1f3;
-}
-
-.lesson-table tbody tr:hover {
-  background: rgba(35, 79, 96, 0.38);
-  transition: background 0.14s;
+.loading-state {
+  opacity: 0.9;
 }
 
 @media (max-width: 640px) {

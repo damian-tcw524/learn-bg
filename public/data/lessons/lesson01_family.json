@@ -1,12 +1,18 @@
 {
   "title": "Family",
-  "description": "Learn family-related vocabulary in Bulgarian",
+  "description": "Build a practical family vocabulary set and learn a few useful phrases around relatives.",
   "content": [
     {
       "type": "section",
-      "title": "Close Family",
-      "description": "Immediate family members",
+      "title": "Immediate Family",
+      "description": "The people most learners need first.",
       "content": [
+        {
+          "type": "note",
+          "title": "Vocabulary check",
+          "text": "The first-person possessive pattern is very useful here: моя майка, моят баща, моята сестра.",
+          "tone": "info"
+        },
         {
           "type": "table",
           "headers": ["Bulgarian", "English"],
@@ -15,7 +21,7 @@
             ["баща", "father"],
             ["сестра", "sister"],
             ["брат", "brother"],
-            ["сын", "son"],
+            ["син", "son"],
             ["дъщеря", "daughter"]
           ]
         }
@@ -24,7 +30,7 @@
     {
       "type": "section",
       "title": "Extended Family",
-      "description": "Other family relatives",
+      "description": "Relatives, grandparents, and in-laws.",
       "content": [
         {
           "type": "table",
@@ -33,14 +39,72 @@
             ["дядо", "grandfather"],
             ["баба", "grandmother"],
             ["чичо", "uncle"],
-            ["тетя", "aunt"],
+            ["леля", "aunt"],
             ["братовчед", "cousin (male)"],
             ["братовчедка", "cousin (female)"],
-            ["теща", "mother-in-law"],
-            ["тесть", "father-in-law"],
-            ["деверей", "brother-in-law"],
-            ["золва", "sister-in-law"]
+            ["зет", "son-in-law / brother-in-law"],
+            ["снаха", "daughter-in-law"],
+            ["девер", "brother-in-law"],
+            ["зълва", "sister-in-law"]
           ]
+        },
+        {
+          "type": "list",
+          "title": "Small grammar reminder",
+          "items": [
+            "Many family words are easy to combine with possessive pronouns.",
+            "Pay attention to gender because Bulgarian adjectives and pronouns change with the noun.",
+            "Plural forms are useful for talking about both sides of the family."
+          ]
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "title": "Useful Family Phrases",
+      "description": "Say more than just single words by using short, natural phrases.",
+      "content": [
+        {
+          "type": "example",
+          "bg": "Това е моята сестра.",
+          "en": "This is my sister.",
+          "note": "Use 'това е' to introduce a person or thing."
+        },
+        {
+          "type": "example",
+          "bg": "Имам голямо семейство.",
+          "en": "I have a big family.",
+          "note": "This phrase is a natural conversation starter."
+        },
+        {
+          "type": "example",
+          "bg": "Баба ми живее в Пловдив.",
+          "en": "My grandmother lives in Plovdiv.",
+          "note": "The clitic 'ми' often follows the noun in everyday Bulgarian."
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "title": "Practice Set",
+      "description": "Review the words in a compact study format.",
+      "content": [
+        {
+          "type": "cards",
+          "title": "Quick review",
+          "cards": [
+            { "front": "майка", "back": "mother" },
+            { "front": "баща", "back": "father" },
+            { "front": "дядо", "back": "grandfather" },
+            { "front": "леля", "back": "aunt" }
+          ]
+        },
+        {
+          "type": "quiz",
+          "question": "What is the Bulgarian word for 'aunt'?",
+          "answer": "леля",
+          "choices": ["леля", "баба", "снаха"],
+          "note": "It is one of the most common family words in everyday speech."
         }
       ]
     }

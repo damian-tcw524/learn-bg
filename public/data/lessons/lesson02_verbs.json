@@ -1,11 +1,33 @@
 {
   "title": "Basic Verbs",
-  "description": "Common Bulgarian verbs for everyday use",
+  "description": "Build a practical starter set of Bulgarian verbs with patterns, examples, and review prompts.",
   "content": [
     {
       "type": "section",
-      "title": "Daily Activities",
-      "description": "Verbs related to daily routines and basic actions",
+      "title": "How Bulgarian Verbs Are Listed",
+      "description": "Dictionary forms often appear in the first person singular, which is a good habit to learn early.",
+      "content": [
+        {
+          "type": "note",
+          "title": "Key idea",
+          "text": "Bulgarian does not use an infinitive form the way English does. Many verbs are shown as 'аз' forms like 'чета', 'говоря', or 'живея'.",
+          "tone": "tip"
+        },
+        {
+          "type": "rule",
+          "title": "A simple study method",
+          "bullets": [
+            "Learn the base verb form first.",
+            "Add the present-tense ending when you practice conjugation.",
+            "Use the verb in a short sentence right away."
+          ]
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "title": "Everyday Actions",
+      "description": "High-frequency verbs you will see constantly in real conversation.",
       "content": [
         {
           "type": "table",
@@ -15,15 +37,18 @@
             ["пия", "to drink"],
             ["спя", "to sleep"],
             ["пиша", "to write"],
-            ["чета", "to read"]
+            ["чета", "to read"],
+            ["уча", "to study / learn"],
+            ["работя", "to work"],
+            ["живея", "to live"]
           ]
         }
       ]
     },
     {
       "type": "section",
-      "title": "Communication & Perception",
-      "description": "Verbs for speaking, listening, and observing",
+      "title": "Communication and Thinking",
+      "description": "Verbs for speaking, hearing, remembering, and understanding.",
       "content": [
         {
           "type": "table",
@@ -33,25 +58,62 @@
             ["слушам", "to listen"],
             ["виждам", "to see"],
             ["чувам", "to hear"],
-            ["разбирам", "to understand"]
+            ["разбирам", "to understand"],
+            ["мисля", "to think"],
+            ["помня", "to remember"],
+            ["зная", "to know"]
+          ]
+        },
+        {
+          "type": "example",
+          "bg": "Разбирам български малко.",
+          "en": "I understand Bulgarian a little.",
+          "note": "A realistic sentence for a learner."
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "title": "Movement and Planning",
+      "description": "Useful verbs for getting around and making plans.",
+      "content": [
+        {
+          "type": "table",
+          "headers": ["Bulgarian", "English"],
+          "rows": [
+            ["отивам", "to go"],
+            ["идвам", "to come"],
+            ["ходя", "to walk / go regularly"],
+            ["пътувам", "to travel"],
+            ["купувам", "to buy"],
+            ["готвя", "to cook"],
+            ["отварям", "to open"],
+            ["затварям", "to close"]
           ]
         }
       ]
     },
     {
       "type": "section",
-      "title": "Modal & Auxiliary Verbs",
-      "description": "Verbs expressing ability, desire, and possession",
+      "title": "Review and Practice",
+      "description": "Short study blocks for fast recall.",
       "content": [
         {
-          "type": "table",
-          "headers": ["Bulgarian", "English"],
-          "rows": [
-            ["мога", "can/to be able"],
-            ["искам", "to want"],
-            ["имам", "to have"],
-            ["трябва", "must/to need"]
+          "type": "cards",
+          "title": "Core verbs",
+          "cards": [
+            { "front": "работя", "back": "I work" },
+            { "front": "живея", "back": "I live" },
+            { "front": "мисля", "back": "I think" },
+            { "front": "пътувам", "back": "I travel" }
           ]
+        },
+        {
+          "type": "quiz",
+          "question": "Which verb means 'to understand'?",
+          "answer": "разбирам",
+          "choices": ["слушам", "разбирам", "виждам"],
+          "note": "Try to say the full word aloud, not just the translation."
         }
       ]
     }

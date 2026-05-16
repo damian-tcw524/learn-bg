@@ -1,29 +1,34 @@
 {
-  "title": "Present Verbs",
-  "description": "Common Bulgarian verbs conjugated in the present tense with patterns and example sentences.",
+  "title": "Present Verb Patterns",
+  "description": "A closer look at common present-tense verb patterns, with forms, examples, and quick review tools.",
   "content": [
     {
       "type": "section",
-      "title": "General Conjugation Patterns",
-      "description": "These endings are commonly used to conjugate Bulgarian verbs in the present tense.",
+      "title": "Pattern Overview",
+      "description": "Bulgarian verbs follow patterns, but each pattern still needs the right stem and ending.",
       "content": [
         {
-          "type": "table",
-          "headers": ["Pronoun", "Typical Endings", "Example"],
-          "rows": [
-            ["аз", "-а / -я", "аз работя (I work)"],
-            ["ти", "-еш / -иш", "ти работиш (you work)"],
-            ["той / тя / то", "-е / -и", "той работи (he works)"],
-            ["ние", "-ем / -им", "ние работим (we work)"],
-            ["вие", "-ете / -ите", "вие работите (you work)"],
-            ["те", "-ат / -ят", "те работят (they work)"]
-          ]
+          "type": "rule",
+          "title": "Three habits that help",
+          "bullets": [
+            "Learn the full verb, not only the translation.",
+            "Listen for the vowel before the ending.",
+            "Practice with a full sentence instead of a single word."
+          ],
+          "note": "That extra context makes conjugation feel less abstract."
+        },
+        {
+          "type": "note",
+          "title": "Pattern reminder",
+          "text": "Verbs like работя and живея are common learner verbs because they show two different present-tense shapes.",
+          "tone": "success"
         }
       ]
     },
     {
       "type": "section",
-      "title": "Verb: Работя (to work)",
+      "title": "Verbs Ending in -я",
+      "description": "These verbs often use the familiar -я / -иш / -и pattern.",
       "content": [
         {
           "type": "table",
@@ -31,101 +36,78 @@
           "rows": [
             ["аз работя", "I work", "Аз работя всеки ден."],
             ["ти работиш", "you work", "Ти работиш тук."],
-            ["той/тя/то работи", "he/she/it works", "Той работи в офис."],
+            ["той / тя / то работи", "he / she / it works", "Той работи в офис."],
             ["ние работим", "we work", "Ние работим заедно."],
             ["вие работите", "you work", "Вие работите много."],
             ["те работят", "they work", "Те работят в компания."]
           ]
-        }
-      ]
-    },
-    {
-      "type": "section",
-      "title": "Verb: Живея (to live)",
-      "content": [
+        },
         {
-          "type": "table",
-          "headers": ["Form", "English", "Example Sentence"],
-          "rows": [
-            ["аз живея", "I live", "Аз живея в България."],
-            ["ти живееш", "you live", "Ти живееш тук."],
-            ["той/тя/то живее", "he/she/it lives", "Тя живее в София."],
-            ["ние живеем", "we live", "Ние живеем заедно."],
-            ["вие живеете", "you live", "Вие живеете близо."],
-            ["те живеят", "they live", "Те живеят в града."]
-          ]
+          "type": "example",
+          "bg": "Аз живея в България.",
+          "en": "I live in Bulgaria.",
+          "note": "A very useful sentence pattern for location and residence."
         }
       ]
     },
     {
       "type": "section",
-      "title": "Verb: Ям (to eat)",
+      "title": "Other Common Present Forms",
+      "description": "These verbs help reinforce the rest of the present-tense system.",
       "content": [
         {
           "type": "table",
           "headers": ["Form", "English", "Example Sentence"],
           "rows": [
             ["аз ям", "I eat", "Аз ям ябълка."],
-            ["ти ядеш", "you eat", "Ти ядеш сега."],
-            ["той/тя/то яде", "he/she/it eats", "Той яде хляб."],
-            ["ние ядем", "we eat", "Ние ядем заедно."],
-            ["вие ядете", "you eat", "Вие ядете бързо."],
-            ["те ядат", "they eat", "Те ядат в ресторант."]
-          ]
-        }
-      ]
-    },
-    {
-      "type": "section",
-      "title": "Verb: Пия (to drink)",
-      "content": [
-        {
-          "type": "table",
-          "headers": ["Form", "English", "Example Sentence"],
-          "rows": [
-            ["аз пия", "I drink", "Аз пия вода."],
             ["ти пиеш", "you drink", "Ти пиеш кафе."],
-            ["той/тя/то пие", "he/she/it drinks", "Тя пие чай."],
-            ["ние пием", "we drink", "Ние пием сок."],
-            ["вие пиете", "you drink", "Вие пиете бавно."],
-            ["те пият", "they drink", "Те пият бира."]
-          ]
-        }
-      ]
-    },
-    {
-      "type": "section",
-      "title": "Verb: Чета (to read)",
-      "content": [
-        {
-          "type": "table",
-          "headers": ["Form", "English", "Example Sentence"],
-          "rows": [
-            ["аз чета", "I read", "Аз чета книга."],
-            ["ти четеш", "you read", "Ти четеш много."],
-            ["той/тя/то чете", "he/she/it reads", "Той чете вестник."],
-            ["ние четем", "we read", "Ние четем заедно."],
-            ["вие четете", "you read", "Вие четете бързо."],
-            ["те четат", "they read", "Те четат книги."]
-          ]
-        }
-      ]
-    },
-    {
-      "type": "section",
-      "title": "Verb: Пиша (to write)",
-      "content": [
-        {
-          "type": "table",
-          "headers": ["Form", "English", "Example Sentence"],
-          "rows": [
-            ["аз пиша", "I write", "Аз пиша писмо."],
-            ["ти пишеш", "you write", "Ти пишеш имейл."],
-            ["той/тя/то пише", "he/she/it writes", "Тя пише съобщение."],
+            ["той / тя / то чете", "he / she / it reads", "Тя чете книга."],
             ["ние пишем", "we write", "Ние пишем заедно."],
-            ["вие пишете", "you write", "Вие пишете често."],
-            ["те пишат", "they write", "Те пишат текстове."]
+            ["вие говорите", "you speak", "Вие говорите български."],
+            ["те ходят", "they go / walk regularly", "Те ходят на училище."]
           ]
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "title": "High-Frequency Sentence Practice",
+      "description": "Use full phrases to see how verbs behave with time and context.",
+      "content": [
+        {
+          "type": "table",
+          "headers": ["Bulgarian", "English", "Focus"],
+          "rows": [
+            ["Аз работя вкъщи днес.", "I am working from home today.", "Time marker"],
+            ["Ти четеш бавно.", "You read slowly.", "Adverb"],
+            ["Ние говорим следобед.", "We speak in the afternoon.", "Scheduling"],
+            ["Те пътуват често.", "They travel often.", "Frequency"],
+            ["Аз мисля за това.", "I am thinking about that.", "Mental action"]
+          ]
+        },
+        {
+          "type": "cards",
+          "title": "Mini review",
+          "cards": [
+            { "front": "работя", "back": "I work" },
+            { "front": "живея", "back": "I live" },
+            { "front": "пътувам", "back": "I travel" },
+            { "front": "пиша", "back": "I write" }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "title": "Self-Check",
+      "description": "One quick question to end the lesson.",
+      "content": [
+        {
+          "type": "quiz",
+          "question": "Which form matches 'they work'?",
+          "answer": "те работят",
+          "choices": ["ние работим", "вие работите", "те работят"],
+          "note": "The subject pronoun is the fastest clue when you are unsure."
         }
       ]
     }

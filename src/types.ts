@@ -5,27 +5,90 @@ export interface RoadmapItem {
   file: string
 }
 
-export interface LessonContentItem {
-  type?: 'item' | 'table'
+export type LessonTone = 'info' | 'tip' | 'warning' | 'success'
+
+export interface LessonLegacyItem {
+  type?: 'item'
   letter?: string
   sound?: string
   bg?: string
   en?: string
-  headers?: string[]
-  rows?: string[][]
+  hint?: string
+}
+
+export interface LessonTableItem {
+  type: 'table'
+  headers: string[]
+  rows: string[][]
+}
+
+export interface LessonNoteItem {
+  type: 'note'
+  title?: string
+  text: string
+  tone?: LessonTone
+}
+
+export interface LessonListItem {
+  type: 'list'
+  title?: string
+  items: string[]
+}
+
+export interface LessonExampleItem {
+  type: 'example'
+  bg: string
+  en: string
+  note?: string
+}
+
+export interface LessonCardsItem {
+  type: 'cards'
+  title?: string
+  cards: {
+    front: string
+    back: string
+    hint?: string
+  }[]
+}
+
+export interface LessonQuizItem {
+  type: 'quiz'
+  question: string
+  answer: string
+  choices?: string[]
+  note?: string
+}
+
+export interface LessonRuleItem {
+  type: 'rule'
+  title?: string
+  bullets: string[]
+  note?: string
 }
 
 export interface LessonSection {
   type: 'section'
   title: string
   description?: string
-  content: LessonContentItem[]
+  content: LessonContentBlock[]
 }
+
+export type LessonContentBlock =
+  | LessonLegacyItem
+  | LessonTableItem
+  | LessonNoteItem
+  | LessonListItem
+  | LessonExampleItem
+  | LessonCardsItem
+  | LessonQuizItem
+  | LessonRuleItem
+  | LessonSection
 
 export interface LessonData {
   title: string
   description?: string
-  content: (LessonContentItem | LessonSection)[]
+  content: LessonContentBlock[]
 }
 
 export interface FlashcardTopic {
