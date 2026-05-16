@@ -1,0 +1,117 @@
+{
+  "title": "Numbers and Counting",
+  "description": "Learn Bulgarian numbers, common counting patterns, and how to use them in real situations.",
+  "content": [
+    {
+      "type": "section",
+      "title": "The First Numbers",
+      "description": "Start with the basic numbers you will use every day.",
+      "content": [
+        {
+          "type": "table",
+          "headers": ["Bulgarian", "English", "Note"],
+          "rows": [
+            ["нула", "zero", "Starts the counting set"],
+            ["едно", "one", "Short and common"],
+            ["две", "two", "Used before feminine nouns"],
+            ["три", "three", "Unchanged form"],
+            ["четири", "four", "A useful milestone number"],
+            ["пет", "five", "Common in shopping and time"],
+            ["шест", "six", "Simple and short"],
+            ["седем", "seven", "Often heard in everyday speech"],
+            ["осем", "eight", "Useful for time and prices"],
+            ["девет", "nine", "Easy to spot in patterns"],
+            ["десет", "ten", "A key base number"]
+          ]
+        },
+        {
+          "type": "cards",
+          "title": "Quick count review",
+          "cards": [
+            { "front": "едно", "back": "one" },
+            { "front": "две", "back": "two" },
+            { "front": "пет", "back": "five" },
+            { "front": "десет", "back": "ten" }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "title": "Counting Beyond Ten",
+      "description": "Learn the teens and a few important multiples.",
+      "content": [
+        {
+          "type": "table",
+          "headers": ["Bulgarian", "English"],
+          "rows": [
+            ["единадесет", "eleven"],
+            ["дванадесет", "twelve"],
+            ["тринадесет", "thirteen"],
+            ["четиринадесет", "fourteen"],
+            ["петнадесет", "fifteen"],
+            ["двадесет", "twenty"],
+            ["тридесет", "thirty"],
+            ["четиридесет", "forty"],
+            ["петдесет", "fifty"],
+            ["сто", "one hundred"]
+          ]
+        },
+        {
+          "type": "rule",
+          "title": "A useful pattern",
+          "bullets": [
+            "Teen numbers often build from the base number plus a teen ending.",
+            "Tens are important for prices, ages, and time.",
+            "Practice the whole number as a unit, not only the translation."
+          ]
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "title": "Numbers in Real Life",
+      "description": "Use numbers in common everyday phrases.",
+      "content": [
+        {
+          "type": "example",
+          "bg": "Имам две сестри.",
+          "en": "I have two sisters.",
+          "note": "Here 'две' is used because the noun is feminine."
+        },
+        {
+          "type": "example",
+          "bg": "Часът е три.",
+          "en": "It is three o'clock.",
+          "note": "A short way to tell the time."
+        },
+        {
+          "type": "example",
+          "bg": "Това струва десет лева.",
+          "en": "This costs ten leva.",
+          "note": "Very practical for shops and markets."
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "title": "Practice",
+      "description": "A quick reminder and a self-check.",
+      "content": [
+        {
+          "type": "note",
+          "title": "Study tip",
+          "text": "Practice counting aloud from one to twenty, then jump to the tens and prices you hear in shops.",
+          "tone": "tip"
+        },
+        {
+          "type": "quiz",
+          "question": "What is the Bulgarian word for 'twelve'?",
+          "answer": "дванадесет",
+          "choices": ["единадесет", "дванадесет", "тринадесет"],
+          "note": "It is a good number to memorize early because it appears in dates and prices."
+        }
+      ]
+    }
+  ]
+}

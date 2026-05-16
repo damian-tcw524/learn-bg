@@ -52,5 +52,35 @@
     "title": "At a Cafe",
     "description": "Ordering coffee and snacks politely",
     "file": "lesson08_cafe-ordering.json"
+  },
+  {
+    "id": "numbers",
+    "title": "Numbers and Counting",
+    "description": "Counting and number patterns",
+    "file": "lesson09_numbers.json"
+  },
+  {
+    "id": "common-phrases",
+    "title": "Common Phrases",
+    "description": "Everyday phrases for conversation",
+    "file": "lesson10_common-phrases.json"
+  },
+  {
+    "id": "shop-phrases",
+    "title": "What to Say in a Shop",
+    "description": "Shopping and asking prices",
+    "file": "lesson11_shop-phrases.json"
+  },
+  {
+    "id": "dog-commands",
+    "title": "Talking to a Dog",
+    "description": "Basic pet commands and praise",
+    "file": "lesson12_dog-commands.json"
+  },
+  {
+    "id": "cooking-phrases",
+    "title": "Cooking and Kitchen Phrases",
+    "description": "Words and phrases for cooking",
+    "file": "lesson13_cooking-phrases.json"
   }
 ]

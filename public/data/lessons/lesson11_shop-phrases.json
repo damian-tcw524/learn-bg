@@ -1,0 +1,104 @@
+{
+  "title": "What to Say in a Shop",
+  "description": "Useful Bulgarian words and phrases for shopping, asking prices, and speaking to staff.",
+  "content": [
+    {
+      "type": "section",
+      "title": "Shop Vocabulary",
+      "description": "Start with the basic nouns you need in stores and markets.",
+      "content": [
+        {
+          "type": "table",
+          "headers": ["Bulgarian", "English", "Note"],
+          "rows": [
+            ["магазин", "shop / store", "Very common"],
+            ["цена", "price", "Useful for questions"],
+            ["размер", "size", "Clothes and products"],
+            ["плащане", "payment", "At the checkout"],
+            ["касa", "checkout / cashier", "Where you pay"],
+            ["касова бележка", "receipt", "Ask for it if needed"],
+            ["намаление", "discount", "Sale vocabulary"],
+            ["чанта", "bag", "Useful when buying items"]
+          ]
+        },
+        {
+          "type": "cards",
+          "title": "Shop words",
+          "cards": [
+            { "front": "цена", "back": "price" },
+            { "front": "размер", "back": "size" },
+            { "front": "намаление", "back": "discount" },
+            { "front": "чанта", "back": "bag" }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "title": "Key Phrases",
+      "description": "These phrases help you ask for help and make simple purchases.",
+      "content": [
+        {
+          "type": "example",
+          "bg": "Колко струва това?",
+          "en": "How much does this cost?",
+          "note": "One of the most important shopping questions."
+        },
+        {
+          "type": "example",
+          "bg": "Имате ли по-евтино?",
+          "en": "Do you have something cheaper?",
+          "note": "Helpful when comparing products."
+        },
+        {
+          "type": "example",
+          "bg": "Може ли да пробвам?",
+          "en": "Can I try it on?",
+          "note": "Very useful in a clothing shop."
+        },
+        {
+          "type": "example",
+          "bg": "Ще взема това.",
+          "en": "I will take this one.",
+          "note": "A natural phrase at the cashier."
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "title": "Useful Extras",
+      "description": "Small phrases that make shopping smoother.",
+      "content": [
+        {
+          "type": "rule",
+          "title": "Shopping habits",
+          "bullets": [
+            "Use polite phrases when asking for help.",
+            "Ask about size, color, or price if needed.",
+            "Keep sentences short and clear."
+          ]
+        },
+        {
+          "type": "note",
+          "title": "Market tip",
+          "text": "In markets and small shops, a friendly greeting and a clear price question are often enough to start the conversation.",
+          "tone": "tip"
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "title": "Practice",
+      "description": "A quick check on the most useful shopping phrase.",
+      "content": [
+        {
+          "type": "quiz",
+          "question": "How do you ask 'How much does this cost?'",
+          "answer": "Колко струва това?",
+          "choices": ["Колко струва това?", "Може ли това?", "Къде е това?"],
+          "note": "A phrase worth memorizing early."
+        }
+      ]
+    }
+  ]
+}

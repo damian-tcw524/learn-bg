@@ -15,71 +15,186 @@
       "id": "food",
       "label": "Food",
       "description": "Common food and ordering phrases"
+    },
+    {
+      "id": "numbers",
+      "label": "Numbers",
+      "description": "Counting and quantities"
+    },
+    {
+      "id": "colors",
+      "label": "Colors",
+      "description": "Basic colors"
+    },
+    {
+      "id": "days",
+      "label": "Days and Time",
+      "description": "Days of the week and time expressions"
+    },
+    {
+      "id": "travel",
+      "label": "Travel",
+      "description": "Transport and directions"
+    },
+    {
+      "id": "shopping",
+      "label": "Shopping",
+      "description": "Buying and paying"
+    },
+    {
+      "id": "verbs_present",
+      "label": "Verbs (Present Tense)",
+      "description": "Common verbs conjugated in the present tense"
+    },
+    {
+      "id": "verbs_past",
+      "label": "Verbs (Past Tense)",
+      "description": "Common verbs in past tense"
+    },
+    {
+      "id": "verbs_future",
+      "label": "Verbs (Future Tense)",
+      "description": "Common verbs in future tense"
+    },
+    {
+      "id": "questions",
+      "label": "Questions",
+      "description": "Question words and useful questions"
+    },
+    {
+      "id": "adjectives",
+      "label": "Adjectives",
+      "description": "Common descriptive words"
+    },
+    {
+      "id": "emergencies",
+      "label": "Emergencies",
+      "description": "Important emergency phrases"
     }
   ],
   "cards": [
-    {
-      "id": "family_mother",
-      "topics": ["family"],
-      "bg": "майка",
-      "en": "mother",
-      "kind": "word"
-    },
-    {
-      "id": "family_father",
-      "topics": ["family"],
-      "bg": "баща",
-      "en": "father",
-      "kind": "word"
-    },
-    {
-      "id": "family_sister",
-      "topics": ["family"],
-      "bg": "сестра",
-      "en": "sister",
-      "kind": "word"
-    },
-    {
-      "id": "greet_hello",
-      "topics": ["greetings"],
-      "bg": "Здравей",
-      "en": "Hello",
-      "kind": "phrase"
-    },
-    {
-      "id": "greet_good_morning",
-      "topics": ["greetings"],
-      "bg": "Добро утро",
-      "en": "Good morning",
-      "kind": "phrase"
-    },
-    {
-      "id": "greet_how_are_you",
-      "topics": ["greetings", "family"],
-      "bg": "Как си?",
-      "en": "How are you?",
-      "kind": "phrase"
-    },
-    {
-      "id": "food_bread",
-      "topics": ["food"],
-      "bg": "хляб",
-      "en": "bread",
-      "kind": "word"
-    },
-    {
-      "id": "food_water",
-      "topics": ["food"],
-      "bg": "вода",
-      "en": "water",
-      "kind": "word"
-    },
-    {
-      "id": "food_check_please",
-      "topics": ["food"],
-      "bg": "Сметката, моля",
-      "en": "The bill, please",
-      "kind": "phrase"
-    }
+    { "id": "family_mother", "topics": ["family"], "bg": "майка", "en": "mother", "kind": "word" },
+    { "id": "family_father", "topics": ["family"], "bg": "баща", "en": "father", "kind": "word" },
+    { "id": "family_sister", "topics": ["family"], "bg": "сестра", "en": "sister", "kind": "word" },
+    { "id": "family_brother", "topics": ["family"], "bg": "брат", "en": "brother", "kind": "word" },
+    { "id": "family_grandmother", "topics": ["family"], "bg": "баба", "en": "grandmother", "kind": "word" },
+    { "id": "family_grandfather", "topics": ["family"], "bg": "дядо", "en": "grandfather", "kind": "word" },
+    { "id": "family_son", "topics": ["family"], "bg": "син", "en": "son", "kind": "word" },
+    { "id": "family_daughter", "topics": ["family"], "bg": "дъщеря", "en": "daughter", "kind": "word" },
+    { "id": "family_husband", "topics": ["family"], "bg": "съпруг", "en": "husband", "kind": "word" },
+    { "id": "family_wife", "topics": ["family"], "bg": "съпруга", "en": "wife", "kind": "word" },
+
+    { "id": "greet_hello", "topics": ["greetings"], "bg": "Здравей", "en": "Hello (informal)", "kind": "phrase" },
+    { "id": "greet_hello_formal", "topics": ["greetings"], "bg": "Здравейте", "en": "Hello (formal/plural)", "kind": "phrase" },
+    { "id": "greet_good_morning", "topics": ["greetings"], "bg": "Добро утро", "en": "Good morning", "kind": "phrase" },
+    { "id": "greet_good_afternoon", "topics": ["greetings"], "bg": "Добър ден", "en": "Good afternoon", "kind": "phrase" },
+    { "id": "greet_good_evening", "topics": ["greetings"], "bg": "Добър вечер", "en": "Good evening", "kind": "phrase" },
+    { "id": "greet_goodbye", "topics": ["greetings"], "bg": "Довиждане", "en": "Goodbye", "kind": "phrase" },
+    { "id": "greet_how_are_you", "topics": ["greetings"], "bg": "Как си?", "en": "How are you? (informal)", "kind": "phrase" },
+    { "id": "greet_thank_you", "topics": ["greetings"], "bg": "Благодаря", "en": "Thank you", "kind": "phrase" },
+    { "id": "greet_youre_welcome", "topics": ["greetings"], "bg": "Моля", "en": "You're welcome", "kind": "phrase" },
+    { "id": "greet_nice_to_meet", "topics": ["greetings"], "bg": "Приятно ми е", "en": "Nice to meet you", "kind": "phrase" },
+
+    { "id": "food_bread", "topics": ["food"], "bg": "хляб", "en": "bread", "kind": "word" },
+    { "id": "food_water", "topics": ["food"], "bg": "вода", "en": "water", "kind": "word" },
+    { "id": "food_milk", "topics": ["food"], "bg": "мляко", "en": "milk", "kind": "word" },
+    { "id": "food_coffee", "topics": ["food"], "bg": "кафе", "en": "coffee", "kind": "word" },
+    { "id": "food_tea", "topics": ["food"], "bg": "чай", "en": "tea", "kind": "word" },
+    { "id": "food_beer", "topics": ["food"], "bg": "бира", "en": "beer", "kind": "word" },
+    { "id": "food_meat", "topics": ["food"], "bg": "месо", "en": "meat", "kind": "word" },
+    { "id": "food_fish", "topics": ["food"], "bg": "риба", "en": "fish", "kind": "word" },
+    { "id": "food_salad", "topics": ["food"], "bg": "салата", "en": "salad", "kind": "word" },
+    { "id": "food_check_please", "topics": ["food"], "bg": "Сметката, моля", "en": "The bill, please", "kind": "phrase" },
+    { "id": "food_i_would_like", "topics": ["food"], "bg": "Бих искал...", "en": "I would like...", "kind": "phrase" },
+    { "id": "food_delicious", "topics": ["food"], "bg": "Много вкусно", "en": "Very delicious", "kind": "phrase" },
+
+    { "id": "numbers_1", "topics": ["numbers"], "bg": "едно", "en": "one", "kind": "word" },
+    { "id": "numbers_2", "topics": ["numbers"], "bg": "две", "en": "two", "kind": "word" },
+    { "id": "numbers_3", "topics": ["numbers"], "bg": "три", "en": "three", "kind": "word" },
+    { "id": "numbers_4", "topics": ["numbers"], "bg": "четири", "en": "four", "kind": "word" },
+    { "id": "numbers_5", "topics": ["numbers"], "bg": "пет", "en": "five", "kind": "word" },
+    { "id": "numbers_10", "topics": ["numbers"], "bg": "десет", "en": "ten", "kind": "word" },
+    { "id": "numbers_100", "topics": ["numbers"], "bg": "сто", "en": "one hundred", "kind": "word" },
+
+    { "id": "colors_red", "topics": ["colors"], "bg": "червен", "en": "red", "kind": "word" },
+    { "id": "colors_blue", "topics": ["colors"], "bg": "син", "en": "blue", "kind": "word" },
+    { "id": "colors_green", "topics": ["colors"], "bg": "зелен", "en": "green", "kind": "word" },
+    { "id": "colors_white", "topics": ["colors"], "bg": "бял", "en": "white", "kind": "word" },
+    { "id": "colors_black", "topics": ["colors"], "bg": "черен", "en": "black", "kind": "word" },
+
+    { "id": "days_monday", "topics": ["days"], "bg": "понеделник", "en": "Monday", "kind": "word" },
+    { "id": "days_tuesday", "topics": ["days"], "bg": "вторник", "en": "Tuesday", "kind": "word" },
+    { "id": "days_wednesday", "topics": ["days"], "bg": "сряда", "en": "Wednesday", "kind": "word" },
+    { "id": "days_today", "topics": ["days"], "bg": "днес", "en": "today", "kind": "word" },
+    { "id": "days_tomorrow", "topics": ["days"], "bg": "утре", "en": "tomorrow", "kind": "word" },
+    { "id": "days_yesterday", "topics": ["days"], "bg": "вчера", "en": "yesterday", "kind": "word" },
+    { "id": "days_now", "topics": ["days"], "bg": "сега", "en": "now", "kind": "word" },
+
+    { "id": "travel_where_station", "topics": ["travel"], "bg": "Къде е гарата?", "en": "Where is the station?", "kind": "phrase" },
+    { "id": "travel_left", "topics": ["travel"], "bg": "наляво", "en": "left", "kind": "word" },
+    { "id": "travel_right", "topics": ["travel"], "bg": "надясно", "en": "right", "kind": "word" },
+    { "id": "travel_straight", "topics": ["travel"], "bg": "направо", "en": "straight ahead", "kind": "word" },
+    { "id": "travel_ticket", "topics": ["travel"], "bg": "билет", "en": "ticket", "kind": "word" },
+    { "id": "travel_airport", "topics": ["travel"], "bg": "летище", "en": "airport", "kind": "word" },
+
+    { "id": "shopping_how_much", "topics": ["shopping"], "bg": "Колко струва?", "en": "How much does it cost?", "kind": "phrase" },
+    { "id": "shopping_too_expensive", "topics": ["shopping"], "bg": "Твърде скъпо е", "en": "It is too expensive", "kind": "phrase" },
+    { "id": "shopping_cheaper", "topics": ["shopping"], "bg": "По-евтино", "en": "Cheaper", "kind": "word" },
+    { "id": "shopping_cash", "topics": ["shopping"], "bg": "в брой", "en": "cash", "kind": "word" },
+    { "id": "shopping_card", "topics": ["shopping"], "bg": "с карта", "en": "by card", "kind": "phrase" },
+
+    { "id": "question_what", "topics": ["questions"], "bg": "Какво?", "en": "What?", "kind": "word" },
+    { "id": "question_where", "topics": ["questions"], "bg": "Къде?", "en": "Where?", "kind": "word" },
+    { "id": "question_when", "topics": ["questions"], "bg": "Кога?", "en": "When?", "kind": "word" },
+    { "id": "question_why", "topics": ["questions"], "bg": "Защо?", "en": "Why?", "kind": "word" },
+    { "id": "question_who", "topics": ["questions"], "bg": "Кой?", "en": "Who?", "kind": "word" },
+    { "id": "question_how", "topics": ["questions"], "bg": "Как?", "en": "How?", "kind": "word" },
+
+    { "id": "adj_big", "topics": ["adjectives"], "bg": "голям", "en": "big", "kind": "word" },
+    { "id": "adj_small", "topics": ["adjectives"], "bg": "малък", "en": "small", "kind": "word" },
+    { "id": "adj_good", "topics": ["adjectives"], "bg": "добър", "en": "good", "kind": "word" },
+    { "id": "adj_bad", "topics": ["adjectives"], "bg": "лош", "en": "bad", "kind": "word" },
+    { "id": "adj_hot", "topics": ["adjectives"], "bg": "горещ", "en": "hot", "kind": "word" },
+    { "id": "adj_cold", "topics": ["adjectives"], "bg": "студен", "en": "cold", "kind": "word" },
+    { "id": "adj_beautiful", "topics": ["adjectives"], "bg": "красив", "en": "beautiful", "kind": "word" },
+
+    { "id": "verb_be_1sg", "topics": ["verbs_present"], "bg": "Аз съм", "en": "I am", "kind": "phrase" },
+    { "id": "verb_be_2sg", "topics": ["verbs_present"], "bg": "Ти си", "en": "You are (informal)", "kind": "phrase" },
+    { "id": "verb_be_3sg", "topics": ["verbs_present"], "bg": "Той/Тя е", "en": "He/She is", "kind": "phrase" },
+
+    { "id": "verb_have_1sg", "topics": ["verbs_present"], "bg": "Аз имам", "en": "I have", "kind": "phrase" },
+    { "id": "verb_have_2sg", "topics": ["verbs_present"], "bg": "Ти имаш", "en": "You have", "kind": "phrase" },
+    { "id": "verb_have_3sg", "topics": ["verbs_present"], "bg": "Той/Тя има", "en": "He/She has", "kind": "phrase" },
+
+    { "id": "verb_want_1sg", "topics": ["verbs_present"], "bg": "Аз искам", "en": "I want", "kind": "phrase" },
+    { "id": "verb_want_2sg", "topics": ["verbs_present"], "bg": "Ти искаш", "en": "You want", "kind": "phrase" },
+    { "id": "verb_want_3sg", "topics": ["verbs_present"], "bg": "Той/Тя иска", "en": "He/She wants", "kind": "phrase" },
+
+    { "id": "verb_go_1sg", "topics": ["verbs_present"], "bg": "Аз отивам", "en": "I go", "kind": "phrase" },
+    { "id": "verb_come_1sg", "topics": ["verbs_present"], "bg": "Аз идвам", "en": "I come", "kind": "phrase" },
+    { "id": "verb_speak_1sg", "topics": ["verbs_present"], "bg": "Аз говоря", "en": "I speak", "kind": "phrase" },
+    { "id": "verb_understand_1sg", "topics": ["verbs_present"], "bg": "Аз разбирам", "en": "I understand", "kind": "phrase" },
+    { "id": "verb_know_1sg", "topics": ["verbs_present"], "bg": "Аз знам", "en": "I know", "kind": "phrase" },
+
+    { "id": "verb_be_past", "topics": ["verbs_past"], "bg": "Бях", "en": "I was", "kind": "phrase" },
+    { "id": "verb_have_past", "topics": ["verbs_past"], "bg": "Имах", "en": "I had", "kind": "phrase" },
+    { "id": "verb_went", "topics": ["verbs_past"], "bg": "Отидох", "en": "I went", "kind": "phrase" },
+    { "id": "verb_saw", "topics": ["verbs_past"], "bg": "Видях", "en": "I saw", "kind": "phrase" },
+
+    { "id": "verb_be_future", "topics": ["verbs_future"], "bg": "Ще бъда", "en": "I will be", "kind": "phrase" },
+    { "id": "verb_have_future", "topics": ["verbs_future"], "bg": "Ще имам", "en": "I will have", "kind": "phrase" },
+    { "id": "verb_go_future", "topics": ["verbs_future"], "bg": "Ще отида", "en": "I will go", "kind": "phrase" },
+    { "id": "verb_speak_future", "topics": ["verbs_future"], "bg": "Ще говоря", "en": "I will speak", "kind": "phrase" },
+
+    { "id": "emergency_help", "topics": ["emergencies"], "bg": "Помощ!", "en": "Help!", "kind": "phrase" },
+    { "id": "emergency_doctor", "topics": ["emergencies"], "bg": "Повикайте лекар", "en": "Call a doctor", "kind": "phrase" },
+    { "id": "emergency_police", "topics": ["emergencies"], "bg": "Повикайте полиция", "en": "Call the police", "kind": "phrase" },
+    { "id": "emergency_hospital", "topics": ["emergencies"], "bg": "болница", "en": "hospital", "kind": "word" },
+
+    { "id": "phrase_i_dont_understand", "topics": ["greetings", "questions"], "bg": "Не разбирам", "en": "I don't understand", "kind": "phrase" },
+    { "id": "phrase_speak_slowly", "topics": ["greetings", "questions"], "bg": "Говорете по-бавно", "en": "Please speak more slowly", "kind": "phrase" },
+    { "id": "phrase_do_you_speak_english", "topics": ["greetings", "questions"], "bg": "Говорите ли английски?", "en": "Do you speak English?", "kind": "phrase" },
+    { "id": "phrase_i_am_from_england", "topics": ["greetings"], "bg": "Аз съм от Англия", "en": "I am from England", "kind": "phrase" },
+    { "id": "phrase_my_name_is", "topics": ["greetings"], "bg": "Казвам се...", "en": "My name is...", "kind": "phrase" }
   ]
 }

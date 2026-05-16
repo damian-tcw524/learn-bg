@@ -1,0 +1,105 @@
+{
+  "title": "Talking to a Dog",
+  "description": "Simple Bulgarian commands and encouragement phrases for dogs and pets.",
+  "content": [
+    {
+      "type": "section",
+      "title": "Basic Commands",
+      "description": "These are short, clear commands you might use with a dog.",
+      "content": [
+        {
+          "type": "table",
+          "headers": ["Bulgarian", "English", "Note"],
+          "rows": [
+            ["Ела!", "Come!", "Friendly and clear"],
+            ["Седни!", "Sit!", "Very common command"],
+            ["Легни!", "Lie down!", "Use with a calm voice"],
+            ["Стой!", "Stay!", "Useful for control"],
+            ["До мен!", "To me / By my side!", "Keeps the dog close"],
+            ["Пусни!", "Drop it!", "Useful for safety"],
+            ["Не!", "No!", "Simple correction"],
+            ["Хайде!", "Let's go!", "Encouraging and common"]
+          ]
+        },
+        {
+          "type": "cards",
+          "title": "Command review",
+          "cards": [
+            { "front": "Седни!", "back": "Sit!" },
+            { "front": "Стой!", "back": "Stay!" },
+            { "front": "Ела!", "back": "Come!" },
+            { "front": "Пусни!", "back": "Drop it!" }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "title": "Praise and Reassurance",
+      "description": "Dogs respond well to short, positive phrases.",
+      "content": [
+        {
+          "type": "example",
+          "bg": "Браво!",
+          "en": "Good! / Well done!",
+          "note": "A perfect praise word for dogs and people."
+        },
+        {
+          "type": "example",
+          "bg": "Добро куче!",
+          "en": "Good dog!",
+          "note": "A simple and friendly phrase."
+        },
+        {
+          "type": "example",
+          "bg": "Спокойно.",
+          "en": "Calm down.",
+          "note": "A calming cue if the dog is excited."
+        },
+        {
+          "type": "example",
+          "bg": "Ето!",
+          "en": "Here you go!",
+          "note": "Useful when giving a treat or toy."
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "title": "Tone and Timing",
+      "description": "Short commands work best when the voice is consistent and calm.",
+      "content": [
+        {
+          "type": "list",
+          "title": "Helpful habits",
+          "items": [
+            "Use the same word every time for the same command.",
+            "Keep commands short and sharp.",
+            "Praise right after the dog responds correctly.",
+            "Use calm words when the dog needs to relax."
+          ]
+        },
+        {
+          "type": "note",
+          "title": "Practical tip",
+          "text": "Bulgarian dog commands are often short and direct, so a clear tone matters as much as the word itself.",
+          "tone": "info"
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "title": "Practice",
+      "description": "A quick reminder to check the most important command words.",
+      "content": [
+        {
+          "type": "quiz",
+          "question": "Which word means 'Sit!'?",
+          "answer": "Седни!",
+          "choices": ["Легни!", "Седни!", "Стой!"],
+          "note": "A very common first training word."
+        }
+      ]
+    }
+  ]
+}

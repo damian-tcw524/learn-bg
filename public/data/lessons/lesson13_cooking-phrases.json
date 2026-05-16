@@ -1,0 +1,118 @@
+{
+  "title": "Cooking and Kitchen Phrases",
+  "description": "Useful Bulgarian words and phrases for cooking, preparing food, and working in the kitchen.",
+  "content": [
+    {
+      "type": "section",
+      "title": "Kitchen Vocabulary",
+      "description": "Start with the things and actions you need around cooking.",
+      "content": [
+        {
+          "type": "table",
+          "headers": ["Bulgarian", "English", "Note"],
+          "rows": [
+            ["кухня", "kitchen", "The room itself"],
+            ["тенджера", "pot", "Good to know for cooking"],
+            ["тиган", "pan", "Common in recipes"],
+            ["лъжица", "spoon", "Also used at the table"],
+            ["чаша", "cup / glass", "Measure or drink"],
+            ["нож", "knife", "Useful in food prep"],
+            ["сол", "salt", "One of the first ingredients"],
+            ["захар", "sugar", "Frequent in drinks and baking"]
+          ]
+        },
+        {
+          "type": "cards",
+          "title": "Kitchen words",
+          "cards": [
+            { "front": "кухня", "back": "kitchen" },
+            { "front": "сол", "back": "salt" },
+            { "front": "захар", "back": "sugar" },
+            { "front": "тиган", "back": "pan" }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "title": "Cooking Actions",
+      "description": "These verbs are the backbone of recipe language.",
+      "content": [
+        {
+          "type": "table",
+          "headers": ["Bulgarian", "English", "Note"],
+          "rows": [
+            ["режа", "to cut", "A basic kitchen verb"],
+            ["бъркам", "to stir", "Very common in cooking"],
+            ["варя", "to boil / cook", "Used for soups and water"],
+            ["пека", "to bake", "Useful in oven recipes"],
+            ["пържа", "to fry", "Cooking in a pan"],
+            ["мивам", "to wash", "For vegetables and dishes"],
+            ["обелвам", "to peel", "Helpful for ingredients"],
+            ["сервирам", "to serve", "When the food is ready"]
+          ]
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "title": "Useful Phrases",
+      "description": "Short sentences you can use while cooking or following a recipe.",
+      "content": [
+        {
+          "type": "example",
+          "bg": "Нарежи зеленчуците.",
+          "en": "Cut the vegetables.",
+          "note": "A simple kitchen instruction."
+        },
+        {
+          "type": "example",
+          "bg": "Добави сол.",
+          "en": "Add salt.",
+          "note": "A very common recipe phrase."
+        },
+        {
+          "type": "example",
+          "bg": "Разбъркай добре.",
+          "en": "Stir well.",
+          "note": "Useful in almost any recipe."
+        },
+        {
+          "type": "example",
+          "bg": "Готово е.",
+          "en": "It is ready.",
+          "note": "A short way to say the food is done."
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "title": "Practical Review",
+      "description": "Use these tips to sound more natural when cooking with others.",
+      "content": [
+        {
+          "type": "list",
+          "title": "Quick habits",
+          "items": [
+            "Use short imperative phrases for instructions.",
+            "Learn ingredient names together with kitchen verbs.",
+            "Repeat common recipe verbs until they feel automatic."
+          ]
+        },
+        {
+          "type": "note",
+          "title": "Recipe tip",
+          "text": "Cooking language is repetitive by nature, which makes it perfect for quick drills and spoken practice.",
+          "tone": "success"
+        },
+        {
+          "type": "quiz",
+          "question": "What does 'Разбъркай добре.' mean?",
+          "answer": "Stir well.",
+          "choices": ["Boil well.", "Stir well.", "Wash well."],
+          "note": "You will hear this often in cooking instructions."
+        }
+      ]
+    }
+  ]
+}

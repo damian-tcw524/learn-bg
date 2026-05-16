@@ -1,0 +1,105 @@
+{
+  "title": "Common Phrases",
+  "description": "Everyday Bulgarian phrases for greetings, polite replies, and simple conversation.",
+  "content": [
+    {
+      "type": "section",
+      "title": "Greetings and Replies",
+      "description": "These are the phrases you will hear the most often.",
+      "content": [
+        {
+          "type": "table",
+          "headers": ["Bulgarian", "English", "Use"],
+          "rows": [
+            ["Здравей", "Hello", "Casual greeting"],
+            ["Добро утро", "Good morning", "Morning greeting"],
+            ["Добър ден", "Good day", "Polite daytime greeting"],
+            ["Добър вечер", "Good evening", "Evening greeting"],
+            ["Лека нощ", "Good night", "Before sleeping"],
+            ["Благодаря", "Thank you", "Polite response"],
+            ["Моля", "Please / You're welcome", "Very versatile"],
+            ["Няма проблем", "No problem", "Friendly reply"]
+          ]
+        },
+        {
+          "type": "cards",
+          "title": "Phrase review",
+          "cards": [
+            { "front": "Благодаря", "back": "Thank you" },
+            { "front": "Моля", "back": "Please / You're welcome" },
+            { "front": "Лека нощ", "back": "Good night" },
+            { "front": "Няма проблем", "back": "No problem" }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "title": "Conversation Basics",
+      "description": "These short phrases keep simple conversations moving.",
+      "content": [
+        {
+          "type": "example",
+          "bg": "Как си?",
+          "en": "How are you?",
+          "note": "A very common informal question."
+        },
+        {
+          "type": "example",
+          "bg": "Добре съм, благодаря.",
+          "en": "I am fine, thank you.",
+          "note": "A natural reply to 'Как си?'."
+        },
+        {
+          "type": "example",
+          "bg": "Не разбирам.",
+          "en": "I do not understand.",
+          "note": "Useful whenever you need clarification."
+        },
+        {
+          "type": "example",
+          "bg": "Може ли пак?",
+          "en": "Can you say it again?",
+          "note": "A helpful phrase when you miss something."
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "title": "Polite Essentials",
+      "description": "Simple but important social phrases.",
+      "content": [
+        {
+          "type": "list",
+          "title": "Use these often",
+          "items": [
+            "Благодаря you when someone helps you.",
+            "Use Моля to soften a request.",
+            "Say Извинете when you need attention or want to apologize.",
+            "Keep replies short and natural."
+          ]
+        },
+        {
+          "type": "note",
+          "title": "Tone",
+          "text": "Bulgarian speakers often value warm, direct, but polite language. Short phrases work well if they are said clearly.",
+          "tone": "info"
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "title": "Practice",
+      "description": "A quick self-check for the most useful expressions.",
+      "content": [
+        {
+          "type": "quiz",
+          "question": "What does 'Моля' often mean when someone thanks you?",
+          "answer": "You're welcome",
+          "choices": ["Please", "You're welcome", "Hello"],
+          "note": "The meaning depends on the situation."
+        }
+      ]
+    }
+  ]
+}
