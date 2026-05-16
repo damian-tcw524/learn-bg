@@ -24,6 +24,7 @@ const frontMode = ref<FrontLanguage>('mixed')
 const deck = ref<DeckCard[]>([])
 const currentIndex = ref(0)
 const showBack = ref(false)
+const showBackNext = ref(false)
 const dragX = ref(0)
 const startX = ref<number | null>(null)
 const dragged = ref(false)
@@ -35,7 +36,12 @@ const roundCorrect = ref(0)
 const roundWrong = ref(0)
 const roundSaved = ref(false)
 
-const swipeThreshold = 90
+const swipeThreshold = 40
+const swipeVelocityThreshold = 0.45 // px per ms (~450 px/s)
+const lastMoveTime = ref<number | null>(null)
+const lastMoveX = ref<number>(0)
+const prevMoveTime = ref<number | null>(null)
+const prevMoveX = ref<number>(0)
 
 const topics = computed<FlashcardTopic[]>(() => data.value?.topics ?? [])
 
@@ -49,6 +55,7 @@ const filteredCards = computed<FlashcardItem[]>(() => {
 })
 
 const currentCard = computed<DeckCard | null>(() => deck.value[currentIndex.value] ?? null)
+const nextCard = computed<DeckCard | null>(() => deck.value[currentIndex.value + 1] ?? null)
 
 const roundCompleted = computed(() => deck.value.length > 0 && currentIndex.value >= deck.value.length)
 
@@ -176,11 +183,17 @@ function setFrontMode(mode: FrontLanguage): void {
   rebuildDeck()
 }
 
-function flipCard(): void {
-  if (!currentCard.value || dragged.value || animatingOut.value) {
+function flipCard(slot: 'top' | 'back' = 'top'): void {
+  if (dragged.value) return
+
+  if (slot === 'back') {
+    if (!nextCard.value) return
+    // allow flipping the next card while top is animating out
+    showBackNext.value = !showBackNext.value
     return
   }
 
+  if (!currentCard.value || animatingOut.value) return
   showBack.value = !showBack.value
 }
 
@@ -224,6 +237,9 @@ async function registerAnswer(correct: boolean): Promise<void> {
     el.style.transition = 'transform 320ms cubic-bezier(.22,.9,.22,1)'
     dragX.value = targetX
 
+    // allow interacting with the card underneath while top is flying out
+    // top-shell will get `click-through` class via `animatingOut` reactive flag
+
     await new Promise((resolve) => {
       const onEnd = (ev: Event) => {
         if ((ev as TransitionEvent).propertyName === 'transform') {
@@ -255,15 +271,15 @@ async function registerAnswer(correct: boolean): Promise<void> {
     roundWrong.value += 1
   }
 
-  // prepare next card without animations to avoid initial flip flash
+  // prepare next card: preserve whether the user already flipped the next card
+  const nextWasFlipped = showBackNext.value
   animatingOut.value = false
-  showBack.value = false
   dragX.value = 0
-  cardReady.value = false
   currentIndex.value += 1
+  // set the new current card's flipped state to whatever the user set on the previous 'next' card
+  showBack.value = nextWasFlipped
+  showBackNext.value = false
   await nextTick()
-  // ensure card remounts cleanly
-  cardReady.value = true
 
   if (currentIndex.value >= deck.value.length) {
     saveRoundIfNeeded()
@@ -283,6 +299,10 @@ function onPointerDown(event: PointerEvent): void {
   try {
     ;(event.target as Element).setPointerCapture?.(event.pointerId)
   } catch {}
+  lastMoveTime.value = performance.now()
+  lastMoveX.value = event.clientX
+  prevMoveTime.value = lastMoveTime.value
+  prevMoveX.value = lastMoveX.value
 }
 
 function onPointerMove(event: PointerEvent): void {
@@ -294,15 +314,25 @@ function onPointerMove(event: PointerEvent): void {
   if (Math.abs(dragX.value) > 3) {
     dragged.value = true
   }
+  prevMoveTime.value = lastMoveTime.value
+  prevMoveX.value = lastMoveX.value
+  lastMoveTime.value = performance.now()
+  lastMoveX.value = event.clientX
 }
 
 function onPointerUp(): void {
   if (startX.value === null) {
     return
   }
-  if (dragX.value >= swipeThreshold) {
+  let velocity = 0
+  if (prevMoveTime.value !== null && lastMoveTime.value !== null && lastMoveTime.value > prevMoveTime.value) {
+    const dt = Math.max(6, lastMoveTime.value - prevMoveTime.value)
+    velocity = (lastMoveX.value - prevMoveX.value) / dt
+  }
+
+  if (dragX.value >= swipeThreshold || velocity > swipeVelocityThreshold) {
     registerAnswer(true)
-  } else if (dragX.value <= -swipeThreshold) {
+  } else if (dragX.value <= -swipeThreshold || velocity < -swipeVelocityThreshold) {
     registerAnswer(false)
   } else {
     // snap back
@@ -404,30 +434,48 @@ onMounted(async () => {
 
     <section v-else class="card-stage">
       <p class="counter">Card {{ currentIndex + 1 }} / {{ deck.length }}</p>
+      <div class="card-stack">
+        <div v-if="nextCard" class="card-shell back-shell" :class="{ clickable: animatingOut }" @click.stop="flipCard('back')">
+          <div :key="(nextCard && nextCard.card.id) || currentIndex + '-next'" class="card" :class="{ flipped: showBackNext, 'no-anim': !cardReady }" :style="{ '--card-shadow': 'none', '--card-border': 'rgba(255,255,255,0)' }">
+            <article class="card-face card-front">
+              <p class="card-label">{{ nextCard ? (nextCard.front === 'bg' ? 'Bulgarian' : 'English') : '' }}</p>
+              <h2>{{ nextCard ? (nextCard.front === 'bg' ? nextCard.card.bg : nextCard.card.en) : '' }}</h2>
+              <small>Tap to flip</small>
+            </article>
 
-      <div
-        ref="cardShellRef"
-        class="card-shell"
-        :style="{ transform: `translateX(${dragX}px) rotate(${dragX / 25}deg)` }"
-        @click="flipCard"
-        @pointerdown="onPointerDown"
-        @pointermove="onPointerMove"
-        @pointerup="onPointerUp"
-        @pointercancel="onPointerUp"
-        @pointerleave="onPointerUp"
-      >
-        <div :key="currentCard?.card.id || currentIndex" class="card" :class="{ flipped: showBack, 'no-anim': !cardReady }" :style="{ '--card-shadow': accentBoxShadow, '--card-border': accentBorder }">
-          <article class="card-face card-front">
-            <p class="card-label">{{ frontLanguageLabel }}</p>
-            <h2>{{ frontText }}</h2>
-            <small>Tap to flip</small>
-          </article>
+            <article class="card-face card-back">
+              <p class="card-label">{{ nextCard ? (nextCard.front === 'bg' ? 'English' : 'Bulgarian') : '' }}</p>
+              <h2>{{ nextCard ? (nextCard.front === 'bg' ? nextCard.card.en : nextCard.card.bg) : '' }}</h2>
+              <small>Swipe left if wrong, swipe right if correct</small>
+            </article>
+          </div>
+        </div>
 
-          <article class="card-face card-back">
-            <p class="card-label">{{ backLanguageLabel }}</p>
-            <h2>{{ backText }}</h2>
-            <small>Swipe left if wrong, swipe right if correct</small>
-          </article>
+        <div
+          ref="cardShellRef"
+          class="card-shell top-shell"
+          :class="{ 'click-through': animatingOut }"
+          :style="{ transform: `translateX(${dragX}px) rotate(${dragX / 25}deg)` }"
+          @click="flipCard('top')"
+          @pointerdown="onPointerDown"
+          @pointermove="onPointerMove"
+          @pointerup="onPointerUp"
+          @pointercancel="onPointerUp"
+          @pointerleave="onPointerUp"
+        >
+          <div :key="currentCard?.card.id || currentIndex" class="card" :class="{ flipped: showBack, 'no-anim': !cardReady }" :style="{ '--card-shadow': accentBoxShadow, '--card-border': accentBorder }">
+            <article class="card-face card-front">
+              <p class="card-label">{{ frontLanguageLabel }}</p>
+              <h2>{{ frontText }}</h2>
+              <small>Tap to flip</small>
+            </article>
+
+            <article class="card-face card-back">
+              <p class="card-label">{{ backLanguageLabel }}</p>
+              <h2>{{ backText }}</h2>
+              <small>Swipe left if wrong, swipe right if correct</small>
+            </article>
+          </div>
         </div>
       </div>
 
@@ -550,12 +598,43 @@ h1 {
 }
 
 .card-shell {
+  /* shells are positioned within .card-stack; top/back shells fill the stack */
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  touch-action: pan-y;
+  cursor: pointer;
+}
+
+.card-stack {
   max-width: 560px;
   width: 100%;
   margin: 0 auto;
   perspective: 1100px;
-  touch-action: pan-y;
-  cursor: pointer;
+  position: relative;
+  min-height: 300px;
+}
+
+.card-shell.back-shell {
+  z-index: 1;
+  pointer-events: none;
+}
+
+.card-shell.back-shell .card {
+  transition: none !important;
+  transform: none !important;
+}
+
+.card-shell.top-shell {
+  z-index: 2;
+}
+
+.card-shell.back-shell.clickable {
+  pointer-events: auto;
+}
+
+.card-shell.top-shell.click-through {
+  pointer-events: none;
 }
 
 .card {
@@ -581,7 +660,8 @@ h1 {
   border-radius: 14px;
   border: 1px solid var(--card-border, rgba(255, 255, 255, 0.12));
   box-shadow: var(--card-shadow, none);
-  background: linear-gradient(180deg, rgba(18, 42, 54, 0.94), rgba(13, 30, 38, 0.98));
+  /* make faces opaque so you can't see through the card */
+  background-color: #0f2a31;
   display: grid;
   place-items: center;
   text-align: center;
@@ -590,6 +670,12 @@ h1 {
 
 .card-back {
   transform: rotateY(180deg);
+}
+
+/* distinct back-face color so flipped side is obvious */
+.card-face.card-back {
+  /* distinct back-face color so flipped side is obvious (opaque) */
+  background-color: #163e2f;
 }
 
 .card-label {
