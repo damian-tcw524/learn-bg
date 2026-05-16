@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { computed, onMounted, ref } from 'vue'
+import { computed, nextTick, onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { appendFlashcardAttempt, appendFlashcardSession } from './flashcardStats'
 import type { FlashcardData, FlashcardItem, FlashcardTopic } from './types'
+import { loadFlashcardStats } from './flashcardStats'
 
 type FrontLanguage = 'bg' | 'en' | 'mixed'
 
@@ -26,6 +27,9 @@ const showBack = ref(false)
 const dragX = ref(0)
 const startX = ref<number | null>(null)
 const dragged = ref(false)
+const cardReady = ref(false)
+const animatingOut = ref(false)
+const cardShellRef = ref<HTMLElement | null>(null)
 
 const roundCorrect = ref(0)
 const roundWrong = ref(0)
@@ -82,6 +86,27 @@ const backText = computed(() => {
   return card.front === 'bg' ? card.card.en : card.card.bg
 })
 
+const accentAlpha = computed(() => Math.min(Math.abs(dragX.value) / 300, 0.95))
+const accentBoxShadow = computed(() => {
+  if (dragX.value > 0) {
+    return `0 20px 40px rgba(123,237,167,${accentAlpha.value})`
+  }
+  if (dragX.value < 0) {
+    return `0 20px 40px rgba(255,120,120,${accentAlpha.value})`
+  }
+  return 'none'
+})
+
+const accentBorder = computed(() => {
+  if (dragX.value > 0) {
+    return `rgba(123,237,167,${accentAlpha.value})`
+  }
+  if (dragX.value < 0) {
+    return `rgba(255,120,120,${accentAlpha.value})`
+  }
+  return 'rgba(255,255,255,0.12)'
+})
+
 function shuffle<T>(input: T[]): T[] {
   const arr = [...input]
   for (let i = arr.length - 1; i > 0; i -= 1) {
@@ -102,10 +127,24 @@ function pickFrontLanguage(): 'bg' | 'en' {
 }
 
 function rebuildDeck(): void {
-  const nextDeck = shuffle(filteredCards.value).map((card) => ({
-    card,
-    front: pickFrontLanguage()
-  }))
+  // Spaced-repetition inspired weighting: prioritize cards with more wrongs than corrects
+  const stats = loadFlashcardStats()
+
+  const expanded: FlashcardItem[] = []
+  for (const card of filteredCards.value) {
+    const attempts = stats.attempts.filter((a) => a.cardId === card.id)
+    const correct = attempts.filter((a) => a.correct).length
+    const wrong = attempts.filter((a) => !a.correct).length
+
+    // weight: base 1, increase for wrong answers; clamp repeats to [1..4]
+    const repeats = Math.min(4, Math.max(1, 1 + (wrong - correct)))
+
+    for (let i = 0; i < repeats; i += 1) {
+      expanded.push(card)
+    }
+  }
+
+  const nextDeck = shuffle(expanded).map((card) => ({ card, front: pickFrontLanguage() }))
 
   deck.value = nextDeck
   currentIndex.value = 0
@@ -114,6 +153,11 @@ function rebuildDeck(): void {
   roundCorrect.value = 0
   roundWrong.value = 0
   roundSaved.value = false
+  cardReady.value = false
+  // ensure no flip/transition on first paint
+  nextTick(() => {
+    cardReady.value = true
+  })
 }
 
 function toggleTopic(topicId: string): void {
@@ -133,7 +177,7 @@ function setFrontMode(mode: FrontLanguage): void {
 }
 
 function flipCard(): void {
-  if (!currentCard.value || dragged.value) {
+  if (!currentCard.value || dragged.value || animatingOut.value) {
     return
   }
 
@@ -161,12 +205,43 @@ function saveRoundIfNeeded(): void {
   roundSaved.value = true
 }
 
-function registerAnswer(correct: boolean): void {
+async function registerAnswer(correct: boolean): Promise<void> {
   const active = currentCard.value
   if (!active || !showBack.value) {
     return
   }
 
+  // animate card out and only advance after animation completes
+  animatingOut.value = true
+  const width = window.innerWidth
+  // fly fully off-screen
+  const extra = 200
+  const targetX = correct ? width + extra : -(width + extra)
+
+  const el = cardShellRef.value
+  if (el) {
+    // ensure the card remains showing the back while flying out
+    el.style.transition = 'transform 320ms cubic-bezier(.22,.9,.22,1)'
+    dragX.value = targetX
+
+    await new Promise((resolve) => {
+      const onEnd = (ev: Event) => {
+        if ((ev as TransitionEvent).propertyName === 'transform') {
+          el.removeEventListener('transitionend', onEnd)
+          resolve(null)
+        }
+      }
+      el.addEventListener('transitionend', onEnd)
+      // fallback
+      setTimeout(resolve, 380)
+    })
+
+    el.style.transition = ''
+  } else {
+    await new Promise((r) => setTimeout(r, 260))
+  }
+
+  // record attempt
   appendFlashcardAttempt({
     timestamp: new Date().toISOString(),
     cardId: active.card.id,
@@ -180,9 +255,15 @@ function registerAnswer(correct: boolean): void {
     roundWrong.value += 1
   }
 
+  // prepare next card without animations to avoid initial flip flash
+  animatingOut.value = false
   showBack.value = false
   dragX.value = 0
+  cardReady.value = false
   currentIndex.value += 1
+  await nextTick()
+  // ensure card remounts cleanly
+  cardReady.value = true
 
   if (currentIndex.value >= deck.value.length) {
     saveRoundIfNeeded()
@@ -194,12 +275,18 @@ function onPointerDown(event: PointerEvent): void {
     return
   }
 
+  if (animatingOut.value) return
+
   startX.value = event.clientX
   dragged.value = false
+
+  try {
+    ;(event.target as Element).setPointerCapture?.(event.pointerId)
+  } catch {}
 }
 
 function onPointerMove(event: PointerEvent): void {
-  if (startX.value === null) {
+  if (startX.value === null || animatingOut.value) {
     return
   }
 
@@ -213,15 +300,27 @@ function onPointerUp(): void {
   if (startX.value === null) {
     return
   }
-
   if (dragX.value >= swipeThreshold) {
     registerAnswer(true)
   } else if (dragX.value <= -swipeThreshold) {
     registerAnswer(false)
+  } else {
+    // snap back
+    const el = cardShellRef.value
+    if (el) {
+      el.style.transition = 'transform 220ms ease'
+      dragX.value = 0
+      setTimeout(() => {
+        el.style.transition = ''
+      }, 260)
+    }
   }
 
   startX.value = null
-  dragX.value = 0
+  try {
+    ;(document as any).releasePointerCapture?.()
+  } catch {}
+
   setTimeout(() => {
     dragged.value = false
   }, 0)
@@ -307,6 +406,7 @@ onMounted(async () => {
       <p class="counter">Card {{ currentIndex + 1 }} / {{ deck.length }}</p>
 
       <div
+        ref="cardShellRef"
         class="card-shell"
         :style="{ transform: `translateX(${dragX}px) rotate(${dragX / 25}deg)` }"
         @click="flipCard"
@@ -316,7 +416,7 @@ onMounted(async () => {
         @pointercancel="onPointerUp"
         @pointerleave="onPointerUp"
       >
-        <div class="card" :class="{ flipped: showBack }">
+        <div :key="currentCard?.card.id || currentIndex" class="card" :class="{ flipped: showBack, 'no-anim': !cardReady }" :style="{ '--card-shadow': accentBoxShadow, '--card-border': accentBorder }">
           <article class="card-face card-front">
             <p class="card-label">{{ frontLanguageLabel }}</p>
             <h2>{{ frontText }}</h2>
@@ -466,6 +566,10 @@ h1 {
   transition: transform 0.28s ease;
 }
 
+.card.no-anim {
+  transition: none !important;
+}
+
 .card.flipped {
   transform: rotateY(180deg);
 }
@@ -475,7 +579,8 @@ h1 {
   inset: 0;
   backface-visibility: hidden;
   border-radius: 14px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  border: 1px solid var(--card-border, rgba(255, 255, 255, 0.12));
+  box-shadow: var(--card-shadow, none);
   background: linear-gradient(180deg, rgba(18, 42, 54, 0.94), rgba(13, 30, 38, 0.98));
   display: grid;
   place-items: center;
