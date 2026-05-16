@@ -28,5 +28,29 @@
     "title": "Present Tense verbs",
     "description": "Present tense verbsin Bulgarian",
     "file": "lesson04_present-verbs.json"
+  },
+  {
+    "id": "noun-gender",
+    "title": "Noun Gender and Articles",
+    "description": "How gender and definite forms work",
+    "file": "lesson05_noun-gender.json"
+  },
+  {
+    "id": "question-words",
+    "title": "Question Words",
+    "description": "Ask and answer common questions",
+    "file": "lesson06_question-words.json"
+  },
+  {
+    "id": "dinner-table",
+    "title": "At the Dinner Table",
+    "description": "Food and table phrases",
+    "file": "lesson07_dinner-table.json"
+  },
+  {
+    "id": "cafe-ordering",
+    "title": "At a Cafe",
+    "description": "Ordering coffee and snacks politely",
+    "file": "lesson08_cafe-ordering.json"
   }
 ]

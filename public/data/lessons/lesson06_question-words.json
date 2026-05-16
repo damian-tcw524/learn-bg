@@ -1,0 +1,109 @@
+{
+  "title": "Question Words",
+  "description": "Learn the most common question words in Bulgarian and how to answer them naturally.",
+  "content": [
+    {
+      "type": "section",
+      "title": "Core Question Words",
+      "description": "These words appear constantly in conversation, so they are worth learning early.",
+      "content": [
+        {
+          "type": "table",
+          "headers": ["Bulgarian", "English", "Use"],
+          "rows": [
+            ["кой", "who / which person", "asks about people"],
+            ["какво", "what", "asks about things"],
+            ["къде", "where", "asks about place"],
+            ["кога", "when", "asks about time"],
+            ["как", "how", "asks about manner"],
+            ["защо", "why", "asks about reason"],
+            ["колко", "how much / how many", "asks about quantity"],
+            ["чий", "whose", "asks about possession"]
+          ]
+        },
+        {
+          "type": "note",
+          "title": "Quick tip",
+          "text": "In Bulgarian, question words usually stay near the start of the sentence, which makes them easy to spot.",
+          "tone": "tip"
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "title": "Common Question Patterns",
+      "description": "These are simple templates you can reuse in real conversation.",
+      "content": [
+        {
+          "type": "rule",
+          "title": "Ask a question in three steps",
+          "bullets": [
+            "Start with the question word.",
+            "Add the verb or topic.",
+            "Finish with the rest of the sentence if needed."
+          ]
+        },
+        {
+          "type": "table",
+          "headers": ["Question", "Answer", "Meaning"],
+          "rows": [
+            ["Кой е това?", "Това е Мария.", "Who is this?"],
+            ["Какво правиш?", "Чета книга.", "What are you doing?"],
+            ["Къде живееш?", "Живея в София.", "Where do you live?"],
+            ["Кога започва?", "Започва в осем.", "When does it start?"],
+            ["Как си?", "Добре съм.", "How are you?"]
+          ]
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "title": "Natural Answers",
+      "description": "Short answers help your speech sound more natural and less robotic.",
+      "content": [
+        {
+          "type": "example",
+          "bg": "Къде е кафето?",
+          "en": "Where is the coffee?",
+          "note": "A useful question when ordering or asking for something on a table."
+        },
+        {
+          "type": "example",
+          "bg": "Защо учиш български?",
+          "en": "Why are you learning Bulgarian?",
+          "note": "Great for conversation practice."
+        },
+        {
+          "type": "example",
+          "bg": "Колко струва?",
+          "en": "How much does it cost?",
+          "note": "This is one of the most useful real-world questions."
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "title": "Practice Set",
+      "description": "Use cards and a quiz to lock in the main question words.",
+      "content": [
+        {
+          "type": "cards",
+          "title": "Question word review",
+          "cards": [
+            { "front": "къде", "back": "where" },
+            { "front": "кога", "back": "when" },
+            { "front": "как", "back": "how" },
+            { "front": "защо", "back": "why" }
+          ]
+        },
+        {
+          "type": "quiz",
+          "question": "Which word means 'whose'?",
+          "answer": "чий",
+          "choices": ["кой", "чий", "колко"],
+          "note": "It is easy to confuse with 'кой', but it asks about possession."
+        }
+      ]
+    }
+  ]
+}

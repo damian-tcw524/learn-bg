@@ -1,0 +1,105 @@
+{
+  "title": "At the Dinner Table",
+  "description": "Common Bulgarian words and phrases you will hear or use at home, at dinner, or during family meals.",
+  "content": [
+    {
+      "type": "section",
+      "title": "Table Vocabulary",
+      "description": "Start with the everyday words you need around food and the table.",
+      "content": [
+        {
+          "type": "table",
+          "headers": ["Bulgarian", "English", "Note"],
+          "rows": [
+            ["маса", "table", "The dining table"],
+            ["чиния", "plate", "A very common noun"],
+            ["вилица", "fork", "Useful in meal settings"],
+            ["лъжица", "spoon", "Often paired with forks and knives"],
+            ["нож", "knife", "A basic table item"],
+            ["чаша", "glass / cup", "Depends on the drink"],
+            ["салфетка", "napkin", "Handy at the table"],
+            ["хляб", "bread", "A staple food word"]
+          ]
+        },
+        {
+          "type": "cards",
+          "title": "Simple meal words",
+          "cards": [
+            { "front": "хляб", "back": "bread" },
+            { "front": "вода", "back": "water" },
+            { "front": "сол", "back": "salt" },
+            { "front": "чиния", "back": "plate" }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "title": "Useful Phrases",
+      "description": "Polite, natural phrases for family meals and shared food.",
+      "content": [
+        {
+          "type": "example",
+          "bg": "Може ли солта?",
+          "en": "Can I have the salt?",
+          "note": "A polite and practical request at the table."
+        },
+        {
+          "type": "example",
+          "bg": "Още хляб, моля.",
+          "en": "More bread, please.",
+          "note": "The word 'още' is very useful in restaurants and at home."
+        },
+        {
+          "type": "example",
+          "bg": "Това е много вкусно.",
+          "en": "This is very tasty.",
+          "note": "A simple compliment that works in any meal setting."
+        },
+        {
+          "type": "example",
+          "bg": "Да ти сипя ли вода?",
+          "en": "Shall I pour you some water?",
+          "note": "A friendly offer you might hear in a household."
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "title": "Meal-Time Etiquette",
+      "description": "A few cultural and language habits that help you sound natural.",
+      "content": [
+        {
+          "type": "list",
+          "title": "Things to remember",
+          "items": [
+            "Use polite forms when speaking to adults or guests.",
+            "Offer food or water with simple, direct phrases.",
+            "Complimenting the food is a good social habit.",
+            "Meal conversations often use short, friendly sentences."
+          ]
+        },
+        {
+          "type": "note",
+          "title": "Conversation tip",
+          "text": "At the table, short sentences are normal. You do not need to speak in long, complex grammar to be understood.",
+          "tone": "info"
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "title": "Practice",
+      "description": "A quick self-check for the most useful table phrases.",
+      "content": [
+        {
+          "type": "quiz",
+          "question": "What does 'Още хляб, моля.' mean?",
+          "answer": "More bread, please.",
+          "choices": ["Where is the bread?", "More bread, please.", "I like bread."],
+          "note": "'Още' means more or another one."
+        }
+      ]
+    }
+  ]
+}

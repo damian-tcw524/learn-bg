@@ -1,0 +1,113 @@
+{
+  "title": "At a Cafe",
+  "description": "Order coffee, ask about the menu, and use polite phrases in a cafe or bakery.",
+  "content": [
+    {
+      "type": "section",
+      "title": "Ordering Basics",
+      "description": "These phrases will help you ask for drinks, food, and the bill.",
+      "content": [
+        {
+          "type": "example",
+          "bg": "Едно кафе, моля.",
+          "en": "One coffee, please.",
+          "note": "A short and natural way to order."
+        },
+        {
+          "type": "example",
+          "bg": "Бих искал един чай.",
+          "en": "I would like a tea.",
+          "note": "A more formal and polite way to order."
+        },
+        {
+          "type": "example",
+          "bg": "Може ли менюто?",
+          "en": "Can I have the menu?",
+          "note": "Useful when you sit down and want to look at the options."
+        },
+        {
+          "type": "example",
+          "bg": "Сметката, моля.",
+          "en": "The bill, please.",
+          "note": "One of the most practical cafe phrases."
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "title": "Cafe Vocabulary",
+      "description": "A small set of words you will see on menus and hear from staff.",
+      "content": [
+        {
+          "type": "table",
+          "headers": ["Bulgarian", "English", "Note"],
+          "rows": [
+            ["кафе", "coffee / cafe", "Context decides the meaning"],
+            ["чай", "tea", "A common drink"],
+            ["сок", "juice", "Another common drink"],
+            ["вода", "water", "Still or sparkling"],
+            ["сандвич", "sandwich", "Simple food option"],
+            ["сладкиш", "cake / pastry", "Good for a bakery or cafe"],
+            ["закуска", "snack / breakfast item", "Very common in Bulgaria"],
+            ["мляко", "milk", "Useful in coffee orders"]
+          ]
+        },
+        {
+          "type": "cards",
+          "title": "Menu words",
+          "cards": [
+            { "front": "кафе", "back": "coffee" },
+            { "front": "чай", "back": "tea" },
+            { "front": "сметка", "back": "bill" },
+            { "front": "меню", "back": "menu" }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "title": "Useful Conversation",
+      "description": "Mini dialogs make ordering easier to remember.",
+      "content": [
+        {
+          "type": "example",
+          "bg": "Какво препоръчвате?",
+          "en": "What do you recommend?",
+          "note": "A helpful question if you do not know what to order."
+        },
+        {
+          "type": "example",
+          "bg": "Ще взема това кафе.",
+          "en": "I will take this coffee.",
+          "note": "A natural sentence in a cafe setting."
+        },
+        {
+          "type": "example",
+          "bg": "Без захар, моля.",
+          "en": "Without sugar, please.",
+          "note": "A very useful preference to express."
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "title": "Practice",
+      "description": "A quick quiz and one reminder for polite service.",
+      "content": [
+        {
+          "type": "note",
+          "title": "Polite form",
+          "text": "In cafes, polite phrases are very common. Even a short 'Моля' makes your request sound softer and more natural.",
+          "tone": "success"
+        },
+        {
+          "type": "quiz",
+          "question": "How do you say 'The bill, please.'?",
+          "answer": "Сметката, моля.",
+          "choices": ["Сметката, моля.", "Менюто, моля.", "Кафето, моля."],
+          "note": "This phrase is especially useful when you are finishing your drink or meal."
+        }
+      ]
+    }
+  ]
+}

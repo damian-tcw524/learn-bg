@@ -1,0 +1,126 @@
+{
+  "title": "Noun Gender and Definite Articles",
+  "description": "Learn how Bulgarian nouns work with gender, definite forms, and a few common patterns.",
+  "content": [
+    {
+      "type": "section",
+      "title": "Why Gender Matters",
+      "description": "Bulgarian nouns are usually masculine, feminine, or neuter, and the form of the article depends on that gender.",
+      "content": [
+        {
+          "type": "note",
+          "title": "Big idea",
+          "text": "Unlike English, Bulgarian usually puts the definite article after the noun: ученикът, книгата, морето.",
+          "tone": "tip"
+        },
+        {
+          "type": "rule",
+          "title": "What to watch for",
+          "bullets": [
+            "Learn the noun together with its gender.",
+            "Check the ending, but do not rely on the ending alone.",
+            "Practice the definite form as a whole word, not as a separate article."
+          ]
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "title": "Common Gender Patterns",
+      "description": "These are helpful patterns, but exceptions do exist.",
+      "content": [
+        {
+          "type": "table",
+          "headers": ["Gender", "Common Ending", "Example", "Meaning"],
+          "rows": [
+            ["Masculine", "consonant", "учител", "teacher"],
+            ["Feminine", "-а / -я", "книга", "book"],
+            ["Neuter", "-о / -е", "море", "sea"]
+          ]
+        },
+        {
+          "type": "cards",
+          "title": "Gender reminders",
+          "cards": [
+            { "front": "учител", "back": "masculine" },
+            { "front": "книга", "back": "feminine" },
+            { "front": "море", "back": "neuter" },
+            { "front": "град", "back": "masculine" }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "title": "Definite Forms",
+      "description": "Bulgarian adds the article to the end of the noun.",
+      "content": [
+        {
+          "type": "table",
+          "headers": ["Indefinite", "Definite", "English"],
+          "rows": [
+            ["учител", "учителят", "the teacher"],
+            ["книга", "книгата", "the book"],
+            ["море", "морето", "the sea"],
+            ["град", "градът / града", "the city / the city as object"],
+            ["жена", "жената", "the woman"]
+          ]
+        },
+        {
+          "type": "note",
+          "title": "Useful detail",
+          "text": "Some masculine nouns use different definite forms depending on whether they are the subject or object in the sentence.",
+          "tone": "info"
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "title": "Sentence Examples",
+      "description": "See gender and definite forms inside simple full sentences.",
+      "content": [
+        {
+          "type": "example",
+          "bg": "Учителят говори български.",
+          "en": "The teacher speaks Bulgarian.",
+          "note": "The noun is definite because the listener knows which teacher is meant."
+        },
+        {
+          "type": "example",
+          "bg": "Книгата е на масата.",
+          "en": "The book is on the table.",
+          "note": "A definite feminine noun ends in -та."
+        },
+        {
+          "type": "example",
+          "bg": "Морето е красиво.",
+          "en": "The sea is beautiful.",
+          "note": "Neuter nouns often take -то in the definite form."
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "title": "Quick Practice",
+      "description": "Short exercises for fast recall.",
+      "content": [
+        {
+          "type": "list",
+          "title": "Study steps",
+          "items": [
+            "Say the noun with the article out loud.",
+            "Try to remember the gender when you see a new word.",
+            "Use the noun in a full sentence, not only a vocabulary list."
+          ]
+        },
+        {
+          "type": "quiz",
+          "question": "Which noun form is definite?",
+          "answer": "книгата",
+          "choices": ["книга", "книгата", "книги"],
+          "note": "The ending -та is a strong clue for many feminine nouns."
+        }
+      ]
+    }
+  ]
+}
