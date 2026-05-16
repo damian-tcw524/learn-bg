@@ -1,11 +1,20 @@
 <script setup lang="ts">
-import { computed, nextTick, onMounted, ref } from 'vue'
+import { computed, nextTick, onBeforeUnmount, onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { appendFlashcardAttempt, appendFlashcardSession } from './flashcardStats'
 import type { FlashcardData, FlashcardItem, FlashcardTopic } from './types'
 import { loadFlashcardStats } from './flashcardStats'
 
 type FrontLanguage = 'bg' | 'en' | 'mixed'
+
+type FlashcardsSettings = {
+  selectedTopicIds: string[]
+  frontMode: FrontLanguage
+  cardCount: number
+}
+
+const SETTINGS_KEY = 'learnbg.flashcards.settings.v1'
+const FLASHCARD_COUNT_OPTIONS = [10, 15, 20, 30, 50, 75, 100]
 
 type DeckCard = {
   card: FlashcardItem
@@ -20,6 +29,8 @@ const loadError = ref('')
 
 const selectedTopicIds = ref<string[]>([])
 const frontMode = ref<FrontLanguage>('mixed')
+const cardCount = ref(20)
+const topicsDropdownOpen = ref(false)
 
 const deck = ref<DeckCard[]>([])
 const currentIndex = ref(0)
@@ -47,11 +58,54 @@ const prevMoveTime = ref<number | null>(null)
 const prevMoveX = ref<number>(0)
 
 const topics = computed<FlashcardTopic[]>(() => data.value?.topics ?? [])
+const selectedTopicCount = computed(() => selectedTopicIds.value.length)
+
+function clampCardCount(value: number): number {
+  const sorted = [...FLASHCARD_COUNT_OPTIONS].sort((a, b) => a - b)
+  for (const option of sorted) {
+    if (option >= value) {
+      return option
+    }
+  }
+
+  return sorted[sorted.length - 1] ?? value
+}
+
+function loadFlashcardsSettings(): FlashcardsSettings | null {
+  const raw = localStorage.getItem(SETTINGS_KEY)
+
+  if (!raw) {
+    return null
+  }
+
+  try {
+    const parsed = JSON.parse(raw) as Partial<FlashcardsSettings>
+    const front = parsed.frontMode === 'bg' || parsed.frontMode === 'en' || parsed.frontMode === 'mixed' ? parsed.frontMode : 'mixed'
+
+    return {
+      selectedTopicIds: Array.isArray(parsed.selectedTopicIds) ? parsed.selectedTopicIds.filter((topicId) => typeof topicId === 'string') : [],
+      frontMode: front,
+      cardCount: clampCardCount(Number(parsed.cardCount || 20))
+    }
+  } catch {
+    return null
+  }
+}
+
+function saveFlashcardsSettings(): void {
+  const settings: FlashcardsSettings = {
+    selectedTopicIds: selectedTopicIds.value,
+    frontMode: frontMode.value,
+    cardCount: cardCount.value
+  }
+
+  localStorage.setItem(SETTINGS_KEY, JSON.stringify(settings))
+}
 
 const filteredCards = computed<FlashcardItem[]>(() => {
   const cards = data.value?.cards ?? []
   if (!selectedTopicIds.value.length) {
-    return cards
+    return []
   }
 
   return cards.filter((card) => card.topics.some((topicId) => selectedTopicIds.value.includes(topicId)))
@@ -154,7 +208,9 @@ function rebuildDeck(): void {
     }
   }
 
-  const nextDeck = shuffle(expanded).map((card) => ({ card, front: pickFrontLanguage() }))
+  const nextDeck = shuffle(expanded)
+    .slice(0, Math.min(cardCount.value, expanded.length))
+    .map((card) => ({ card, front: pickFrontLanguage() }))
 
   deck.value = nextDeck
   currentIndex.value = 0
@@ -178,12 +234,32 @@ function toggleTopic(topicId: string): void {
     selectedTopicIds.value = [...selectedTopicIds.value, topicId]
   }
 
+  saveFlashcardsSettings()
   rebuildDeck()
 }
 
 function setFrontMode(mode: FrontLanguage): void {
   frontMode.value = mode
+  saveFlashcardsSettings()
   rebuildDeck()
+}
+
+function setCardCount(value: number): void {
+  cardCount.value = clampCardCount(value)
+  saveFlashcardsSettings()
+  rebuildDeck()
+}
+
+function isTopicSelected(topicId: string): boolean {
+  return selectedTopicIds.value.includes(topicId)
+}
+
+function toggleTopicsDropdown(): void {
+  topicsDropdownOpen.value = !topicsDropdownOpen.value
+}
+
+function closeTopicsDropdown(): void {
+  topicsDropdownOpen.value = false
 }
 
 function flipCard(slot: 'top' | 'back' = 'top'): void {
@@ -352,6 +428,13 @@ function openStats(): void {
   router.push('/flashcards/stats')
 }
 
+function onPageClick(event: MouseEvent): void {
+  const target = event.target as HTMLElement | null
+  if (!target?.closest('.topics-dropdown-wrap')) {
+    closeTopicsDropdown()
+  }
+}
+
 onMounted(async () => {
   try {
     const res = await fetch(`${import.meta.env.BASE_URL}data/flashcards.json`)
@@ -361,13 +444,34 @@ onMounted(async () => {
 
     const json = (await res.json()) as FlashcardData
     data.value = json
-    selectedTopicIds.value = json.topics.map((topic) => topic.id)
+    const saved = loadFlashcardsSettings()
+
+    if (saved) {
+      const validTopicIds = new Set(json.topics.map((topic) => topic.id))
+      selectedTopicIds.value = saved.selectedTopicIds.filter((topicId) => validTopicIds.has(topicId))
+      frontMode.value = saved.frontMode
+      cardCount.value = clampCardCount(saved.cardCount)
+    } else {
+      selectedTopicIds.value = []
+      frontMode.value = 'mixed'
+      cardCount.value = 20
+      saveFlashcardsSettings()
+    }
+
     rebuildDeck()
   } catch (error) {
     loadError.value = error instanceof Error ? error.message : 'Unexpected error while loading flashcards.'
   } finally {
     loading.value = false
   }
+})
+
+onMounted(() => {
+  document.addEventListener('click', onPageClick)
+})
+
+onBeforeUnmount(() => {
+  document.removeEventListener('click', onPageClick)
 })
 </script>
 
@@ -384,29 +488,45 @@ onMounted(async () => {
     </section>
 
     <section class="controls" v-if="!loading && !loadError && data">
-      <div>
-        <p class="controls-label">Topics</p>
-        <div class="topic-list">
-          <button
-            v-for="topic in topics"
-            :key="topic.id"
-            type="button"
-            class="topic-chip"
-            :class="{ active: selectedTopicIds.includes(topic.id) }"
-            @click="toggleTopic(topic.id)"
-          >
-            {{ topic.label }}
-          </button>
+      <div class="settings-header">
+        <p class="controls-label">Settings</p>
+        <p class="settings-meta">{{ selectedTopicCount }} topic{{ selectedTopicCount === 1 ? '' : 's' }} selected</p>
+      </div>
+
+      <div class="topics-dropdown-wrap">
+        <button class="settings-select topics-toggle" type="button" @click="toggleTopicsDropdown">
+          <span>Topics</span>
+          <span class="settings-select-value">{{ selectedTopicCount }} selected</span>
+        </button>
+
+        <div v-if="topicsDropdownOpen" class="topics-dropdown-panel">
+          <label v-for="topic in topics" :key="topic.id" class="topic-option">
+            <input :checked="isTopicSelected(topic.id)" type="checkbox" @change="toggleTopic(topic.id)" @click.stop />
+            <span>
+              <strong>{{ topic.label }}</strong>
+              <small v-if="topic.description">{{ topic.description }}</small>
+            </span>
+          </label>
+          <button class="topics-close" type="button" @click="closeTopicsDropdown">Done</button>
         </div>
       </div>
 
-      <div>
-        <p class="controls-label">Front Language</p>
-        <div class="mode-list">
-          <button type="button" class="mode-chip" :class="{ active: frontMode === 'mixed' }" @click="setFrontMode('mixed')">Mixed</button>
-          <button type="button" class="mode-chip" :class="{ active: frontMode === 'bg' }" @click="setFrontMode('bg')">Bulgarian</button>
-          <button type="button" class="mode-chip" :class="{ active: frontMode === 'en' }" @click="setFrontMode('en')">English</button>
-        </div>
+      <div class="settings-row">
+        <label class="settings-field">
+          <span>Front language</span>
+          <select class="settings-select" :value="frontMode" @change="setFrontMode(($event.target as HTMLSelectElement).value as FrontLanguage)">
+            <option value="mixed">Mixed</option>
+            <option value="bg">Bulgarian</option>
+            <option value="en">English</option>
+          </select>
+        </label>
+
+        <label class="settings-field">
+          <span>Flashcard count</span>
+          <select class="settings-select" :value="cardCount" @change="setCardCount(Number(($event.target as HTMLSelectElement).value))">
+            <option v-for="count in FLASHCARD_COUNT_OPTIONS" :key="count" :value="count">{{ count }}</option>
+          </select>
+        </label>
       </div>
     </section>
 
@@ -415,7 +535,7 @@ onMounted(async () => {
 
     <section v-else-if="!deck.length" class="empty-state">
       <h2>No cards in this topic set</h2>
-      <p>Select at least one topic to start practicing.</p>
+      <p>Select one or more topics in Settings to start practicing.</p>
     </section>
 
     <section v-else-if="roundCompleted" class="round-summary">
@@ -568,6 +688,121 @@ h1 {
 .controls-label {
   margin: 0 0 0.35rem;
   color: #aec0c5;
+}
+
+.settings-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  align-items: baseline;
+}
+
+.settings-meta {
+  margin: 0;
+  color: #c7d5d8;
+  font-size: 0.92rem;
+}
+
+.topics-dropdown-wrap {
+  position: relative;
+}
+
+.topics-toggle {
+  width: 100%;
+  justify-content: space-between;
+}
+
+.settings-select {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  background: rgba(17, 35, 44, 0.9);
+  color: #ecf6f6;
+  border-radius: 12px;
+  padding: 0.7rem 0.8rem;
+  font: inherit;
+}
+
+.settings-select-value {
+  color: #b7c8cc;
+  font-size: 0.92rem;
+}
+
+.topics-dropdown-panel {
+  position: absolute;
+  z-index: 10;
+  left: 0;
+  right: 0;
+  top: calc(100% + 0.45rem);
+  display: grid;
+  gap: 0.45rem;
+  max-height: 280px;
+  overflow: auto;
+  padding: 0.8rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 14px;
+  background: rgba(7, 14, 28, 0.98);
+  box-shadow: 0 22px 44px rgba(0, 0, 0, 0.35);
+}
+
+.topic-option {
+  display: flex;
+  gap: 0.7rem;
+  align-items: flex-start;
+  padding: 0.65rem 0.7rem;
+  border-radius: 12px;
+  background: rgba(5, 11, 25, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  cursor: pointer;
+}
+
+.topic-option input {
+  margin-top: 0.2rem;
+  accent-color: #6bf5cb;
+}
+
+.topic-option span {
+  display: grid;
+  gap: 0.2rem;
+}
+
+.topic-option strong {
+  font-size: 0.95rem;
+}
+
+.topic-option small {
+  color: #b7c8cc;
+}
+
+.topics-close {
+  margin-top: 0.25rem;
+  border: 0;
+  border-radius: 10px;
+  padding: 0.6rem 0.85rem;
+  cursor: pointer;
+  font-weight: 700;
+  color: #122025;
+  background: linear-gradient(135deg, #7cf2d5, #ffd16f);
+}
+
+.settings-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.8rem;
+}
+
+.settings-field {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.settings-field span {
+  color: #aec0c5;
+  font-size: 0.92rem;
 }
 
 .topic-list,
@@ -769,6 +1004,10 @@ small {
 
   .card {
     min-height: 260px;
+  }
+
+  .settings-row {
+    grid-template-columns: 1fr;
   }
 }
 </style>
