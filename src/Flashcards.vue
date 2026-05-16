@@ -280,6 +280,11 @@ function onPointerDown(event: PointerEvent): void {
 
   if (animatingOut.value) return
 
+  // prevent the browser from interpreting this touch as a page scroll
+  try {
+    event.preventDefault()
+  } catch {}
+
   startX.value = event.clientX
   dragged.value = false
 
@@ -610,7 +615,8 @@ h1 {
   position: absolute;
   inset: 0;
   width: 100%;
-  touch-action: pan-y;
+  /* disable default touch panning while interacting with cards */
+  touch-action: none;
   cursor: pointer;
 }
 
