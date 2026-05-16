@@ -5,10 +5,23 @@ import type { RoadmapItem } from './types'
 
 const router = useRouter()
 const lessons = ref<RoadmapItem[]>([])
+const loading = ref(true)
+const loadError = ref('')
 
 onMounted(async () => {
-  const res = await fetch(`${import.meta.env.BASE_URL}data/roadmap.json`)
-  lessons.value = await res.json()
+  try {
+    const res = await fetch(`${import.meta.env.BASE_URL}data/roadmap.json`)
+
+    if (!res.ok) {
+      throw new Error('Could not load lesson roadmap.')
+    }
+
+    lessons.value = await res.json()
+  } catch (error) {
+    loadError.value = error instanceof Error ? error.message : 'Unexpected error while loading lessons.'
+  } finally {
+    loading.value = false
+  }
 })
 
 function goToLesson(lesson: RoadmapItem) {
@@ -17,56 +30,211 @@ function goToLesson(lesson: RoadmapItem) {
     query: { file: lesson.file }
   })
 }
+
+function goToFlashcards() {
+  router.push('/flashcards')
+}
 </script>
 
 <template>
-  <div class="container">
-    <h1 class="title">Bulgarian Learning</h1>
-
-    <div class="grid">
-      <div
-        v-for="lesson in lessons"
-        :key="lesson.id"
-        class="card"
-        @click="goToLesson(lesson)"
-      >
-        <h2>{{ lesson.title }}</h2>
-        <p>{{ lesson.description }}</p>
+  <main class="home">
+    <section class="hero">
+      <div>
+        <p class="eyebrow">Learn Bulgarian</p>
+        <h1 class="title">Your Study Dashboard</h1>
+        <p class="subtitle">
+          Lessons are organized as a compact list so you can scale easily as more topics are added.
+        </p>
       </div>
-    </div>
-  </div>
+
+      <button class="flashcards-btn" @click="goToFlashcards">
+        Open Flashcards
+      </button>
+    </section>
+
+    <section class="lessons-panel">
+      <div class="panel-header">
+        <h2>Sections</h2>
+        <span class="count">{{ lessons.length }} total</span>
+      </div>
+
+      <p v-if="loading" class="status">Loading lessons...</p>
+      <p v-else-if="loadError" class="status error">{{ loadError }}</p>
+
+      <div v-else class="section-list" role="list">
+        <button
+          v-for="(lesson, index) in lessons"
+          :key="lesson.id"
+          class="section-item"
+          type="button"
+          @click="goToLesson(lesson)"
+        >
+          <span class="item-index">{{ String(index + 1).padStart(2, '0') }}</span>
+          <span class="item-body">
+            <strong>{{ lesson.title }}</strong>
+            <small>{{ lesson.description }}</small>
+          </span>
+          <span class="item-arrow" aria-hidden="true">→</span>
+        </button>
+      </div>
+    </section>
+  </main>
 </template>
 
 <style scoped>
-.container {
+.home {
   min-height: 100vh;
-  background: linear-gradient(135deg, #0b2f2a, #0a1f3d);
-  color: #e0f2f1;
-  padding: 2rem;
-  font-family: Arial, sans-serif;
-}
-
-.title {
-  text-align: center;
-  margin-bottom: 2rem;
-}
-
-.grid {
+  padding: clamp(1rem, 2vw, 2rem);
+  color: #ecf6f6;
+  background:
+    radial-gradient(circle at 20% 10%, rgba(255, 186, 73, 0.2), transparent 30%),
+    radial-gradient(circle at 80% 0%, rgba(35, 214, 180, 0.22), transparent 32%),
+    linear-gradient(160deg, #0c1630 0%, #0d2d35 48%, #0f1526 100%);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   display: grid;
   gap: 1rem;
 }
 
-.card {
-  background: rgba(20, 60, 50, 0.8);
-  border: 1px solid rgba(0, 255, 200, 0.2);
-  padding: 1.2rem;
-  border-radius: 12px;
-  cursor: pointer;
-  transition: 0.2s;
+.hero {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 16px;
+  padding: 1rem;
+  background: rgba(5, 11, 25, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
 }
 
-.card:hover {
-  transform: scale(1.02);
-  background: rgba(30, 80, 70, 0.9);
+.eyebrow {
+  margin: 0;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #ffc86f;
+  font-size: 0.75rem;
+}
+
+.title {
+  margin: 0.25rem 0;
+  font-size: clamp(1.4rem, 3vw, 2rem);
+}
+
+.subtitle {
+  margin: 0;
+  max-width: 60ch;
+  color: #c9d7da;
+}
+
+.flashcards-btn {
+  border: 0;
+  border-radius: 10px;
+  padding: 0.7rem 1rem;
+  cursor: pointer;
+  color: #1b2329;
+  font-weight: 700;
+  background: linear-gradient(135deg, #ffd16f, #6bf5cb);
+  white-space: nowrap;
+}
+
+.flashcards-btn:hover {
+  filter: brightness(1.06);
+}
+
+.lessons-panel {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 16px;
+  background: rgba(5, 11, 25, 0.58);
+  padding: 1rem;
+}
+
+.panel-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.panel-header h2 {
+  margin: 0;
+}
+
+.count {
+  color: #a9b8bc;
+  font-size: 0.9rem;
+}
+
+.status {
+  margin: 0.75rem 0;
+  color: #cad9dc;
+}
+
+.status.error {
+  color: #ffb6b6;
+}
+
+.section-list {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.section-item {
+  width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  background: linear-gradient(180deg, rgba(18, 42, 54, 0.92), rgba(13, 30, 38, 0.95));
+  color: #eaf8f9;
+  border-radius: 10px;
+  padding: 0.55rem 0.7rem;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 0.7rem;
+  align-items: center;
+  text-align: left;
+  cursor: pointer;
+  transition: transform 0.14s ease, border-color 0.14s ease, background 0.14s ease;
+}
+
+.section-item:hover {
+  transform: translateY(-1px);
+  border-color: rgba(110, 240, 210, 0.55);
+  background: linear-gradient(180deg, rgba(21, 52, 66, 0.96), rgba(15, 36, 45, 1));
+}
+
+.item-index {
+  width: 2.3rem;
+  color: #8dc8be;
+  font-variant-numeric: tabular-nums;
+}
+
+.item-body {
+  display: grid;
+  gap: 0.1rem;
+}
+
+.item-body strong {
+  font-size: 0.97rem;
+  line-height: 1.2;
+}
+
+.item-body small {
+  color: #b8c8cb;
+  line-height: 1.2;
+}
+
+.item-arrow {
+  color: #85e9d6;
+  font-size: 1.1rem;
+}
+
+@media (max-width: 700px) {
+  .home {
+    padding: 0.75rem;
+  }
+
+  .hero,
+  .lessons-panel {
+    border-radius: 12px;
+  }
 }
 </style>

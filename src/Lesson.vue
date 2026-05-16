@@ -113,8 +113,15 @@ onMounted(async () => {
     </aside>
 
     <div v-if="lessonData" class="lesson-layout">
-      <h1>{{ lessonData.title }}</h1>
-      <p v-if="lessonData.description" class="description">{{ lessonData.description }}</p>
+      <header class="lesson-header">
+        <div>
+          <p class="eyebrow">Lesson</p>
+          <h1>{{ lessonData.title }}</h1>
+          <p v-if="lessonData.description" class="description">{{ lessonData.description }}</p>
+        </div>
+
+        <span class="section-count">{{ sectionLinks.length }} sections</span>
+      </header>
 
       <div class="content">
         <div
@@ -199,10 +206,13 @@ onMounted(async () => {
 <style scoped>
 .container {
   min-height: 100vh;
-  background: linear-gradient(135deg, #0b2f2a, #0a1f3d);
-  color: #e0f2f1;
-  padding: 1.5rem 1.5rem 2.5rem;
-  font-family: Arial, sans-serif;
+  background:
+    radial-gradient(circle at 20% 10%, rgba(255, 186, 73, 0.2), transparent 30%),
+    radial-gradient(circle at 80% 0%, rgba(35, 214, 180, 0.22), transparent 32%),
+    linear-gradient(160deg, #0c1630 0%, #0d2d35 48%, #0f1526 100%);
+  color: #ecf6f6;
+  padding: 1rem 1rem 2rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   position: relative;
   overflow-x: hidden;
 }
@@ -219,8 +229,8 @@ onMounted(async () => {
   align-items: center;
   justify-content: center;
   gap: 0.3rem;
-  background: rgba(10, 31, 61, 0.92);
-  border: 1px solid rgba(0, 255, 200, 0.18);
+  background: rgba(5, 11, 25, 0.88);
+  border: 1px solid rgba(255, 255, 255, 0.14);
   padding: 0;
   border-radius: 14px;
   cursor: pointer;
@@ -231,7 +241,7 @@ onMounted(async () => {
   width: 1.15rem;
   height: 2px;
   border-radius: 999px;
-  background: #00ffc8;
+  background: #7de9d3;
 }
 
 .drawer-backdrop {
@@ -257,8 +267,8 @@ onMounted(async () => {
   width: min(19rem, 84vw);
   height: 100vh;
   padding: 4.5rem 1rem 1rem;
-  background: rgba(6, 22, 34, 0.98);
-  border-right: 1px solid rgba(0, 255, 200, 0.16);
+  background: rgba(6, 18, 30, 0.98);
+  border-right: 1px solid rgba(255, 255, 255, 0.14);
   box-shadow: 16px 0 32px rgba(0, 0, 0, 0.3);
   transform: translateX(-102%);
   transition: transform 0.28s ease;
@@ -273,55 +283,122 @@ onMounted(async () => {
 }
 
 .drawer-title {
-  font-size: 1.05rem;
+  font-size: 0.95rem;
   font-weight: 700;
-  letter-spacing: 0.04em;
-  color: #00ffc8;
+  letter-spacing: 0.1em;
+  color: #ffc86f;
   text-transform: uppercase;
   padding: 0 0.25rem 0.35rem;
 }
 
 .drawer-link {
   width: 100%;
-  border: 1px solid rgba(0, 255, 200, 0.14);
-  background: rgba(18, 61, 53, 0.85);
-  color: #e0f2f1;
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  background: linear-gradient(180deg, rgba(18, 42, 54, 0.92), rgba(13, 30, 38, 0.95));
+  color: #eaf8f9;
   text-align: left;
-  padding: 0.9rem 0.95rem;
-  border-radius: 12px;
+  padding: 0.65rem 0.8rem;
+  border-radius: 10px;
   cursor: pointer;
-  line-height: 1.35;
+  line-height: 1.3;
+  transition: transform 0.14s ease, border-color 0.14s ease, background 0.14s ease;
 }
 
 .drawer-link:hover,
 .drawer-link:focus-visible {
-  background: rgba(30, 80, 70, 0.95);
-  border-color: rgba(0, 255, 200, 0.35);
+  transform: translateY(-1px);
+  border-color: rgba(110, 240, 210, 0.55);
+  background: linear-gradient(180deg, rgba(21, 52, 66, 0.96), rgba(15, 36, 45, 1));
   outline: none;
 }
 
 .lesson-layout {
-  max-width: 980px;
+  max-width: 1020px;
   margin: 0 auto;
-  padding-top: 3.75rem;
+  padding-top: 3.9rem;
+}
+
+.lesson-header {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 16px;
+  background: rgba(5, 11, 25, 0.56);
+  padding: 1rem;
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+}
+
+.eyebrow {
+  margin: 0;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #ffc86f;
+  font-size: 0.75rem;
+}
+
+h1 {
+  margin: 0.25rem 0 0.2rem;
+  font-size: clamp(1.3rem, 3vw, 1.9rem);
+}
+
+.description {
+  margin: 0;
+  color: #c9d7da;
+}
+
+.section-count {
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 999px;
+  padding: 0.42rem 0.72rem;
+  background: rgba(8, 18, 30, 0.68);
+  color: #9fbbc0;
+  font-size: 0.85rem;
+  white-space: nowrap;
 }
 
 .content {
-  margin-top: 1rem;
+  margin-top: 0.85rem;
 }
 
 .content-block {
   scroll-margin-top: 1.25rem;
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.section {
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  border-radius: 14px;
+  background: rgba(5, 11, 25, 0.54);
+  padding: 0.85rem;
+}
+
+.section-title {
+  margin: 0;
+  font-size: 1.07rem;
+}
+
+.section-description {
+  margin: 0.32rem 0 0.7rem;
+  color: #c2d2d6;
+}
+
+.section-content {
+  display: grid;
+  gap: 0.55rem;
 }
 
 .item {
-  background: rgba(20, 60, 50, 0.8);
-  padding: 1rem;
-  margin-bottom: 0.6rem;
+  background: linear-gradient(180deg, rgba(18, 42, 54, 0.92), rgba(13, 30, 38, 0.95));
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  padding: 0.7rem 0.85rem;
+  margin-bottom: 0.5rem;
   border-radius: 10px;
   display: flex;
   justify-content: space-between;
+  gap: 0.7rem;
+  align-items: center;
 }
 
 .big {
@@ -330,48 +407,53 @@ onMounted(async () => {
 }
 
 .table-wrapper {
-  margin-bottom: 1rem;
+  margin-bottom: 0.7rem;
+  border: 1px solid rgba(255, 255, 255, 0.11);
   border-radius: 10px;
   overflow: hidden;
-  background: rgba(20, 60, 50, 0.8);
+  background: rgba(5, 11, 25, 0.58);
 }
 
 .lesson-table {
   width: 100%;
   border-collapse: collapse;
-  background: rgba(20, 60, 50, 0.8);
+  background: transparent;
 }
 
 .lesson-table thead {
-  background: rgba(10, 50, 45, 0.9);
+  background: rgba(12, 35, 44, 0.92);
   font-weight: bold;
 }
 
 .lesson-table th {
-  padding: 1rem;
+  padding: 0.8rem;
   text-align: left;
-  border-bottom: 2px solid rgba(0, 255, 200, 0.3);
-  color: #00ffc8;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffc86f;
 }
 
 .lesson-table td {
-  padding: 1rem;
-  border-bottom: 1px solid rgba(0, 255, 200, 0.15);
-  color: #e0f2f1;
+  padding: 0.72rem 0.8rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  color: #e7f1f3;
 }
 
 .lesson-table tbody tr:hover {
-  background: rgba(30, 80, 70, 0.5);
-  transition: 0.2s;
+  background: rgba(35, 79, 96, 0.38);
+  transition: background 0.14s;
 }
 
 @media (max-width: 640px) {
   .container {
-    padding: 1rem 1rem 2rem;
+    padding: 0.75rem 0.75rem 1.5rem;
   }
 
   .lesson-layout {
     padding-top: 3.4rem;
+  }
+
+  .lesson-header {
+    border-radius: 12px;
   }
 
   .section-drawer {
