@@ -26,6 +26,9 @@ const currentIndex = ref(0)
 const showBack = ref(false)
 const showBackNext = ref(false)
 const dragX = ref(0)
+const exitingCard = ref<DeckCard | null>(null)
+const exitingDragX = ref(0)
+const exitingAnimating = ref(false)
 const startX = ref<number | null>(null)
 const dragged = ref(false)
 const cardReady = ref(false)
@@ -224,38 +227,13 @@ async function registerAnswer(correct: boolean): Promise<void> {
     return
   }
 
-  // animate card out and only advance after animation completes
-  animatingOut.value = true
   const width = window.innerWidth
-  // fly fully off-screen
   const extra = 200
   const targetX = correct ? width + extra : -(width + extra)
 
-  const el = cardShellRef.value
-  if (el) {
-    // ensure the card remains showing the back while flying out
-    el.style.transition = 'transform 320ms cubic-bezier(.22,.9,.22,1)'
-    dragX.value = targetX
-
-    // allow interacting with the card underneath while top is flying out
-    // top-shell will get `click-through` class via `animatingOut` reactive flag
-
-    await new Promise((resolve) => {
-      const onEnd = (ev: Event) => {
-        if ((ev as TransitionEvent).propertyName === 'transform') {
-          el.removeEventListener('transitionend', onEnd)
-          resolve(null)
-        }
-      }
-      el.addEventListener('transitionend', onEnd)
-      // fallback
-      setTimeout(resolve, 380)
-    })
-
-    el.style.transition = ''
-  } else {
-    await new Promise((r) => setTimeout(r, 260))
-  }
+  exitingCard.value = active
+  exitingDragX.value = dragX.value
+  exitingAnimating.value = false
 
   // record attempt
   appendFlashcardAttempt({
@@ -273,13 +251,22 @@ async function registerAnswer(correct: boolean): Promise<void> {
 
   // prepare next card: preserve whether the user already flipped the next card
   const nextWasFlipped = showBackNext.value
-  animatingOut.value = false
   dragX.value = 0
   currentIndex.value += 1
-  // set the new current card's flipped state to whatever the user set on the previous 'next' card
   showBack.value = nextWasFlipped
   showBackNext.value = false
+  animatingOut.value = false
   await nextTick()
+
+  requestAnimationFrame(() => {
+    exitingAnimating.value = true
+    exitingDragX.value = targetX
+  })
+
+  setTimeout(() => {
+    exitingCard.value = null
+    exitingAnimating.value = false
+  }, 180)
 
   if (currentIndex.value >= deck.value.length) {
     saveRoundIfNeeded()
@@ -446,6 +433,27 @@ onMounted(async () => {
             <article class="card-face card-back">
               <p class="card-label">{{ nextCard ? (nextCard.front === 'bg' ? 'English' : 'Bulgarian') : '' }}</p>
               <h2>{{ nextCard ? (nextCard.front === 'bg' ? nextCard.card.en : nextCard.card.bg) : '' }}</h2>
+              <small>Swipe left if wrong, swipe right if correct</small>
+            </article>
+          </div>
+        </div>
+
+        <div
+          v-if="exitingCard"
+          class="card-shell exiting-shell"
+          :class="{ animating: exitingAnimating }"
+          :style="{ transform: `translateX(${exitingDragX}px) rotate(${exitingDragX / 25}deg)` }"
+        >
+          <div class="card flipped no-anim" :style="{ '--card-shadow': 'none', '--card-border': 'rgba(255,255,255,0)' }">
+            <article class="card-face card-front">
+              <p class="card-label">{{ exitingCard.front === 'bg' ? 'Bulgarian' : 'English' }}</p>
+              <h2>{{ exitingCard.front === 'bg' ? exitingCard.card.bg : exitingCard.card.en }}</h2>
+              <small>Tap to flip</small>
+            </article>
+
+            <article class="card-face card-back">
+              <p class="card-label">{{ exitingCard.front === 'bg' ? 'English' : 'Bulgarian' }}</p>
+              <h2>{{ exitingCard.front === 'bg' ? exitingCard.card.en : exitingCard.card.bg }}</h2>
               <small>Swipe left if wrong, swipe right if correct</small>
             </article>
           </div>
@@ -627,6 +635,16 @@ h1 {
 
 .card-shell.top-shell {
   z-index: 2;
+}
+
+.card-shell.exiting-shell {
+  z-index: 3;
+  pointer-events: none;
+  transition: transform 180ms cubic-bezier(.22,.9,.22,1);
+}
+
+.card-shell.exiting-shell.animating {
+  will-change: transform;
 }
 
 .card-shell.back-shell.clickable {
