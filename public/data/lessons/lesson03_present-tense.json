@@ -28,106 +28,158 @@
       ]
     },
     {
-      "type": "section",
-      "title": "Pronouns",
-      "description": "Subject pronouns are simple, but they matter when you practice endings.",
-      "content": [
+      "type": "tabs",
+      "title": "Present tense toolkit",
+      "description": "Move between pronouns, endings, verb forms, and practice without scrolling away from the main lesson.",
+      "initialTabId": "pronouns",
+      "tabs": [
         {
-          "type": "table",
-          "headers": ["Bulgarian", "English"],
-          "rows": [
-            ["аз", "I"],
-            ["ти", "you (singular)"],
-            ["той / тя / то", "he / she / it"],
-            ["ние", "we"],
-            ["вие", "you (plural / formal)"],
-            ["те", "they"]
-          ]
-        }
-      ]
-    },
-    {
-      "type": "section",
-      "title": "Common Endings",
-      "description": "These are broad patterns that show up in many verbs.",
-      "content": [
-        {
-          "type": "rule",
-          "title": "Endings to remember",
-          "bullets": [
-            "аз: -а / -я",
-            "ти: -еш / -иш",
-            "той / тя / то: -е / -и",
-            "ние: -ем / -им",
-            "вие: -ете / -ите",
-            "те: -ат / -ят"
-          ],
-          "note": "The exact stem depends on the verb, so always learn the full form with examples."
-        },
-        {
-          "type": "cards",
-          "title": "Pronoun to ending",
-          "cards": [
-            { "front": "аз", "back": "-а / -я" },
-            { "front": "ние", "back": "-ем / -им" },
-            { "front": "те", "back": "-ат / -ят" }
-          ]
-        }
-      ]
-    },
-    {
-      "type": "section",
-      "title": "Example Verbs",
-      "description": "Two common verbs help show how the endings change in real sentences.",
-      "content": [
-        {
-          "type": "table",
-          "headers": ["Bulgarian", "English"],
-          "rows": [
-            ["аз чета", "I read / am reading"],
-            ["ти четеш", "you read / are reading"],
-            ["той / тя / то чете", "he / she / it reads"],
-            ["ние четем", "we read"],
-            ["вие четете", "you read"],
-            ["те четат", "they read"]
+          "id": "pronouns",
+          "label": "Pronouns",
+          "description": "The subject pronouns are simple, but they matter when you practice endings.",
+          "content": [
+            {
+              "type": "table",
+              "headers": ["Bulgarian", "English"],
+              "rows": [
+                ["аз", "I"],
+                ["ти", "you (singular)"],
+                ["той / тя / то", "he / she / it"],
+                ["ние", "we"],
+                ["вие", "you (plural / formal)"],
+                ["те", "they"]
+              ]
+            },
+            {
+              "type": "note",
+              "title": "Pronoun shortcut",
+              "text": "If you can spot the pronoun quickly, the verb ending usually becomes much easier to predict.",
+              "tone": "tip"
+            }
           ]
         },
         {
-          "type": "table",
-          "headers": ["Bulgarian", "English"],
-          "rows": [
-            ["аз говоря", "I speak / am speaking"],
-            ["ти говориш", "you speak"],
-            ["той / тя / то говори", "he / she / it speaks"],
-            ["ние говорим", "we speak"],
-            ["вие говорите", "you speak"],
-            ["те говорят", "they speak"]
+          "id": "endings",
+          "label": "Endings",
+          "description": "These broad patterns show up in many verbs.",
+          "content": [
+            {
+              "type": "rule",
+              "title": "Endings to remember",
+              "bullets": [
+                "аз: -а / -я",
+                "ти: -еш / -иш",
+                "той / тя / то: -е / -и",
+                "ние: -ем / -им",
+                "вие: -ете / -ите",
+                "те: -ат / -ят"
+              ],
+              "note": "The exact stem depends on the verb, so always learn the full form with examples."
+            },
+            {
+              "type": "cards",
+              "title": "Pronoun to ending",
+              "cards": [
+                { "front": "аз", "back": "-а / -я" },
+                { "front": "ние", "back": "-ем / -им" },
+                { "front": "те", "back": "-ат / -ят" }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "verbs",
+          "label": "Verb forms",
+          "description": "Two common verbs help show how the endings change in real sentences.",
+          "content": [
+            {
+              "type": "table",
+              "headers": ["Bulgarian", "English"],
+              "rows": [
+                ["аз чета", "I read / am reading"],
+                ["ти четеш", "you read / are reading"],
+                ["той / тя / то чете", "he / she / it reads"],
+                ["ние четем", "we read"],
+                ["вие четете", "you read"],
+                ["те четат", "they read"]
+              ]
+            },
+            {
+              "type": "table",
+              "headers": ["Bulgarian", "English"],
+              "rows": [
+                ["аз говоря", "I speak / am speaking"],
+                ["ти говориш", "you speak"],
+                ["той / тя / то говори", "he / she / it speaks"],
+                ["ние говорим", "we speak"],
+                ["вие говорите", "you speak"],
+                ["те говорят", "they speak"]
+              ]
+            },
+            {
+              "type": "example",
+              "bg": "Аз уча български всеки ден.",
+              "en": "I study Bulgarian every day.",
+              "note": "A small time phrase makes the present tense feel more natural."
+            },
+            {
+              "type": "example",
+              "bg": "Той работи тук и говори английски.",
+              "en": "He works here and speaks English.",
+              "note": "A single sentence can show more than one present-tense form at once."
+            }
+          ]
+        },
+        {
+          "id": "practice",
+          "label": "Practice",
+          "description": "Short sentences are the fastest way to make the pattern stick.",
+          "content": [
+            {
+              "type": "table",
+              "headers": ["Bulgarian", "English", "Use"],
+              "rows": [
+                ["Аз уча български.", "I study Bulgarian.", "Learner sentence"],
+                ["Ти живееш в Лондон.", "You live in London.", "Location"],
+                ["Той работи тук.", "He works here.", "Routine"],
+                ["Ние ядем сега.", "We are eating now.", "Action in progress"],
+                ["Те говорят английски.", "They speak English.", "General fact"]
+              ]
+            },
+            {
+              "type": "quiz",
+              "question": "Which pronoun usually matches the ending '-ем / -им'?",
+              "answer": "ние",
+              "choices": ["аз", "ние", "те"],
+              "note": "Once you know the pronoun, the ending is much easier to predict."
+            }
           ]
         }
       ]
     },
     {
       "type": "section",
-      "title": "Practice Sentences",
-      "description": "Short sentences are the fastest way to make the pattern stick.",
+      "title": "More Present Tense Practice",
+      "description": "Use these extra examples after the tabbed toolkit to keep the lesson moving.",
       "content": [
         {
-          "type": "table",
-          "headers": ["Bulgarian", "English", "Use"],
-          "rows": [
-            ["Аз уча български.", "I study Bulgarian.", "Learner sentence"],
-            ["Ти живееш в Лондон.", "You live in London.", "Location"],
-            ["Той работи тук.", "He works here.", "Routine"],
-            ["Ние ядем сега.", "We are eating now.", "Action in progress"],
-            ["Те говорят английски.", "They speak English.", "General fact"]
-          ]
+          "type": "example",
+          "bg": "Аз пиша писмо.",
+          "en": "I am writing a letter.",
+          "note": "A simple action sentence that fits the same present-tense pattern."
+        },
+        {
+          "type": "example",
+          "bg": "Ние говорим бавно.",
+          "en": "We speak slowly.",
+          "note": "The adverb helps show how the present tense works in a full sentence."
         },
         {
           "type": "quiz",
-          "question": "Which pronoun usually matches the ending '-ем / -им'?",
-          "answer": "ние",
-          "choices": ["аз", "ние", "те"],
-          "note": "Once you know the pronoun, the ending is much easier to predict."
+          "question": "Which sentence shows a routine action?",
+          "answer": "Той работи тук.",
+          "choices": ["Той работи тук.", "Аз уча сега.", "Ние ядем в момента."],
+          "note": "Look for the everyday or repeated meaning rather than only the translation."
         }
       ]
     }

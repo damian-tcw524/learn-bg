@@ -20,7 +20,7 @@ Every lesson JSON file must have the following root structure:
 |----------|------|----------|-------------|
 | `title` | string | ✓ | The main title of the lesson that appears at the top |
 | `description` | string | ✗ | Optional description displayed below the title |
-| `content` | array | ✓ | Array of content items (tables, sections, notes, quizzes, and more) |
+| `content` | array | ✓ | Array of content items (tables, sections, notes, quizzes, tabs, and more) |
 
 ---
 
@@ -293,6 +293,54 @@ Use rule blocks for grammar summaries or study checklists.
 | `title` | string | ✗ | Optional heading |
 | `bullets` | array of strings | ✓ | Rule points or checklist items |
 | `note` | string | ✗ | Optional reminder text |
+
+---
+
+### 10. Tabs Type
+
+Use tabs when a lesson has several related subtopics that are easier to browse in place than as separate sections.
+
+```json
+{
+  "type": "tabs",
+  "title": "Verb patterns",
+  "description": "Switch between related verb groups.",
+  "initialTabId": "group-a",
+  "tabs": [
+    {
+      "id": "group-a",
+      "label": "Group A",
+      "description": "The first pattern set.",
+      "content": [
+        {
+          "type": "table",
+          "headers": ["Form", "Meaning"],
+          "rows": [["аз", "I"]]
+        }
+      ]
+    }
+  ]
+}
+```
+
+**Properties:**
+
+| Property | Type | Required | Description |
+|----------|------|----------|-------------|
+| `type` | string | ✓ | Must be `"tabs"` |
+| `title` | string | ✗ | Optional heading shown above the tab row |
+| `description` | string | ✗ | Optional intro text for the whole block |
+| `initialTabId` | string | ✗ | Tab to open first |
+| `tabs` | array | ✓ | Array of tab definitions |
+
+Each tab object supports:
+
+| Property | Type | Required | Description |
+|----------|------|----------|-------------|
+| `id` | string | ✓ | Stable tab identifier |
+| `label` | string | ✓ | Button text shown in the tab row |
+| `description` | string | ✗ | Optional text shown in the active panel |
+| `content` | array | ✓ | Nested lesson blocks for that tab |
 
 ---
 

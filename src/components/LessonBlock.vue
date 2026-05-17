@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
+import TabbedLessonBlock from './TabbedLessonBlock.vue'
 import type { LessonContentBlock, LessonTone } from '../types'
 
 defineOptions({
@@ -145,6 +146,14 @@ const noteToneClass = computed(() => {
       </ul>
       <p v-if="item.note" class="rule-note lesson-content">{{ item.note }}</p>
     </div>
+
+    <TabbedLessonBlock
+      v-else-if="item.type === 'tabs'"
+      :title="item.title"
+      :description="item.description"
+      :tabs="item.tabs"
+      :initial-tab-id="item.initialTabId"
+    />
 
     <div v-else class="item-card">
       <div v-if="item.letter" class="item-main">

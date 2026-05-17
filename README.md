@@ -68,4 +68,4 @@ That script builds the app and publishes the `dist/` output with `gh-pages`.
 
 ## Content Notes
 
-Lessons are data-driven JSON files. The lesson format is documented in `public/data/lessons/LESSON_FORMAT.md`, and the current roadmap includes topics such as the Cyrillic alphabet, family vocabulary, verbs, present tense, noun gender, question words, dinner-table phrases, and cafe ordering.
+Lessons are data-driven JSON files. The lesson format is documented in `public/data/lessons/LESSON_FORMAT.md`, and it now includes reusable blocks such as tables, lists, cards, quizzes, rules, and tabbed sub-sections. The current roadmap includes topics such as the Cyrillic alphabet, family vocabulary, verbs, present tense, noun gender, question words, dinner-table phrases, and cafe ordering.

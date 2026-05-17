@@ -67,6 +67,19 @@ export interface LessonRuleItem {
   note?: string
 }
 
+export interface LessonTabsItem {
+  type: 'tabs'
+  title?: string
+  description?: string
+  initialTabId?: string
+  tabs: {
+    id: string
+    label: string
+    description?: string
+    content: LessonContentBlock[]
+  }[]
+}
+
 export interface LessonSection {
   type: 'section'
   title: string
@@ -83,6 +96,7 @@ export type LessonContentBlock =
   | LessonCardsItem
   | LessonQuizItem
   | LessonRuleItem
+  | LessonTabsItem
   | LessonSection
 
 export interface LessonData {

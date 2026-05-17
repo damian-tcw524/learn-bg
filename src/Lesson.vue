@@ -50,6 +50,10 @@ const getBlockLabel = (item: LessonContentBlock, index: number) => {
     return item.title || `Rule ${index + 1}`
   }
 
+  if (item.type === 'tabs') {
+    return item.title || `Tabs ${index + 1}`
+  }
+
   if (item.letter) {
     return `Letter ${item.letter}`
   }

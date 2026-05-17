@@ -27,33 +27,91 @@
     {
       "type": "section",
       "title": "Common Gender Patterns",
-      "description": "These are helpful patterns, but exceptions do exist.",
+      "description": "Use the tabs to compare the main gender shapes one at a time.",
       "content": [
         {
-          "type": "table",
-          "headers": ["Gender", "Common Ending", "Example", "Meaning"],
-          "rows": [
-            ["Masculine", "consonant", "учител", "teacher"],
-            ["Feminine", "-а / -я", "книга", "book"],
-            ["Neuter", "-о / -е", "море", "sea"]
-          ]
-        },
-        {
-          "type": "cards",
-          "title": "Gender reminders",
-          "cards": [
-            { "front": "учител", "back": "masculine" },
-            { "front": "книга", "back": "feminine" },
-            { "front": "море", "back": "neuter" },
-            { "front": "град", "back": "masculine" }
+          "type": "tabs",
+          "title": "Pattern box",
+          "description": "Switch between the three common noun pattern families.",
+          "initialTabId": "masculine",
+          "tabs": [
+            {
+              "id": "masculine",
+              "label": "Masculine",
+              "description": "Masculine nouns often end in a consonant.",
+              "content": [
+                {
+                  "type": "table",
+                  "headers": ["Ending", "Example", "Meaning"],
+                  "rows": [
+                    ["consonant", "учител", "teacher"],
+                    ["consonant", "град", "city"],
+                    ["consonant", "език", "language"]
+                  ]
+                },
+                {
+                  "type": "cards",
+                  "title": "Masculine reminders",
+                  "cards": [
+                    { "front": "учител", "back": "masculine" },
+                    { "front": "град", "back": "masculine" },
+                    { "front": "език", "back": "masculine" }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "feminine",
+              "label": "Feminine",
+              "description": "Feminine nouns often end in -а or -я.",
+              "content": [
+                {
+                  "type": "table",
+                  "headers": ["Ending", "Example", "Meaning"],
+                  "rows": [
+                    ["-а", "книга", "book"],
+                    ["-а", "жена", "woman"],
+                    ["-я", "сестра", "sister"]
+                  ]
+                },
+                {
+                  "type": "example",
+                  "bg": "Книгата е нова.",
+                  "en": "The book is new.",
+                  "note": "The definite form ends in -та." 
+                }
+              ]
+            },
+            {
+              "id": "neuter",
+              "label": "Neuter",
+              "description": "Neuter nouns often end in -о or -е.",
+              "content": [
+                {
+                  "type": "table",
+                  "headers": ["Ending", "Example", "Meaning"],
+                  "rows": [
+                    ["-о", "море", "sea"],
+                    ["-е", "мляко", "milk"],
+                    ["-о", "село", "village"]
+                  ]
+                },
+                {
+                  "type": "example",
+                  "bg": "Морето е красиво.",
+                  "en": "The sea is beautiful.",
+                  "note": "Neuter nouns often take -то in the definite form."
+                }
+              ]
+            }
           ]
         }
       ]
     },
     {
       "type": "section",
-      "title": "Definite Forms",
-      "description": "Bulgarian adds the article to the end of the noun.",
+      "title": "Definite Forms and Usage",
+      "description": "Continue after the pattern box with the article forms and a few full sentences.",
       "content": [
         {
           "type": "table",
@@ -62,63 +120,29 @@
             ["учител", "учителят", "the teacher"],
             ["книга", "книгата", "the book"],
             ["море", "морето", "the sea"],
-            ["град", "градът / града", "the city / the city as object"],
             ["жена", "жената", "the woman"]
           ]
         },
         {
-          "type": "note",
-          "title": "Useful detail",
-          "text": "Some masculine nouns use different definite forms depending on whether they are the subject or object in the sentence.",
-          "tone": "info"
-        }
-      ]
-    },
-    {
-      "type": "section",
-      "title": "Sentence Examples",
-      "description": "See gender and definite forms inside simple full sentences.",
-      "content": [
-        {
           "type": "example",
           "bg": "Учителят говори български.",
           "en": "The teacher speaks Bulgarian.",
-          "note": "The noun is definite because the listener knows which teacher is meant."
+          "note": "A definite masculine noun can still behave differently depending on sentence role."
         },
         {
           "type": "example",
-          "bg": "Книгата е на масата.",
-          "en": "The book is on the table.",
-          "note": "A definite feminine noun ends in -та."
+          "bg": "Жената чете книга.",
+          "en": "The woman reads a book.",
+          "note": "This sentence mixes definite and indefinite forms in one line."
         },
-        {
-          "type": "example",
-          "bg": "Морето е красиво.",
-          "en": "The sea is beautiful.",
-          "note": "Neuter nouns often take -то in the definite form."
-        }
-      ]
-    },
-    {
-      "type": "section",
-      "title": "Quick Practice",
-      "description": "Short exercises for fast recall.",
-      "content": [
         {
           "type": "list",
-          "title": "Study steps",
+          "title": "Quick study cue",
           "items": [
-            "Say the noun with the article out loud.",
-            "Try to remember the gender when you see a new word.",
-            "Use the noun in a full sentence, not only a vocabulary list."
+            "Say the gender and the noun together.",
+            "Switch to the definite form only after the base form feels automatic.",
+            "Use the article in a sentence instead of memorizing it alone."
           ]
-        },
-        {
-          "type": "quiz",
-          "question": "Which noun form is definite?",
-          "answer": "книгата",
-          "choices": ["книга", "книгата", "книги"],
-          "note": "The ending -та is a strong clue for many feminine nouns."
         }
       ]
     }
