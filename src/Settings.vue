@@ -4,10 +4,28 @@ import { useRouter } from 'vue-router'
 
 const router = useRouter()
 const countersEnabled = ref(true)
+const bgFont = ref('default')
+const fontOptions = [
+  { value: 'default', label: 'Default' },
+  { value: 'montserrat_alternates', label: 'Montserrat Alternates' },
+  { value: 'comfortaa', label: 'Comfortaa' },
+]
 
 onMounted(() => {
   const saved = localStorage.getItem('counters_enabled')
   countersEnabled.value = saved === null ? true : saved === 'true'
+
+  const savedFont = localStorage.getItem('bg_font')
+  bgFont.value = savedFont || 'default'
+  // apply class to root
+  try {
+    const root = document.documentElement
+    root.classList.remove('bg-font-montserrat', 'bg-font-comfortaa')
+    if (bgFont.value === 'montserrat_alternates') root.classList.add('bg-font-montserrat')
+    else if (bgFont.value === 'comfortaa') root.classList.add('bg-font-comfortaa')
+  } catch (e) {
+    // ignore
+  }
 })
 
 function toggleCounters() {
@@ -20,6 +38,18 @@ function resetCounters() {
     const keys = Object.keys(localStorage).filter((key) => key.startsWith('lesson_clicks_'))
     keys.forEach((key) => localStorage.removeItem(key))
     alert('All counters have been reset to 0.')
+  }
+}
+
+function setBgFont() {
+  try {
+    localStorage.setItem('bg_font', bgFont.value)
+    const root = document.documentElement
+    root.classList.remove('bg-font-montserrat', 'bg-font-comfortaa')
+    if (bgFont.value === 'montserrat_alternates') root.classList.add('bg-font-montserrat')
+    else if (bgFont.value === 'comfortaa') root.classList.add('bg-font-comfortaa')
+  } catch (e) {
+    // ignore
   }
 }
 
@@ -63,6 +93,23 @@ function goHome() {
             <p>Clear all lesson counter data and reset them to 0.</p>
           </div>
           <button class="reset-btn" @click="resetCounters" type="button"> Reset </button>
+        </div>
+      </section>
+
+      <section class="settings-section">
+        <h2>Appearance</h2>
+        <div class="setting-item">
+          <div class="setting-info">
+            <h3>Lesson Content Font</h3>
+            <p>Choose a font to use for lesson content throughout the app.</p>
+          </div>
+
+          <div style="display:flex;flex-direction:column;align-items:flex-end;gap:0.5rem;min-width:220px;">
+            <select v-model="bgFont" @change="setBgFont" aria-label="Bulgarian font selector">
+              <option v-for="opt in fontOptions" :value="opt.value" :key="opt.value">{{ opt.label }}</option>
+            </select>
+            <div class="font-preview lesson-content" aria-hidden="true">Здравей, свят — Примерен текст</div>
+          </div>
         </div>
       </section>
     </div>
@@ -208,6 +255,27 @@ function goHome() {
 .reset-btn:hover {
   background: rgba(255, 107, 107, 0.25);
   border-color: rgba(255, 107, 107, 0.6);
+}
+
+.settings-section select {
+  background: #ffffff;
+  color: #000000;
+  border: 1px solid rgba(0,0,0,0.12);
+  padding: 0.45rem 0.6rem;
+  border-radius: 8px;
+  min-width: 180px;
+}
+.settings-section select option {
+  color: #000000;
+}
+
+.font-preview {
+  font-size: 0.95rem;
+  color: #b8c8cb;
+  background: rgba(255,255,255,0.02);
+  padding: 0.35rem 0.6rem;
+  border-radius: 6px;
+  border: 1px solid rgba(255,255,255,0.04);
 }
 
 @media (max-width: 700px) {

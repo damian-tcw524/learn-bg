@@ -38,7 +38,7 @@ const noteToneClass = computed(() => {
         <span class="section-chip">{{ item.content.length }} blocks</span>
       </div>
 
-      <p v-if="item.description" class="section-description">
+      <p v-if="item.description" class="section-description lesson-content">
         {{ item.description }}
       </p>
 
@@ -62,7 +62,7 @@ const noteToneClass = computed(() => {
         </thead>
         <tbody>
           <tr v-for="(row, rowIndex) in item.rows" :key="rowIndex">
-            <td v-for="(cell, cellIndex) in row" :key="cellIndex">
+            <td v-for="(cell, cellIndex) in row" :key="cellIndex" class="lesson-content">
               {{ cell }}
             </td>
           </tr>
@@ -74,7 +74,7 @@ const noteToneClass = computed(() => {
       <p v-if="item.title" class="block-title">
         {{ item.title }}
       </p>
-      <p class="note-text">
+      <p class="note-text lesson-content">
         {{ item.text }}
       </p>
     </div>
@@ -84,7 +84,7 @@ const noteToneClass = computed(() => {
         {{ item.title }}
       </p>
       <ul class="bullet-list">
-        <li v-for="(listItem, index) in item.items" :key="index">
+        <li v-for="(listItem, index) in item.items" :key="index" class="lesson-content">
           {{ listItem }}
         </li>
       </ul>
@@ -96,17 +96,17 @@ const noteToneClass = computed(() => {
       </div>
 
       <div class="example-grid">
-        <div class="example-panel">
+          <div class="example-panel">
           <span class="example-label">Bulgarian</span>
-          <p class="example-bg">{{ item.bg }}</p>
+          <p class="example-bg lesson-content">{{ item.bg }}</p>
         </div>
         <div class="example-panel">
           <span class="example-label">English</span>
-          <p class="example-en">{{ item.en }}</p>
+          <p class="example-en lesson-content">{{ item.en }}</p>
         </div>
       </div>
 
-      <p v-if="item.note" class="example-note">
+      <p v-if="item.note" class="example-note lesson-content">
         {{ item.note }}
       </p>
     </div>
@@ -117,45 +117,45 @@ const noteToneClass = computed(() => {
       </p>
       <div class="card-grid">
         <article v-for="(card, index) in item.cards" :key="index" class="mini-card">
-          <p class="mini-card-front">{{ card.front }}</p>
-          <p class="mini-card-back">{{ card.back }}</p>
-          <p v-if="card.hint" class="mini-card-hint">{{ card.hint }}</p>
+          <p class="mini-card-front lesson-content">{{ card.front }}</p>
+          <p class="mini-card-back lesson-content">{{ card.back }}</p>
+          <p v-if="card.hint" class="mini-card-hint lesson-content">{{ card.hint }}</p>
         </article>
       </div>
     </div>
 
     <div v-else-if="item.type === 'quiz'" class="quiz-card">
       <p class="block-title">Check yourself</p>
-      <p class="quiz-question">{{ item.question }}</p>
-      <p class="quiz-answer"><span>Answer:</span> {{ item.answer }}</p>
+      <p class="quiz-question lesson-content">{{ item.question }}</p>
+      <p class="quiz-answer"><span>Answer:</span> <span class="lesson-content">{{ item.answer }}</span></p>
 
       <div v-if="item.choices?.length" class="choice-row">
-        <span v-for="(choice, index) in item.choices" :key="index" class="choice-pill">
+        <span v-for="(choice, index) in item.choices" :key="index" class="choice-pill lesson-content">
           {{ choice }}
         </span>
       </div>
 
-      <p v-if="item.note" class="quiz-note">{{ item.note }}</p>
+      <p v-if="item.note" class="quiz-note lesson-content">{{ item.note }}</p>
     </div>
 
     <div v-else-if="item.type === 'rule'" class="rule-card">
       <p v-if="item.title" class="block-title">{{ item.title }}</p>
       <ul class="bullet-list">
-        <li v-for="(bullet, index) in item.bullets" :key="index">{{ bullet }}</li>
+        <li v-for="(bullet, index) in item.bullets" :key="index" class="lesson-content">{{ bullet }}</li>
       </ul>
-      <p v-if="item.note" class="rule-note">{{ item.note }}</p>
+      <p v-if="item.note" class="rule-note lesson-content">{{ item.note }}</p>
     </div>
 
     <div v-else class="item-card">
       <div v-if="item.letter" class="item-main">
-        <span class="big">{{ item.letter }}</span>
-        <span class="item-sub">{{ item.sound }}</span>
+        <span class="big lesson-content">{{ item.letter }}</span>
+        <span class="item-sub lesson-content">{{ item.sound }}</span>
       </div>
       <div v-else class="item-main">
-        <span class="big">{{ item.bg }}</span>
-        <span class="item-sub">{{ item.en }}</span>
+        <span class="big lesson-content">{{ item.bg }}</span>
+        <span class="item-sub lesson-content">{{ item.en }}</span>
       </div>
-      <p v-if="item.hint" class="item-hint">{{ item.hint }}</p>
+      <p v-if="item.hint" class="item-hint lesson-content">{{ item.hint }}</p>
     </div>
   </article>
 </template>

@@ -551,13 +551,13 @@ onBeforeUnmount(() => {
           <div :key="(nextCard && nextCard.card.id) || currentIndex + '-next'" class="card" :class="{ flipped: showBackNext, 'no-anim': !cardReady }" :style="{ '--card-shadow': 'none', '--card-border': 'rgba(255,255,255,0)' }">
             <article class="card-face card-front">
               <p class="card-label">{{ nextCard ? (nextCard.front === 'bg' ? 'Bulgarian' : 'English') : '' }}</p>
-              <h2>{{ nextCard ? (nextCard.front === 'bg' ? nextCard.card.bg : nextCard.card.en) : '' }}</h2>
+              <h2 class="lesson-content">{{ nextCard ? (nextCard.front === 'bg' ? nextCard.card.bg : nextCard.card.en) : '' }}</h2>
               <small>Tap to flip</small>
             </article>
 
             <article class="card-face card-back">
               <p class="card-label">{{ nextCard ? (nextCard.front === 'bg' ? 'English' : 'Bulgarian') : '' }}</p>
-              <h2>{{ nextCard ? (nextCard.front === 'bg' ? nextCard.card.en : nextCard.card.bg) : '' }}</h2>
+              <h2 class="lesson-content">{{ nextCard ? (nextCard.front === 'bg' ? nextCard.card.en : nextCard.card.bg) : '' }}</h2>
               <small>Swipe left if wrong, swipe right if correct</small>
             </article>
           </div>
@@ -572,13 +572,13 @@ onBeforeUnmount(() => {
           <div class="card flipped no-anim" :style="{ '--card-shadow': 'none', '--card-border': 'rgba(255,255,255,0)' }">
             <article class="card-face card-front">
               <p class="card-label">{{ exitingCard.front === 'bg' ? 'Bulgarian' : 'English' }}</p>
-              <h2>{{ exitingCard.front === 'bg' ? exitingCard.card.bg : exitingCard.card.en }}</h2>
+              <h2 class="lesson-content">{{ exitingCard.front === 'bg' ? exitingCard.card.bg : exitingCard.card.en }}</h2>
               <small>Tap to flip</small>
             </article>
 
             <article class="card-face card-back">
               <p class="card-label">{{ exitingCard.front === 'bg' ? 'English' : 'Bulgarian' }}</p>
-              <h2>{{ exitingCard.front === 'bg' ? exitingCard.card.en : exitingCard.card.bg }}</h2>
+              <h2 class="lesson-content">{{ exitingCard.front === 'bg' ? exitingCard.card.en : exitingCard.card.bg }}</h2>
               <small>Swipe left if wrong, swipe right if correct</small>
             </article>
           </div>
@@ -599,13 +599,13 @@ onBeforeUnmount(() => {
           <div :key="currentCard?.card.id || currentIndex" class="card" :class="{ flipped: showBack, 'no-anim': !cardReady }" :style="{ '--card-shadow': accentBoxShadow, '--card-border': accentBorder }">
             <article class="card-face card-front">
               <p class="card-label">{{ frontLanguageLabel }}</p>
-              <h2>{{ frontText }}</h2>
+              <h2 class="lesson-content">{{ frontText }}</h2>
               <small>Tap to flip</small>
             </article>
 
             <article class="card-face card-back">
               <p class="card-label">{{ backLanguageLabel }}</p>
-              <h2>{{ backText }}</h2>
+              <h2 class="lesson-content">{{ backText }}</h2>
               <small>Swipe left if wrong, swipe right if correct</small>
             </article>
           </div>

@@ -10,3 +10,12 @@ body,
 body {
   background: #0a1f3d;
 }
+
+/* Lesson content font switching */
+.bg-font-montserrat .lesson-content {
+  font-family: 'Montserrat Alternates', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.bg-font-comfortaa .lesson-content {
+  font-family: 'Comfortaa', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
