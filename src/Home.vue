@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted, computed } from 'vue'
+import { ref, onMounted, computed, reactive } from 'vue'
 import { useRouter } from 'vue-router'
 
 interface Lesson {
@@ -18,6 +18,7 @@ const router = useRouter()
 const categories = ref<LessonCategory[]>([])
 const loading = ref(true)
 const loadError = ref('')
+const lessonClickCounts = reactive<Record<string, number>>({})
 
 const featureButtons = [
   { label: 'Flashcards', path: '/flashcards' },
@@ -31,6 +32,20 @@ const totalLessons = computed(() => {
   return categories.value.reduce((sum, cat) => sum + cat.lessons.length, 0)
 })
 
+function getClickCount(lessonId: string): number {
+  return lessonClickCounts[lessonId] || 0
+}
+
+function setClickCount(lessonId: string, count: number) {
+  lessonClickCounts[lessonId] = count
+  localStorage.setItem(`lesson_clicks_${lessonId}`, count.toString())
+}
+
+function incrementClickCount(lessonId: string) {
+  const current = getClickCount(lessonId)
+  setClickCount(lessonId, current + 1)
+}
+
 onMounted(async () => {
   try {
     const res = await fetch(`${import.meta.env.BASE_URL}data/roadmap.json`)
@@ -40,6 +55,16 @@ onMounted(async () => {
     }
 
     categories.value = await res.json()
+
+    // Load click counts from localStorage
+    categories.value.forEach((category) => {
+      category.lessons.forEach((lesson) => {
+        const saved = localStorage.getItem(`lesson_clicks_${lesson.id}`)
+        if (saved) {
+          lessonClickCounts[lesson.id] = parseInt(saved, 10)
+        }
+      })
+    })
   } catch (error) {
     loadError.value = error instanceof Error ? error.message : 'Unexpected error while loading lessons.'
   } finally {
@@ -48,6 +73,7 @@ onMounted(async () => {
 })
 
 function goToLesson(lesson: Lesson) {
+  incrementClickCount(lesson.id)
   router.push({
     path: `/lesson/${lesson.id}`,
     query: { file: lesson.file }
@@ -114,6 +140,7 @@ function goToFeature(path: string) {
                 <strong>{{ lesson.title }}</strong>
                 <small>{{ lesson.description }}</small>
               </span>
+              <span class="item-counter">{{ getClickCount(lesson.id) }}</span>
               <span class="item-arrow" aria-hidden="true">→</span>
             </button>
           </div>
@@ -256,7 +283,7 @@ function goToFeature(path: string) {
   border-radius: 10px;
   padding: 0.55rem 0.7rem;
   display: grid;
-  grid-template-columns: auto 1fr auto;
+  grid-template-columns: auto 1fr auto auto;
   gap: 0.7rem;
   align-items: center;
   text-align: left;
@@ -289,6 +316,20 @@ function goToFeature(path: string) {
 .item-body small {
   color: #b8c8cb;
   line-height: 1.2;
+}
+
+.item-counter {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  background: rgba(110, 240, 210, 0.15);
+  color: #6bf5cb;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border: 1px solid rgba(110, 240, 210, 0.3);
 }
 
 .item-arrow {
