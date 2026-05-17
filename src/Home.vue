@@ -19,6 +19,7 @@ const categories = ref<LessonCategory[]>([])
 const loading = ref(true)
 const loadError = ref('')
 const lessonClickCounts = reactive<Record<string, number>>({})
+const countersEnabled = ref(true)
 
 const featureButtons = [
   { label: 'Flashcards', path: '/flashcards' },
@@ -56,6 +57,10 @@ onMounted(async () => {
 
     categories.value = await res.json()
 
+    // Load settings
+    const saved = localStorage.getItem('counters_enabled')
+    countersEnabled.value = saved === null ? true : saved === 'true'
+
     // Load click counts from localStorage
     categories.value.forEach((category) => {
       category.lessons.forEach((lesson) => {
@@ -83,6 +88,10 @@ function goToLesson(lesson: Lesson) {
 function goToFeature(path: string) {
   router.push(path)
 }
+
+function goToSettings() {
+  router.push('/settings')
+}
 </script>
 
 <template>
@@ -95,6 +104,9 @@ function goToFeature(path: string) {
           Lessons are organized as a compact list so you can scale easily as more topics are added.
         </p>
       </div>
+      <button class="settings-btn" @click="goToSettings" type="button" aria-label="Open settings">
+        ⚙️
+      </button>
     </section>
 
     <section class="features-panel">
@@ -140,7 +152,7 @@ function goToFeature(path: string) {
                 <strong>{{ lesson.title }}</strong>
                 <small>{{ lesson.description }}</small>
               </span>
-              <span class="item-counter">{{ getClickCount(lesson.id) }}</span>
+              <span v-if="countersEnabled" class="item-counter">{{ getClickCount(lesson.id) }}</span>
               <span class="item-arrow" aria-hidden="true">→</span>
             </button>
           </div>
@@ -193,6 +205,28 @@ function goToFeature(path: string) {
   margin: 0;
   max-width: 60ch;
   color: #c9d7da;
+}
+
+.settings-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  background: rgba(107, 245, 203, 0.08);
+  color: #6bf5cb;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.settings-btn:hover {
+  background: rgba(107, 245, 203, 0.15);
+  border-color: rgba(107, 245, 203, 0.4);
+  transform: scale(1.05);
 }
 
 .feature-list {

@@ -7,6 +7,7 @@ import Quiz from './Quiz.vue'
 import GrammarLab from './GrammarLab.vue'
 import Listening from './Listening.vue'
 import Progress from './Progress.vue'
+import Settings from './Settings.vue'
 
 const router = createRouter({
   history: createWebHashHistory(),
@@ -18,7 +19,8 @@ const router = createRouter({
     { path: '/quiz', component: Quiz },
     { path: '/grammar-lab', component: GrammarLab },
     { path: '/listening', component: Listening },
-    { path: '/progress', component: Progress }
+    { path: '/progress', component: Progress },
+    { path: '/settings', component: Settings }
   ]
 })
 
