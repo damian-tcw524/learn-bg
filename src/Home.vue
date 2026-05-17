@@ -1,10 +1,21 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, computed } from 'vue'
 import { useRouter } from 'vue-router'
-import type { RoadmapItem } from './types'
+
+interface Lesson {
+  id: string
+  title: string
+  description: string
+  file: string
+}
+
+interface LessonCategory {
+  category: string
+  lessons: Lesson[]
+}
 
 const router = useRouter()
-const lessons = ref<RoadmapItem[]>([])
+const categories = ref<LessonCategory[]>([])
 const loading = ref(true)
 const loadError = ref('')
 
@@ -16,6 +27,10 @@ const featureButtons = [
   { label: 'Progress Tracker', path: '/progress' }
 ]
 
+const totalLessons = computed(() => {
+  return categories.value.reduce((sum, cat) => sum + cat.lessons.length, 0)
+})
+
 onMounted(async () => {
   try {
     const res = await fetch(`${import.meta.env.BASE_URL}data/roadmap.json`)
@@ -24,7 +39,7 @@ onMounted(async () => {
       throw new Error('Could not load lesson roadmap.')
     }
 
-    lessons.value = await res.json()
+    categories.value = await res.json()
   } catch (error) {
     loadError.value = error instanceof Error ? error.message : 'Unexpected error while loading lessons.'
   } finally {
@@ -32,7 +47,7 @@ onMounted(async () => {
   }
 })
 
-function goToLesson(lesson: RoadmapItem) {
+function goToLesson(lesson: Lesson) {
   router.push({
     path: `/lesson/${lesson.id}`,
     query: { file: lesson.file }
@@ -77,27 +92,32 @@ function goToFeature(path: string) {
     <section class="lessons-panel">
       <div class="panel-header">
         <h2>Sections</h2>
-        <span class="count">{{ lessons.length }} total</span>
+        <span class="count">{{ totalLessons }} total</span>
       </div>
 
       <p v-if="loading" class="status">Loading lessons...</p>
       <p v-else-if="loadError" class="status error">{{ loadError }}</p>
 
-      <div v-else class="section-list" role="list">
-        <button
-          v-for="(lesson, index) in lessons"
-          :key="lesson.id"
-          class="section-item"
-          type="button"
-          @click="goToLesson(lesson)"
-        >
-          <span class="item-index">{{ String(index + 1).padStart(2, '0') }}</span>
-          <span class="item-body">
-            <strong>{{ lesson.title }}</strong>
-            <small>{{ lesson.description }}</small>
-          </span>
-          <span class="item-arrow" aria-hidden="true">→</span>
-        </button>
+      <div v-else class="categories-container">
+        <div v-for="(categoryGroup, catIndex) in categories" :key="categoryGroup.category" class="category-section">
+          <h3 class="category-title">{{ categoryGroup.category }}</h3>
+          <div class="section-list" role="list">
+            <button
+              v-for="(lesson, lessonIndex) in categoryGroup.lessons"
+              :key="lesson.id"
+              class="section-item"
+              type="button"
+              @click="goToLesson(lesson)"
+            >
+              <span class="item-index">{{ String(lessonIndex + 1).padStart(2, '0') }}</span>
+              <span class="item-body">
+                <strong>{{ lesson.title }}</strong>
+                <small>{{ lesson.description }}</small>
+              </span>
+              <span class="item-arrow" aria-hidden="true">→</span>
+            </button>
+          </div>
+        </div>
       </div>
     </section>
   </main>
@@ -193,6 +213,25 @@ function goToFeature(path: string) {
 .count {
   color: #a9b8bc;
   font-size: 0.9rem;
+}
+
+.categories-container {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.category-section {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.category-title {
+  margin: 0;
+  font-size: 1.1rem;
+  color: #6bf5cb;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 600;
 }
 
 .status {
