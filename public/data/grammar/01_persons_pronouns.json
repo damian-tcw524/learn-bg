@@ -1,0 +1,91 @@
+{
+  "title": "Persons and Pronouns",
+  "description": "Build a stable base for Bulgarian grammar by learning the six person forms, the main pronouns, and the rule that pronouns are often left out when the verb already shows the subject.",
+  "content": [
+    {
+      "type": "section",
+      "title": "The six person forms",
+      "description": "Bulgarian verbs normally tell you who is acting, so the person is visible in the ending even when the pronoun disappears.",
+      "content": [
+        {
+          "type": "table",
+          "headers": ["Person", "Singular", "Plural", "Example role"],
+          "rows": [
+            ["1st", "аз", "ние", "speaker / speakers"],
+            ["2nd", "ти", "вие", "listener / listeners"],
+            ["3rd", "той / тя / то", "те", "other person or thing"],
+            ["neutral", "-", "-", "gender only matters in the 3rd person singular"]
+          ]
+        },
+        {
+          "type": "note",
+          "tone": "tip",
+          "title": "Drop the pronoun when you can",
+          "text": "Аз чета and Чета both mean I read / I am reading. The verb ending usually gives enough information, so Bulgarian often sounds more natural without the pronoun."
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "title": "Pronoun set",
+      "description": "These are the most common subject pronouns you will see in everyday Bulgarian.",
+      "content": [
+        {
+          "type": "cards",
+          "title": "Subject pronouns",
+          "cards": [
+            { "front": "аз", "back": "I" },
+            { "front": "ти", "back": "you (singular)" },
+            { "front": "той", "back": "he / it (masculine or common reference)" },
+            { "front": "тя", "back": "she" },
+            { "front": "то", "back": "it" },
+            { "front": "ние", "back": "we" },
+            { "front": "вие", "back": "you (plural or polite singular)" },
+            { "front": "те", "back": "they" }
+          ]
+        },
+        {
+          "type": "list",
+          "title": "Watch-outs",
+          "items": [
+            "Вие can mean more than one person or a polite singular you.",
+            "Той, тя, and то all map to the third person singular but differ by gender.",
+            "The pronoun is optional when the verb form is already clear."
+          ]
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "title": "Person in action",
+      "description": "These examples show the same verb form with and without the pronoun.",
+      "content": [
+        {
+          "type": "example",
+          "bg": "Аз говоря български.",
+          "en": "I speak Bulgarian.",
+          "note": "The pronoun is explicit here for emphasis."
+        },
+        {
+          "type": "example",
+          "bg": "Говоря български.",
+          "en": "I speak Bulgarian.",
+          "note": "Natural everyday version. The ending already identifies the person."
+        },
+        {
+          "type": "example",
+          "bg": "Те живеят в София.",
+          "en": "They live in Sofia.",
+          "note": "Plural person uses the -т ending in this present-tense pattern."
+        }
+      ]
+    },
+    {
+      "type": "quiz",
+      "question": "Which Bulgarian pronoun can be singular polite or plural?",
+      "answer": "вие",
+      "choices": ["ние", "вие", "те"],
+      "note": "Check whether the sentence is formal or plural from the context."
+    }
+  ]
+}

@@ -1,0 +1,122 @@
+{
+  "title": "Past, Future, and Conditional",
+  "description": "Compare the major Bulgarian tense builders and learn how time is marked in real sentences.",
+  "content": [
+    {
+      "type": "section",
+      "title": "Three common time builders",
+      "description": "Bulgarian often uses a helper word plus a verb form to show time.",
+      "content": [
+        {
+          "type": "table",
+          "headers": ["Tense", "Main builder", "What it does", "Example"],
+          "rows": [
+            ["Future", "ще + present", "talks about actions ahead", "ще чета"],
+            ["Past", "simple past / auxiliary forms", "talks about completed or historical events", "четох"],
+            ["Conditional", "бих / щях + form", "shows hypothetical or dependent actions", "бих чел"],
+            ["Imperfect", "ongoing past", "shows a background or repeated past action", "четях"]
+          ]
+        },
+        {
+          "type": "note",
+          "tone": "warning",
+          "title": "Do not translate too literally",
+          "text": "English tense labels do not always match Bulgarian forms one-to-one. Focus on the time meaning, then learn the Bulgarian structure that expresses it."
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "title": "Future tense",
+      "description": "The future is usually built with ще plus the present-tense form.",
+      "content": [
+        {
+          "type": "example",
+          "bg": "Ще чета тази книга утре.",
+          "en": "I will read this book tomorrow.",
+          "note": "The helper word ще marks the future."
+        },
+        {
+          "type": "example",
+          "bg": "Те ще дойдат по-късно.",
+          "en": "They will come later.",
+          "note": "The main verb stays in its base present pattern."
+        },
+        {
+          "type": "rule",
+          "title": "Future tense rule",
+          "bullets": [
+            "Use ще before the verb.",
+            "Keep the verb in the form you would use in the present.",
+            "Use context or time words like утре, после, or по-късно to make the meaning clear."
+          ]
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "title": "Past tense and imperfect",
+      "description": "Bulgarian distinguishes a finished past event from a background or repeated past action.",
+      "content": [
+        {
+          "type": "example",
+          "bg": "Вчера прочетох писмото.",
+          "en": "Yesterday I read the letter.",
+          "note": "A completed past event."
+        },
+        {
+          "type": "example",
+          "bg": "Като дете четях много книги.",
+          "en": "As a child I used to read many books.",
+          "note": "An ongoing or repeated past habit."
+        },
+        {
+          "type": "list",
+          "title": "Past-tense clues",
+          "items": [
+            "Time words like вчера and преди often point to the past.",
+            "Completed events usually use the aorist-like form.",
+            "Background or repeated actions often use the imperfect.",
+            "The verb aspect changes the meaning as much as the tense does."
+          ]
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "title": "Conditional mood",
+      "description": "The conditional helps you talk about imagined, dependent, or polite actions.",
+      "content": [
+        {
+          "type": "example",
+          "bg": "Бих пил кафе.",
+          "en": "I would drink coffee.",
+          "note": "A classic conditional statement."
+        },
+        {
+          "type": "example",
+          "bg": "Щях да тръгна по-рано, но заваля.",
+          "en": "I was going to leave earlier, but it started raining.",
+          "note": "A planned action that did not happen."
+        },
+        {
+          "type": "cards",
+          "title": "Time markers",
+          "cards": [
+            { "front": "ще", "back": "future marker" },
+            { "front": "бих", "back": "conditional marker" },
+            { "front": "четях", "back": "imperfect / used to read" },
+            { "front": "прочетох", "back": "completed past / I read it" }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "quiz",
+      "question": "What is the most common marker for the Bulgarian future tense?",
+      "answer": "ще",
+      "choices": ["бих", "ще", "съм"],
+      "note": "It appears before the present-tense verb form."
+    }
+  ]
+}

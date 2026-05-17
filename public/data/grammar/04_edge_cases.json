@@ -1,0 +1,111 @@
+{
+  "title": "Edge Cases and Irregulars",
+  "description": "Learn the forms that do not follow the regular path: irregular plurals, special gender patterns, and verbs that change shape in surprising ways.",
+  "content": [
+    {
+      "type": "section",
+      "title": "Irregular plurals",
+      "description": "Some common nouns do not build the plural by simply adding a regular ending.",
+      "content": [
+        {
+          "type": "table",
+          "headers": ["Singular", "Plural", "Note"],
+          "rows": [
+            ["дете", "деца", "Very common irregular plural"],
+            ["мъж", "мъже", "Soft change in the stem"],
+            ["човек", "хора", "High-frequency irregular form"],
+            ["радио", "радио", "Unchanging noun"],
+            ["кино", "кино", "Unchanging noun"]
+          ]
+        },
+        {
+          "type": "note",
+          "tone": "tip",
+          "title": "Memorize the high-frequency exceptions",
+          "text": "The most useful irregular nouns are the ones you hear every day. Learn those first, then add the less common exceptions later."
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "title": "Gender surprises",
+      "description": "A noun ending can mislead you, so do not rely on the last letter alone.",
+      "content": [
+        {
+          "type": "table",
+          "headers": ["Noun", "Expected guess", "Actual gender", "Why it matters"],
+          "rows": [
+            ["момче", "neuter-looking ending", "neuter", "takes neuter agreement"],
+            ["дете", "looks simple", "neuter", "behaves like neuter in agreement"],
+            ["име", "unusual ending", "neuter", "common exception"],
+            ["лице", "-e ending", "neuter", "special pattern"],
+            ["път", "consonant ending", "masculine", "needs masculine agreement"]
+          ]
+        },
+        {
+          "type": "example",
+          "bg": "Това е малко момче.",
+          "en": "This is a little boy.",
+          "note": "The adjective matches neuter gender, not masculine."
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "title": "Soft consonant changes",
+      "description": "Some verbs and nouns change a consonant when forms are built, especially in older or higher-frequency patterns.",
+      "content": [
+        {
+          "type": "list",
+          "title": "Common changes to watch for",
+          "items": [
+            "т can alternate with ш in some patterns.",
+            "д can alternate with ж in some patterns.",
+            "к and г can soften before certain endings.",
+            "These changes often show up in derived forms, not in every tense."
+          ]
+        },
+        {
+          "type": "example",
+          "bg": "Ръката е топла.",
+          "en": "The hand is warm.",
+          "note": "Word-level exceptions often matter as much as the rule."
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "title": "Irregular verbs and agreement",
+      "description": "The most common irregular verbs are the ones you will use constantly.",
+      "content": [
+        {
+          "type": "cards",
+          "title": "High-value irregulars",
+          "cards": [
+            { "front": "съм", "back": "to be" },
+            { "front": "имам", "back": "to have" },
+            { "front": "щa", "back": "future helper / will" },
+            { "front": "нямам", "back": "to not have" }
+          ]
+        },
+        {
+          "type": "rule",
+          "title": "Edge-case strategy",
+          "bullets": [
+            "Learn the most frequent exceptions first.",
+            "Treat form changes as vocabulary, not just grammar.",
+            "Check agreement when a noun feels like it should belong to another gender.",
+            "Use examples to lock in the pattern instead of memorizing the rule alone."
+          ]
+        }
+      ]
+    },
+    {
+      "type": "quiz",
+      "question": "Which noun below is an unchanging plural noun?",
+      "answer": "радио",
+      "choices": ["дете", "радио", "човек"],
+      "note": "Unchanging nouns stay the same in singular and plural."
+    }
+  ]
+}

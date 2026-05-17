@@ -1,0 +1,34 @@
+{
+  "title": "Bulgarian Grammar Lab",
+  "description": "A structured path for learning Bulgarian grammar by person, tense, and common edge cases.",
+  "modules": [
+    {
+      "id": "01",
+      "title": "Persons and Pronouns",
+      "description": "Learn the six personal forms, how pronouns work, and when Bulgarian usually drops them.",
+      "focus": ["person", "pronouns", "agreement"],
+      "file": "01_persons_pronouns.json"
+    },
+    {
+      "id": "02",
+      "title": "Present Tense Patterns",
+      "description": "See how regular verbs change across persons and how the common stem patterns behave.",
+      "focus": ["present tense", "verb groups", "persons"],
+      "file": "02_present_tense.json"
+    },
+    {
+      "id": "03",
+      "title": "Past, Future, and Conditional",
+      "description": "Practice the major tense builders and compare how each one marks time.",
+      "focus": ["past tense", "future", "conditional"],
+      "file": "03_tenses.json"
+    },
+    {
+      "id": "04",
+      "title": "Edge Cases and Irregulars",
+      "description": "Cover irregular forms, tricky nouns, and the exceptions that usually confuse beginners.",
+      "focus": ["irregular verbs", "irregular nouns", "exceptions"],
+      "file": "04_edge_cases.json"
+    }
+  ]
+}

@@ -1,0 +1,99 @@
+{
+  "title": "Present Tense Patterns",
+  "description": "Learn the regular present tense by looking at the person endings, the common verb groups, and the forms that stay stable across many verbs.",
+  "content": [
+    {
+      "type": "section",
+      "title": "The main present-tense groups",
+      "description": "Bulgarian verbs are usually taught in groups based on their infinitive stem and the ending they take in the dictionary form.",
+      "content": [
+        {
+          "type": "table",
+          "headers": ["Group", "Dictionary clue", "Typical pattern", "Example verb"],
+          "rows": [
+            ["Group 1", "-а / -я verbs", "нося -> нося, носиш, носи", "нося"],
+            ["Group 2", "-е verbs", "чета -> чета, четеш, чете", "чета"],
+            ["Group 3", "-и verbs", "говоря -> говоря, говориш, говори", "говоря"],
+            ["Group 4", "mixed / consonant changes", "живея -> живея, живееш, живее", "живея"]
+          ]
+        },
+        {
+          "type": "note",
+          "tone": "info",
+          "title": "Focus on person endings first",
+          "text": "The ending usually matters more than the dictionary label. Once you know how 1st, 2nd, and 3rd person behave, most regular verbs become predictable."
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "title": "Person endings",
+      "description": "Use one stable model to recognize who is doing the action.",
+      "content": [
+        {
+          "type": "table",
+          "headers": ["Person", "Typical ending", "Example with говоря", "Example with чета"],
+          "rows": [
+            ["1st sg.", "-я / -а", "говоря", "чета"],
+            ["2nd sg.", "-иш / -еш", "говориш", "четеш"],
+            ["3rd sg.", "-и / -е", "говори", "чете"],
+            ["1st pl.", "-им / -ем", "говорим", "четем"],
+            ["2nd pl.", "-ите / -ете", "говорите", "четете"],
+            ["3rd pl.", "-ят / -ат / -ят", "говорят", "четат"]
+          ]
+        },
+        {
+          "type": "rule",
+          "title": "How to read the pattern",
+          "bullets": [
+            "Find the person ending first.",
+            "Check whether the stem changes before the ending.",
+            "Compare the singular and plural forms to see which vowels stay stable.",
+            "Use context when a form can belong to more than one verb group."
+          ]
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "title": "Examples in sentences",
+      "description": "These examples show how present tense sounds in natural speech.",
+      "content": [
+        {
+          "type": "example",
+          "bg": "Аз чета книга.",
+          "en": "I am reading a book.",
+          "note": "1st person singular present."
+        },
+        {
+          "type": "example",
+          "bg": "Ти говориш бавно.",
+          "en": "You speak slowly.",
+          "note": "2nd person singular present."
+        },
+        {
+          "type": "example",
+          "bg": "Ние живеем тук.",
+          "en": "We live here.",
+          "note": "1st person plural present."
+        }
+      ]
+    },
+    {
+      "type": "cards",
+      "title": "Quick drill",
+      "cards": [
+        { "front": "говоря", "back": "I speak / am speaking" },
+        { "front": "четеш", "back": "you read / are reading" },
+        { "front": "живеят", "back": "they live / are living" }
+      ]
+    },
+    {
+      "type": "quiz",
+      "question": "Which form is 1st person singular in the present tense for чета?",
+      "answer": "чета",
+      "choices": ["четя", "чета", "чете"],
+      "note": "The dictionary form and the 1st person singular are often the same for this group."
+    }
+  ]
+}

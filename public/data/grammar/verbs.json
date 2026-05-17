@@ -1,0 +1,103 @@
+{
+  "title": "Verb Conjugator",
+  "description": "Pick a verb to compare its forms across persons and tenses.",
+  "persons": ["I", "you", "he / she / it", "we", "you all", "they"],
+  "verbs": [
+    {
+      "id": "govorya",
+      "label": "говоря / to speak",
+      "note": "A common regular-style verb with clear person endings in the present tense.",
+      "infinitive": "говоря",
+      "forms": {
+        "present": {
+          "bg": ["говоря", "говориш", "говори", "говорим", "говорите", "говорят"],
+          "en": ["I speak", "you speak", "he / she / it speaks", "we speak", "you all speak", "they speak"]
+        },
+        "past": {
+          "bg": ["говорих", "говори", "говори", "говорихме", "говорихте", "говориха"],
+          "en": ["I spoke", "you spoke", "he / she / it spoke", "we spoke", "you all spoke", "they spoke"]
+        },
+        "future": {
+          "bg": ["ще говоря", "ще говориш", "ще говори", "ще говорим", "ще говорите", "ще говорят"],
+          "en": ["I will speak", "you will speak", "he / she / it will speak", "we will speak", "you all will speak", "they will speak"]
+        },
+        "conditional": {
+          "bg": ["бих говорил", "би говорил", "би говорил", "бихме говорили", "бихте говорили", "биха говорили"],
+          "en": ["I would speak", "you would speak", "he / she / it would speak", "we would speak", "you all would speak", "they would speak"]
+        }
+      }
+    },
+    {
+      "id": "cheta",
+      "label": "чета / to read",
+      "note": "This verb shows a useful stem pattern and a familiar everyday meaning.",
+      "infinitive": "чета",
+      "forms": {
+        "present": {
+          "bg": ["чета", "четеш", "чете", "четем", "четете", "четат"],
+          "en": ["I read", "you read", "he / she / it reads", "we read", "you all read", "they read"]
+        },
+        "past": {
+          "bg": ["четох", "чете", "чете", "четохме", "четохте", "четоха"],
+          "en": ["I read", "you read", "he / she / it read", "we read", "you all read", "they read"]
+        },
+        "future": {
+          "bg": ["ще чета", "ще четеш", "ще чете", "ще четем", "ще четете", "ще четат"],
+          "en": ["I will read", "you will read", "he / she / it will read", "we will read", "you all will read", "they will read"]
+        },
+        "conditional": {
+          "bg": ["бих чел", "би чел", "би чела", "бихме чели", "бихте чели", "биха чели"],
+          "en": ["I would read", "you would read", "he / she / it would read", "we would read", "you all would read", "they would read"]
+        }
+      }
+    },
+    {
+      "id": "imam",
+      "label": "имам / to have",
+      "note": "An important high-frequency verb that helps with everyday sentences.",
+      "infinitive": "имам",
+      "forms": {
+        "present": {
+          "bg": ["имам", "имаш", "има", "имаме", "имате", "имат"],
+          "en": ["I have", "you have", "he / she / it has", "we have", "you all have", "they have"]
+        },
+        "past": {
+          "bg": ["нямах", "нямаше", "нямаше", "нямахме", "нямахте", "нямаха"],
+          "en": ["I had not", "you had not", "he / she / it had not", "we had not", "you all had not", "they had not"]
+        },
+        "future": {
+          "bg": ["ще имам", "ще имаш", "ще има", "ще имаме", "ще имате", "ще имат"],
+          "en": ["I will have", "you will have", "he / she / it will have", "we will have", "you all will have", "they will have"]
+        },
+        "conditional": {
+          "bg": ["бих имал", "би имал", "би имала", "бихме имали", "бихте имали", "биха имали"],
+          "en": ["I would have", "you would have", "he / she / it would have", "we would have", "you all would have", "they would have"]
+        }
+      }
+    },
+    {
+      "id": "otivam",
+      "label": "отивам / to go",
+      "note": "Useful for travel and movement phrases.",
+      "infinitive": "отивам",
+      "forms": {
+        "present": {
+          "bg": ["отивам", "отиваш", "отива", "отиваме", "отивате", "отиват"],
+          "en": ["I go", "you go", "he / she / it goes", "we go", "you all go", "they go"]
+        },
+        "past": {
+          "bg": ["отивah", "отивaше", "отивaше", "отивахме", "отивахте", "отивaха"],
+          "en": ["I went", "you went", "he / she / it went", "we went", "you all went", "they went"]
+        },
+        "future": {
+          "bg": ["ще отида", "ще отидеш", "ще отиде", "ще отидем", "ще отидете", "ще отидат"],
+          "en": ["I will go", "you will go", "he / she / it will go", "we will go", "you all will go", "they will go"]
+        },
+        "conditional": {
+          "bg": ["бих отишъл", "би отишъл", "би отишла", "бихме отишли", "бихте отишли", "биха отишли"],
+          "en": ["I would go", "you would go", "he / she / it would go", "we would go", "you all would go", "they would go"]
+        }
+      }
+    }
+  ]
+}
